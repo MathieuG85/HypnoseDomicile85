@@ -1,0 +1,125 @@
+/* ✅ Styles généraux pour la barre de navigation */
+.navbar-nav .nav-item .nav-link {
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+/* Ajuster l'espace en haut du contenu pour éviter qu'il soit caché sous la barre */
+body {
+    padding-top: 80px; /* Ajuste selon la hauteur exacte de la barre */
+}
+
+/* Forcer la barre à rester bien positionnée et ne pas masquer le contenu */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Assurer que la barre est toujours au-dessus du contenu */
+}
+
+/* Correction pour s'assurer que les titres et les sections ne soient pas masqués */
+main {
+    margin-top: 80px; /* Permet d'éviter un chevauchement avec la barre */
+}
+
+
+
+/* ✅ Effet au survol */
+.navbar-nav .nav-item .nav-link:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.2); /* Léger effet de survol */
+}
+
+/* ✅ Effet bouton actif */
+.navbar-nav .nav-item .nav-link.active {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+
+/* ✅ Adaptation mobile */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    .navbar-nav .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+/* ✅ Appliquer du style aux boutons de la barre de navigation */
+.nav-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin: 5px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+
+
+/* ✅ Transition fluide */
+body {
+    transition: background 0.5s ease-in-out;
+}
+
+
+/* ✅ Centrer les boutons */
+.custom-navbar {
+    text-align: center;
+}
+
+/* Rendre la barre de navigation fixe */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #4973A3; /* Couleur de fond de la barre */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Assurez-vous que la barre de navigation fixe ne masque pas le contenu */
+body {
+    padding-top: 80px; /* Ajustez selon la hauteur de votre navbar */
+}
+
+/* ✅ Correction pour la Table des Matières (Gauche) */
+#TOC {
+    position: relative;
+    top: 80px; /* Permet d'éviter qu'elle soit cachée sous la navbar */
+    padding-left: 20px; /* Ajoute un espace pour éviter qu'elle soit collée */
+}
+
+/* ✅ Correction pour le Contenu principal (Droite) */
+.content {
+    margin-top: 80px; /* Évite que le texte principal soit coupé */
+    padding-right: 20px; /* Ajoute un léger espacement à droite */
+}
+
+/* ✅ Ajustement pour mobile */
+@media (max-width: 768px) {
+    body {
+        padding-top: 100px; /* Ajuste la hauteur de la navbar sur mobile */
+    }
+
+    #TOC {
+        top: 100px; /* Ajuste aussi la position de la table des matières */
+    }
+
+    .content {
+        margin-top: 100px;
+    }
+}

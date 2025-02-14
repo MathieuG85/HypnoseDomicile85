@@ -1,0 +1,80 @@
+---
+title: "🏡 Mathieu GUILMENT Praticien en hypnose/PNL en Vendée"
+data-page: "index"
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    smooth-scroll: true
+---
+
+Je me déplace dans le confort de votre domicile dans un large rayon dans toute la Vendée et proche Vendée (hors certaines îles)
+Durant les beaux jours , possibilité en extérieur en bord de mer ou à la forêt par exemple.
+
+### **Contactez-moi** {#contact}
+<div style="text-align: center; margin: 20px 0;">
+  <a href="mailto:mghypnose@icloud.com" style="margin: 10px; padding: 10px 15px; background-color: #f8bbd0; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;">
+    <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" style="width: 20px; vertical-align: middle;" /> Par Email
+  </a>
+  <a href="tel:+33627101468" style="margin: 10px; padding: 10px 15px; background-color: #e1bee7; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;">
+    <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Téléphone" style="width: 20px; vertical-align: middle;" /> Par Téléphone
+  </a>
+  <a href="https://www.instagram.com/mg85hypnose/" target="_blank" style="margin: 10px; padding: 10px 15px; background-color: #ffccbc; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 20px; vertical-align: middle;" /> Instagram
+  </a>
+  <a href="https://www.facebook.com/MGHypnoseVendee85" target="_blank" style="margin: 10px; padding: 10px 15px; background-color: #c5cae9; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" style="width: 20px; vertical-align: middle;" /> Facebook
+  </a>
+</div>
+
+------------------------------------------------------------------------
+
+::: {style="text-align: center; margin-top: 20px;"}
+<img src="profile.jpg" alt="Mon image de profil" style="border-radius: 50%; width: 200px; display: block;"/>
+:::
+
+## **1. Qui suis-je ?**
+
+**Je suis praticien en hypnose/PNL depuis plus de 10 ans pour vous accompagner au mieux dans l'atteinte de vos objectifs .**
+
+**💡 Avec moi, chaque séance est :**
+
+-   **Interactive : Nous travaillons ensemble pour identifier les origines de vos difficultés et les résoudre en profondeur.**
+
+-   **Personnalisée : Un accompagnement sur-mesure, adapté à vos besoins uniques.**
+
+-   **Innovante : Grâce à une formation continue, j’utilise des outils modernes et efficaces pour atteindre vos objectifs.**
+
+**👉 Et si vous faisiez le premier pas vers une transformation durable ? Contactez-moi dès aujourd’hui.**
+
+------------------------------------------------------------------------
+
+## **2. Un accompagnement respectueux et interactif**
+
+**👋 Je suis passionné par l’accompagnement des individus dans leurs transformations personnelles. Grâce à des techniques éprouvées comme l’hypnose, la PNL et la CNV, je guide les femmes, les hommes et les adolescents pour dépasser leurs blocages.**
+
+**💡 Mes valeurs :**
+
+-   **Respect et bienveillance : Je m’assure que chaque séance se déroule dans un cadre sécurisé et sans jugement.**
+
+-   **Écoute active : Je prends le temps nécessaire pour comprendre vos besoins et adapter mes techniques.**
+
+-   **Formation continue : Je suis en apprentissage permanent pour vous offrir les solutions les plus adaptées et efficaces.**
+
+**🎯 Ma mission : Vous accompagner dans un voyage de transformation, pour retrouver confiance, sérénité et harmonie dans votre vie.**
+
+## **3. Hypnose et PNL : Comment ça marche ?**
+
+**💡 L’hypnose, un outil puissant et naturel :\
+L’hypnose est un état naturel de conscience modifiée, semblable à un état de rêverie. Dans cet état, votre esprit critique s’apaise, ce qui permet de dialoguer avec votre inconscient. C’est là que résident vos blocages, mais aussi vos ressources et solutions.**
+
+**✨ Avec l'hypnose:**
+
+-   **Vous ne perdez jamais le contrôle.**
+
+-   **Vous restez conscient(e) de tout et êtes pleinement acteur(trice) de votre transformation.**
+
+**🎯 Avec moi, l’hypnose est interactive : nous échangeons avant,pendant et après chaque séance pour tenter de remonter à l’origine de vos problématiques pour les résoudre durablement.**
+
+**👉 Prêt(e) pour atteindre vos objectifs ? Contactez-moi dès aujourd’hui.**

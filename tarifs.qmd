@@ -1,0 +1,126 @@
+---
+title: "💰 Tarifs à domicile"
+data-page: "tarifs"
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    smooth-scroll: true
+---
+
+Je me déplace à domicile dans un large rayon autour du **Château d'Olonne**, avec des tarifs **tout compris**, à partir de **80€**. Chaque séance dure **1h30 en moyenne**, mais peut parfois durer plus de **2h** si nécessaire pour répondre à vos besoins.
+
+### **Contactez-moi** {#contact}
+<div style="text-align: center; margin: 20px 0;">
+  <a href="mailto:mghypnose@icloud.com" style="margin: 10px; padding: 10px 15px; background-color: #f8bbd0; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;">
+    <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" style="width: 20px; vertical-align: middle;" /> Par Email
+  </a>
+  <a href="tel:+33627101468" style="margin: 10px; padding: 10px 15px; background-color: #e1bee7; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;">
+    <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Téléphone" style="width: 20px; vertical-align: middle;" /> Par Téléphone
+  </a>
+  <a href="https://www.instagram.com/mg85hypnose/" target="_blank" style="margin: 10px; padding: 10px 15px; background-color: #ffccbc; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 20px; vertical-align: middle;" /> Instagram
+  </a>
+  <a href="https://www.facebook.com/MGHypnoseVendee85" target="_blank" style="margin: 10px; padding: 10px 15px; background-color: #c5cae9; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" style="width: 20px; vertical-align: middle;" /> Facebook
+  </a>
+</div>
+
+---
+
+## **Liste des villes **
+
+Les tarifs sont triés par montant croissant, avec des couleurs progressives allant du vert clair au bordeaux pastel, pour une présentation douce et agréable.
+
+---
+
+### **80€**
+<div style="background-color: #e8fbe9; padding: 10px; border-radius: 10px; border: 1px solid #c6e8c7;">
+- Le Château d'Olonne  
+- Les Sables-d'Olonne  
+</div>
+
+---
+
+### **85€**
+<div style="background-color: #dff7e3; padding: 10px; border-radius: 10px; border: 1px solid #b8ddbc;">
+- Olonne-sur-Mer  
+- Talmont-Saint-Hilaire  
+</div>
+
+---
+
+### **90€**
+<div style="background-color: #d6f3dc; padding: 10px; border-radius: 10px; border: 1px solid #aee1b3;">
+- Grosbreuil  
+</div>
+
+---
+
+### **95€**
+<div style="background-color: #ccefd6; padding: 10px; border-radius: 10px; border: 1px solid #96d39a;">
+- Vairé  
+- Saint-Mathurin  
+</div>
+
+---
+
+### **100€**
+<div style="background-color: #c3ebd0; padding: 10px; border-radius: 10px; border: 1px solid #85c887;">
+- Landevieille  
+- Les Achards  
+- Brem-sur-Mer  
+- Sainte-Flaive-des-Loups  
+</div>
+
+---
+
+### **105€**
+<div style="background-color: #f9efd4; padding: 10px; border-radius: 10px; border: 1px solid #efd2a4;">
+- Longeville-sur-Mer  
+- Jard-sur-Mer  
+</div>
+
+---
+
+### **110€**
+<div style="background-color: #f7e5b8; padding: 10px; border-radius: 10px; border: 1px solid #e5c285;">
+- La Tranche-sur-Mer  
+- Angles  
+</div>
+
+---
+
+### **120€**
+<div style="background-color: #fdd4b2; padding: 10px; border-radius: 10px; border: 1px solid #e6a67d;">
+- Aizenay  
+- Belleville-sur-Vie  
+</div>
+
+---
+
+### **À partir de 165€**
+<div style="background-color: #f8c0c0; padding: 10px; border-radius: 10px; border: 1px solid #e09999;">
+- Fontenay-le-Comte (165€)  
+- Montaigu (165€)  
+- Pouzauges (165€)  
+- Les Herbiers (170€)  
+- Mortagne-sur-Sèvre (170€)  
+- Noirmoutier (185€)  
+</div>
+<div style="margin-top: 10px; font-style: italic;">Vous êtes éloigné ? Profitez de séances en visio avec une bonne connexion Internet.</div>
+
+---
+
+
+---
+
+## **Séances en visio**
+
+💻 Trop éloigné ? Profitez de séances en **visio** si vous disposez d'une bonne connexion Internet. Ces séances offrent les mêmes avantages que celles à domicile. Contactez-moi pour plus d'informations !
+
+---
+
+
+
