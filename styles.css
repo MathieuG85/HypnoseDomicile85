@@ -69,12 +69,6 @@ main {
 
 
 
-/* ✅ Transition fluide */
-body {
-    transition: background 0.5s ease-in-out;
-}
-
-
 /* ✅ Centrer les boutons */
 .custom-navbar {
     text-align: center;
@@ -122,4 +116,39 @@ body {
     .content {
         margin-top: 100px;
     }
+}
+
+.navbar {
+  background-color: #4a76a8 !important; /* ou la couleur que tu préfères */
+}
+
+.navbar-nav > li > a,
+.navbar-brand {
+  color: white !important;
+  font-weight: bold;
+}
+
+.navbar-nav > li > a:hover,
+.navbar-nav > .active > a {
+  background-color: #5f8bc0 !important;
+  color: white !important;
+}
+
+/* Barre de navigation claire et homogène */
+.navbar {
+  background-color: #4a76a8 !important;  /* Bleu doux */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav > li > a,
+.navbar-brand {
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.navbar-nav > li > a:hover,
+.navbar-nav > .active > a,
+.navbar-nav > .active > a:focus {
+  background-color: #5d89bc !important;
+  color: #fff !important;
 }

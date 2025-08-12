@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,10 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -177,6 +177,20 @@ fbq('track', 'PageView');
 <p>Je me déplace à domicile dans un large rayon autour du <strong>Château d’Olonne</strong>, avec des tarifs <strong>tout compris</strong>, à partir de <strong>80€</strong>. Chaque séance dure <strong>1h30 en moyenne</strong>, mais peut parfois durer plus de <strong>2h</strong> si nécessaire pour répondre à vos besoins.</p>
 <section id="contact" class="level3">
 <h3 class="anchored" data-anchor-id="contact"><strong>Contactez-moi</strong></h3>
+<!-- RESALIB BADGE -->
+<div class="rlb-badge">
+<p><a target="_blank" href="https://www.resalib.fr/praticien/99575-mathieu-guilment-praticien-en-hypnose-les-sables-d-olonne"> Retrouvez Mathieu GUILMENT sur Resalib : annuaire, référencement et prise de rendez-vous pour les Praticiens en Hypnose </a></p>
+</div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://www.resalib.fr/script/99575/badge.js";
+  fjs.parentNode.insertBefore(js, fjs);
+})(document, "script", "resalib-sdk");
+</script>
+<!-- RESALIB BADGE -->
 <div style="text-align: center; margin: 20px 0;">
 <p><a href="mailto:mghypnose@icloud.com" onclick="fbq('track', 'Contact');" style="margin: 10px; padding: 10px 15px; background-color: #f8bbd0; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;"> <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" style="width: 20px; vertical-align: middle;"> Par Email </a> <a href="tel:+33627101468" onclick="fbq('track', 'Contact');" style="margin: 10px; padding: 10px 15px; background-color: #e1bee7; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;"> <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Téléphone" style="width: 20px; vertical-align: middle;"> Par Téléphone </a> <a href="https://www.instagram.com/mg85hypnose/" onclick="fbq('track', 'Contact');" target="_blank" style="margin: 10px; padding: 10px 15px; background-color: #ffccbc; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;"> <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 20px; vertical-align: middle;"> Instagram </a> <a href="https://www.facebook.com/MGHypnoseVendee85" onclick="fbq('track', 'Contact');" target="_blank" style="margin: 10px; padding: 10px 15px; background-color: #c5cae9; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;"> <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" style="width: 20px; vertical-align: middle;"> Facebook </a></p>
 </div>
@@ -623,8 +637,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -735,7 +747,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
