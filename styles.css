@@ -1,154 +1,407 @@
-/* ✅ Styles généraux pour la barre de navigation */
-.navbar-nav .nav-item .nav-link {
-    padding: 10px 15px;
-    border-radius: 10px;
-    font-weight: bold;
-    text-align: center;
-    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+/* =========================================================
+   SITE MG — feuille de style (Quarto + Bootstrap 5)
+   Palette teal, hero full-bleed lisible, FAQ accessible
+   ========================================================= */
+
+/* ========== 1) Variables & base ========== */
+:root{
+  --nav-h: 72px;
+  --radius: 16px;
+  --shadow-1: 0 10px 24px rgba(0,0,0,.08);
+  --shadow-2: 0 20px 44px rgba(0,0,0,.14);
+  --border: 1px solid rgba(0,0,0,.08);
+
+  --brand:   #2a6b73;
+  --brand-2: #3a8090;
+  --text:    #0f1b21;
+
+  color-scheme: light dark;
 }
-/* Ajuster l'espace en haut du contenu pour éviter qu'il soit caché sous la barre */
-body {
-    padding-top: 80px; /* Ajuste selon la hauteur exacte de la barre */
+@media (max-width:640px){ :root{ --nav-h:96px; } }
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; overflow-x:hidden; }
+body{
+  padding-top:var(--nav-h);
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(42,107,115,.15), transparent 60%),
+    linear-gradient(180deg, #0f1f25 0%, #0e1a21 100%);
 }
+img{ max-width:100%; height:auto; display:block; }
+a{ text-underline-offset:2px; }
+a:focus-visible{ outline:3px solid rgba(14,165,233,.65); outline-offset:2px; }
 
-/* Forcer la barre à rester bien positionnée et ne pas masquer le contenu */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000; /* Assurer que la barre est toujours au-dessus du contenu */
+.page-columns, .content, main.content{ background:transparent; }
+
+/* ========== 2) Navbar fixe ========== */
+header.navbar, .navbar{
+  position:fixed; inset:0 0 auto 0; z-index:1000;
+  background:var(--brand)!important;
+  box-shadow:0 2px 6px rgba(0,0,0,.10);
 }
+.navbar .navbar-brand,
+.navbar .nav-link{ color:#fff!important; font-weight:700; border-radius:10px; padding:10px 15px; transition:background .25s, transform .15s; }
+.navbar .nav-link:hover{ background:var(--brand-2); transform:translateY(-1px); }
+.navbar .nav-link.active{ background:rgba(255,255,255,.22)!important; }
+main.content{ margin-top:0; }
+nav#TOC{ position:sticky; top:calc(var(--nav-h) + 12px); }
 
-/* Correction pour s'assurer que les titres et les sections ne soient pas masqués */
-main {
-    margin-top: 80px; /* Permet d'éviter un chevauchement avec la barre */
+/* ========== 3) Hero full-bleed lisible ========== */
+.hero-band{
+  width:auto;
+  margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
+  background:linear-gradient(135deg, #0f2230 0%, #112836 40%, #123240 100%);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  box-shadow:0 10px 24px rgba(0,0,0,.12) inset;
+  padding:clamp(18px,3vw,36px) 0;
+  position:relative; overflow:visible;
 }
-
-
-
-/* ✅ Effet au survol */
-.navbar-nav .nav-item .nav-link:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-    background: rgba(255, 255, 255, 0.2); /* Léger effet de survol */
+.hero-band::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(8,20,28,.62) 0%, rgba(8,20,28,.42) 40%, rgba(8,20,28,.24) 100%);
 }
-
-/* ✅ Effet bouton actif */
-.navbar-nav .nav-item .nav-link.active {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    padding: 12px 18px;
-    font-weight: bold;
-    transition: background 0.3s ease-in-out;
+.hero-inner{
+  position:relative; z-index:1;
+  max-width:1200px; margin:0 auto; padding:0 16px;
+  display:grid; grid-template-columns:minmax(280px,360px) minmax(0,1fr); gap:clamp(22px,4vw,56px); align-items:center;
 }
+@media (max-width:820px){ .hero-inner{ grid-template-columns:1fr; text-align:center; gap:18px; } }
 
-/* ✅ Adaptation mobile */
-@media (max-width: 768px) {
-    .navbar-nav {
-        flex-direction: column;
-        align-items: center;
-    }
-    .navbar-nav .nav-item {
-        width: 100%;
-        text-align: center;
-    }
+.hero-copy .hero-eyebrow{
+  display:inline-block; margin:0 0 .35rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; font-size:.92rem; opacity:.75;
 }
+.hero-band .hero-copy, .hero-band .hero-copy *{ color:#eef7fb!important; }
+.hero-band h1{ color:#fff!important; text-shadow:0 2px 8px rgba(0,0,0,.35); }
+.hero-copy p:first-of-type{ font-size:clamp(1.02rem, .5vw + 1rem, 1.18rem); opacity:.95; margin:.2rem 0 .6rem; }
+.hero-copy li{ margin:.28rem 0; }
 
-
-/* ✅ Appliquer du style aux boutons de la barre de navigation */
-.nav-button {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-weight: bold;
-    text-align: center;
-    margin: 5px;
-    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
-    text-decoration: none;
-}
-
-
-
-/* ✅ Centrer les boutons */
-.custom-navbar {
-    text-align: center;
-}
-
-/* Rendre la barre de navigation fixe */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: #4973A3; /* Couleur de fond de la barre */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Assurez-vous que la barre de navigation fixe ne masque pas le contenu */
-body {
-    padding-top: 80px; /* Ajustez selon la hauteur de votre navbar */
+.trust-strip{ display:flex; flex-wrap:wrap; gap:.5rem .6rem; }
+.trust-pill{
+  white-space:nowrap;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.34);
+  color:#fff; border-radius:999px; padding:.4rem .7rem; font-weight:700; font-size:.95rem;
 }
 
-/* ✅ Correction pour la Table des Matières (Gauche) */
-#TOC {
-    position: relative;
-    top: 80px; /* Permet d'éviter qu'elle soit cachée sous la navbar */
-    padding-left: 20px; /* Ajoute un espace pour éviter qu'elle soit collée */
+/* Avatar anneau dégradé */
+.avatar{ position:relative; width:clamp(240px,26vw,320px); aspect-ratio:1/1; border-radius:999px; overflow:hidden; }
+.avatar::before{
+  content:""; position:absolute; inset:0; padding:6px; border-radius:inherit;
+  background:linear-gradient(135deg,#6fb6c0,#f3a8c4);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude; pointer-events:none;
+}
+.avatar>img{ position:relative; width:100%; height:100%; object-fit:cover; border-radius:inherit; }
+
+/* Badge tarif (lisible sur sombre) */
+.price-note{
+  width:100%; max-width:360px; margin-top:.4rem; text-align:center;
+  padding:.8rem 1rem; border-radius:14px;
+  background:rgba(7,18,26,.94);
+  border:1px solid rgba(255,255,255,.30);
+  box-shadow:0 12px 28px rgba(0,0,0,.32);
+  color:#fff!important;
+}
+.price-top{ display:block; font-weight:900; font-size:clamp(1.12rem, .7rem + .62vw, 1.30rem); letter-spacing:-.01em; }
+.price-sub{ display:block; opacity:.96; margin-top:.1rem; }
+.price-reduced{ display:block; margin-top:.45rem; font-size:.95rem; font-weight:700; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.28); border-radius:10px; padding:.35rem .55rem; }
+
+/* ========== 4) Boutons (pastilles avec relief) ========== */
+.btn{
+  border-radius:9999px; padding:.62rem 1.05rem; font-weight:800;
+  transition:transform .08s, box-shadow .15s, filter .15s;
+}
+.btn:active{ transform:translateY(1px); }
+.btn-primary{ background:#2fa1c4; border-color:transparent; color:#fff; box-shadow:0 10px 22px rgba(47,161,196,.35); }
+.btn-primary:hover{ box-shadow:0 14px 30px rgba(47,161,196,.45); filter:saturate(1.05); }
+.btn-outline{ background:rgba(255,255,255,.14); color:#fff; border-color:rgba(255,255,255,.45); box-shadow:0 8px 18px rgba(0,0,0,.18); }
+.btn-outline:hover{ box-shadow:0 12px 26px rgba(0,0,0,.22); }
+.btn-ghost{ border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.10); color:#fff; }
+
+/* ========== 5) Cartes / tuiles / pills (thèmes & tarifs) ========== */
+.block-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; list-style:none; padding:0; margin:.2rem 0 1rem; }
+@media (max-width:980px){ .block-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .block-grid{ grid-template-columns:1fr; } }
+.block{
+  display:block; text-decoration:none; color:var(--text);
+  background:#fff; border:var(--border); border-radius:var(--radius);
+  padding:1rem 1.1rem; box-shadow:var(--shadow-1);
+  transition:transform .14s, box-shadow .14s, border-color .14s, filter .14s;
+}
+.block:hover{ transform:translateY(-2px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); filter:saturate(1.03); }
+.block-title{ font-weight:800; font-size:1.25rem; letter-spacing:-.01em; margin-bottom:.2rem; }
+.block-sub{ opacity:.92; }
+
+/* variations douces */
+.block--addictions{ background:linear-gradient(180deg,#fef3f2,#fff); border-color:#fca5a5; }
+.block--stress    { background:linear-gradient(180deg,#eff6ff,#fff); border-color:#93c5fd; }
+.block--sommeil   { background:linear-gradient(180deg,#f5f3ff,#fff); border-color:#c4b5fd; }
+.block--deuil     { background:linear-gradient(180deg,#f1f5f9,#fff); border-color:#94a3b8; }
+.block--poids     { background:linear-gradient(180deg,#ecfeff,#fff); border-color:#67e8f9; }
+.block--feminin   { background:linear-gradient(180deg,#fdf2f8,#fff); border-color:#f9a8d4; }
+
+.tile-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.1rem; margin:1rem 0 2rem; list-style:none; padding:0; }
+@media (max-width:980px){ .tile-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .tile-grid{ grid-template-columns:1fr; } }
+.tile>a{
+  display:block; height:100%; text-decoration:none; color:inherit;
+  background:#fff; border:var(--border); border-radius:14px; padding:1rem 1.1rem; box-shadow:var(--shadow-1);
+  transition:transform .15s, box-shadow .15s, border-color .15s;
+}
+.tile>a:hover{ transform:translateY(-2px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); }
+.tile-title{ margin:0 0 .35rem; font-size:1.35rem; line-height:1.25; letter-spacing:-.01em; }
+.tile-lead{ margin:.1rem 0 .6rem; font-size:1.05rem; opacity:.92; max-width:60ch; }
+
+.pill-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; list-style:none; margin:0 0 1rem; padding:0; }
+@media (max-width:980px){ .pill-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .pill-grid{ grid-template-columns:1fr; } }
+.pill{
+  display:flex; flex-direction:column; gap:.25rem; text-decoration:none; color:var(--text);
+  background:#fff; border:var(--border); border-radius:18px; padding:1.05rem 1.15rem; box-shadow:var(--shadow-1);
+  transition:transform .14s, box-shadow .14s, border-color .14s, filter .14s;
+}
+.pill:hover{ transform:translateY(-2px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); filter:saturate(1.03); }
+.pill-title{ display:block; margin-bottom:.28rem; font-size:clamp(1.1rem,.9vw + 1rem,1.35rem); font-weight:800; letter-spacing:-.01em; }
+.pill-tags{ display:block; line-height:1.5; opacity:.95; }
+.pill--addictions{ background:linear-gradient(180deg,#fef3f2,#fff); border-color:#fca5a5; }
+.pill--stress    { background:linear-gradient(180deg,#eff6ff,#fff); border-color:#93c5fd; }
+.pill--sommeil   { background:linear-gradient(180deg,#f5f3ff,#fff); border-color:#c4b5fd; }
+.pill--deuil     { background:linear-gradient(180deg,#f1f5f9,#fff); border-color:#94a3b8; }
+.pill--poids     { background:linear-gradient(180deg,#ecfeff,#fff); border-color:#67e8f9; }
+.pill--feminin   { background:linear-gradient(180deg,#fdf2f8,#fff); border-color:#f9a8d4; }
+
+/* chips */
+.chips-grid{ display:flex; flex-wrap:wrap; gap:.6rem; list-style:none; padding:0; margin:.4rem 0 0; }
+.chip{ text-decoration:none; font-weight:700; padding:.5rem .8rem; border-radius:999px; background:#eef2ff; border:1px solid #c7d2fe; color:#1e293b; transition:transform .12s, box-shadow .12s, background-color .12s; }
+.chip:hover{ transform:translateY(-1px); box-shadow:0 6px 14px rgba(0,0,0,.08); background:#e0e7ff; }
+
+/* ========== 6) CTA bannière + menu contact ========== */
+.cta-banner{
+  margin:1rem 0 1.6rem; padding:clamp(14px,1.8vw,20px);
+  border-radius:16px; background:linear-gradient(135deg,#e0f2fe,#fdf2f8);
+  border:1px solid rgba(0,0,0,.06); box-shadow:var(--shadow-1);
+  display:grid; grid-template-columns:1fr auto; gap:.8rem; align-items:center; color:#0f1b21;
+}
+.cta-banner .cta-text{ margin:0; line-height:1.5; max-width:70ch; }
+.cta-actions{ display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }
+@media (max-width:720px){ .cta-banner{ grid-template-columns:1fr; } .cta-actions{ justify-content:flex-start; } }
+
+.cta-dropdown{ position:relative; display:inline-block; }
+.cta-dropdown>summary{ list-style:none; display:inline-block; cursor:pointer; }
+.cta-dropdown>summary::-webkit-details-marker{ display:none; }
+
+.contact-menu{
+  position:absolute; left:0; top:calc(100% + 8px);
+  background:#fff; border:1px solid rgba(0,0,0,.08);
+  border-radius:14px; box-shadow:var(--shadow-2);
+  padding:.7rem; min-width:320px;
+  display:flex; gap:.6rem; flex-wrap:wrap;
+  opacity:0; transform:translateY(-4px); transition:opacity .15s, transform .15s;
+  pointer-events:none; z-index:20;
+}
+.cta-dropdown[open] .contact-menu{ opacity:1; transform:translateY(0); pointer-events:auto; }
+.contact-menu::before{ content:""; position:absolute; left:16px; top:-8px; border:8px solid transparent; border-bottom-color:#fff; filter:drop-shadow(0 -1px 1px rgba(0,0,0,.08)); }
+
+.contact-pill{
+  flex:1 1 calc(50% - .6rem);
+  display:flex; align-items:center; gap:.5rem; justify-content:center;
+  text-decoration:none; font-weight:800; color:#0b1220;
+  padding:.7rem .9rem; border-radius:14px; border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 8px 18px rgba(0,0,0,.08); transition:transform .12s, box-shadow .12s, filter .12s;
+}
+.contact-pill:hover{ transform:translateY(-1px); box-shadow:0 12px 28px rgba(0,0,0,.12); filter:saturate(1.02); }
+.contact-pill .ico{ width:20px; height:20px; flex:0 0 20px; }
+.contact--mail{ background:#fde2ea; } .contact--tel{ background:#e9d7ff; } .contact--sms{ background:#e7f5ff; } .contact--ig{ background:#fde6dd; } .contact--fb{ background:#dee7ff; }
+@media (max-width:640px){
+  .contact-menu{ position:static; border:0; box-shadow:none; padding:.55rem 0 0; opacity:1; transform:none; pointer-events:auto; min-width:0; }
+  .contact-menu::before{ display:none; }
+  .contact-pill{ flex:1 1 100%; }
 }
 
-/* ✅ Correction pour le Contenu principal (Droite) */
-.content {
-    margin-top: 80px; /* Évite que le texte principal soit coupé */
-    padding-right: 20px; /* Ajoute un léger espacement à droite */
+/* ========== 7) Accueil : colonne contact ========== */
+.home-layout{ display:grid; grid-template-columns:340px 1fr; gap:1.25rem; align-items:start; margin-top:.5rem; }
+@media (max-width:1024px){ .home-layout{ grid-template-columns:1fr; } }
+.contact-card{
+  position:sticky; top:calc(var(--nav-h) + 16px);
+  background:#fff; border:var(--border); border-radius:var(--radius);
+  padding:1.1rem 1.2rem; box-shadow:var(--shadow-1); color:var(--text);
 }
 
-/* ✅ Ajustement pour mobile */
-@media (max-width: 768px) {
-    body {
-        padding-top: 100px; /* Ajuste la hauteur de la navbar sur mobile */
-    }
+/* ========== 8) FAQ (accordéons propres & lisibles) ========== */
+.faq-page :where(h1,h2,h3,p,li){ color:var(--text); }
 
-    #TOC {
-        top: 100px; /* Ajuste aussi la position de la table des matières */
-    }
+.faq-accordeon details{
+  border:1px solid rgba(0,0,0,.08); border-radius:12px; background:#fff;
+  box-shadow:0 8px 18px rgba(0,0,0,.05); margin:.6rem 0; overflow:hidden;
+}
+.faq-accordeon summary{
+  cursor:pointer; list-style:none; padding:.85rem 1rem;
+  font-weight:800; letter-spacing:-.01em; display:flex; align-items:center; justify-content:space-between;
+  color:var(--text); background:linear-gradient(180deg,#f8fafc,#fff);
+}
+.faq-accordeon summary::-webkit-details-marker{ display:none; }
+.faq-accordeon summary:after{ content:"▸"; transform:rotate(0deg); transition:transform .15s; opacity:.65; margin-left:.8rem; }
+.faq-accordeon details[open] summary:after{ transform:rotate(90deg); }
+.faq-accordeon .answer{ padding:.85rem 1rem 1rem; color:var(--text); background:#fff; }
 
-    .content {
-        margin-top: 100px;
-    }
+/* ========== 9) Témoignages (relief, lisible) ========== */
+.t-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+@media (max-width:900px){ .t-grid{ grid-template-columns:1fr; } }
+.testimonial{
+  position:relative; background:#fff; color:#0b1220; border:1px solid rgba(0,0,0,.08);
+  border-radius:16px; padding:1.05rem 1.15rem 1.1rem; box-shadow:0 14px 32px rgba(0,0,0,.12);
+}
+.testimonial::after{ content:""; position:absolute; left:0; right:0; top:0; height:3px; border-radius:16px 16px 0 0; background:linear-gradient(90deg,#2a6b73,#6fb6c0 60%,#f3a8c4); }
+.testimonial blockquote{ margin:0; white-space:pre-wrap; }
+
+/* ========== 10) Surfaces claires pour le contenu ========== */
+main.content, .page-columns{ background:#fff; }
+.content, .content :where(p,li,h1,h2,h3,h4){ color:#0f1b21; }
+.content :where(p,li){ line-height:1.65; max-width:72ch; }
+.content a{ color:#2a6b73; text-decoration-thickness:.08em; }
+.content a:hover{ color:#3a8090; }
+
+/* ========== 11) Accessibilité ========== */
+ul{ margin-bottom:.9rem; } li{ margin:.28rem 0; }
+@media (prefers-reduced-motion:reduce){ *{ transition:none!important; animation:none!important; } }
+
+/* ========== 12) Mode sombre ========== */
+@media (prefers-color-scheme:dark){
+  :root{ --text:#eaf2f4; }
+  body{
+    color:var(--text);
+    background:
+      radial-gradient(1200px 600px at 20% 0%, rgba(42,107,115,.20), transparent 60%),
+      linear-gradient(180deg, #0c1820 0%, #0b151b 100%);
+  }
+  main.content, .page-columns{ background:#0c141b; }
+  .content, .content :where(p,li,h1,h2,h3,h4){ color:#eaf2f4; }
+  .block, .tile>a, .pill, .contact-card{ background:#0f2230; border-color:rgba(255,255,255,.10); box-shadow:none; }
+  .chip, .topic-nav a{ background:#113245; border-color:#0f2230; color:#eaf2f4; }
+  .cta-banner{ background:linear-gradient(135deg, rgba(42,107,115,.25), rgba(255,255,255,.06)); border-color:rgba(255,255,255,.10); color:#eaf2f4; }
+  .faq-accordeon details{ background:#0f2230; border-color:rgba(255,255,255,.12); box-shadow:none; }
+  .faq-accordeon summary{ background:linear-gradient(180deg,#0f2230,#0e1b25); color:#eaf2f4; }
+  .faq-accordeon .answer{ background:#0f2230; color:#eaf2f4; }
+  .testimonial{ background:#0f2230; color:#eaf2f4; border-color:rgba(255,255,255,.10); box-shadow:none; }
+  .t-grid .testimonial:nth-child(2n){ background:#0d1b26; }
 }
 
-.navbar {
-  background-color: #4a76a8 !important; /* ou la couleur que tu préfères */
+/* === HERO — Rendre le panneau tarif lisible (fond clair + texte foncé) === */
+.hero-band :is(.price-card, .price-note, .contact-card, [class*="tarif"], [class*="price"], [class*="prix"]) {
+  background: #ffffff !important;
+  color: #0f1b21 !important;
+  border: 1px solid rgba(0,0,0,.10) !important;
+  box-shadow: 0 14px 28px rgba(0,0,0,.18) !important;
+  backdrop-filter: none !important;            /* enlève tout effet de verre dépoli */
 }
 
-.navbar-nav > li > a,
-.navbar-brand {
-  color: white !important;
-  font-weight: bold;
+/* Supprime les effets de texte hérités (blanc + ombre) */
+.hero-band :is(.price-card, .price-note, .contact-card, [class*="tarif"], [class*="price"], [class*="prix"])
+  :is(h1,h2,h3,h4,h5,p,span,strong,em,li,small) {
+  color: #0f1b21 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
 }
 
-.navbar-nav > li > a:hover,
-.navbar-nav > .active > a {
-  background-color: #5f8bc0 !important;
-  color: white !important;
+/* Pastilles/Badges du bloc tarif : contraste correct */
+.hero-band :is(.price-card, .price-note, [class*="tarif"], [class*="price"], [class*="prix"])
+  :is(.price-reduced, .trust-pill, .badge) {
+  background: #eef6f8 !important;
+  color: #0f1b21 !important;
+  border: 1px solid rgba(0,0,0,.08) !important;
 }
 
-/* Barre de navigation claire et homogène */
-.navbar {
-  background-color: #4a76a8 !important;  /* Bleu doux */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Boutons du bloc tarif sur fond clair */
+.hero-band :is(.price-card, .price-note, .contact-card, [class*="tarif"], [class*="price"], [class*="prix"]) .btn-outline{
+  background:#2a6b73 !important; 
+  color:#fff !important; 
+  border-color:transparent !important;
+}
+.hero-band :is(.price-card, .price-note, .contact-card, [class*="tarif"], [class*="price"], [class*="prix"]) .btn-primary{
+  background:#2fa1c4 !important; 
+  color:#fff !important; 
+  border-color:transparent !important;
 }
 
-.navbar-nav > li > a,
-.navbar-brand {
-  color: #fff !important;
-  font-weight: bold;
+/* === HERO — carte claire lisible sur fond sombre ===
+   Utilisation : ajouter .card--light sur .price-note (ou ta carte) quand elle est dans .hero-band
+   Exemple HTML : <div class="price-note card--light">...</div>
+---------------------------------------------------------------- */
+
+.hero-band .card--light{
+  background:#fff;
+  color:#0f1b21;
+  border:1px solid rgba(0,0,0,.10);
+  box-shadow:0 14px 28px rgba(0,0,0,.18);
+  backdrop-filter:none;
 }
 
-.navbar-nav > li > a:hover,
-.navbar-nav > .active > a,
-.navbar-nav > .active > a:focus {
-  background-color: #5d89bc !important;
-  color: #fff !important;
+/* Typo interne : pas d’ombre, héritage de la couleur */
+.hero-band .card--light :where(h1,h2,h3,h4,h5,p,span,strong,em,li,small){
+  color:inherit;
+  text-shadow:none;
+  -webkit-text-stroke:0;
+}
+
+/* Badges/pastilles à contraste suffisant sur fond clair */
+.hero-band .card--light :where(.price-reduced,.trust-pill,.badge){
+  background:#eef6f8;
+  color:#0f1b21;
+  border:1px solid rgba(0,0,0,.08);
+}
+
+/* Boutons sur carte claire */
+.hero-band .card--light .btn-outline{
+  background:var(--brand);
+  color:#fff;
+  border-color:transparent;
+  box-shadow:0 8px 18px rgba(0,0,0,.18);
+}
+.hero-band .card--light .btn-outline:hover{
+  box-shadow:0 12px 26px rgba(0,0,0,.22);
+}
+
+.hero-band .card--light .btn-primary{
+  background:#2fa1c4;
+  color:#fff;
+  border-color:transparent;
+  box-shadow:0 10px 22px rgba(47,161,196,.35);
+}
+.hero-band .card--light .btn-primary:hover{
+  box-shadow:0 14px 30px rgba(47,161,196,.45);
+  filter:saturate(1.05);
+}
+
+/* Variante dark mode : garde la carte claire pour la lisibilité */
+@media (prefers-color-scheme:dark){
+  .hero-band .card--light{
+    background:#ffffff;
+    color:#0f1b21;
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 16px 32px rgba(0,0,0,.35);
+  }
+}
+.zone-intervention{ margin:2rem 0 1.5rem; }
+.zone-intervention h2{ margin-bottom:.4rem; letter-spacing:-.01em; }
+.zone-cta{ margin-top:.8rem; display:flex; gap:.6rem; flex-wrap:wrap; }
+
+@media (max-width:640px){
+  .mobile-sticky-cta{
+    position:fixed; left:0; right:0; bottom:12px;
+    display:flex; gap:.6rem; justify-content:center;
+    padding:0 .8rem; z-index:1000;
+  }
+  .mobile-sticky-cta .btn{ flex:1 1 auto; }
+}
+
+.site-footer{
+  margin-top:2rem; padding:1rem 0; border-top:1px solid rgba(0,0,0,.08);
+  background:transparent;
+}
+.site-footer .footer-inner{ max-width:1200px; margin:0 auto; padding:0 16px; }
+.site-footer p{ margin:.25rem 0; opacity:.95; }
+.site-footer a{ text-decoration:underline; text-underline-offset:2px; }
+@media (prefers-color-scheme:dark){
+  .site-footer{ border-top-color:rgba(255,255,255,.12); }
 }
