@@ -647,4 +647,77 @@ ul{ margin-bottom:.9rem; } li{ margin:.28rem 0; }
 a[href^="tel:"]{
   white-space:nowrap;              /* 06 27 10 14 68 reste sur une ligne */
 }
+/* ===== MOBILE TUNING (≤ 420px) ===== */
+@media (max-width: 420px){
+
+  /* NAVBAR : titre lisible, pas trop haut */
+  .navbar .navbar-brand{
+    font-size: .98rem;
+    line-height: 1.15;
+    max-width: 72vw;               /* évite de pousser burger/loupe */
+    white-space: normal;            /* retour à la ligne ok */
+    overflow-wrap: anywhere;
+  }
+
+  /* HERO : avatar + titres + sous-texte plus compacts */
+  .hero-inner{ gap: 14px; }
+  .avatar{ width: clamp(150px, 40vw, 190px); margin-inline:auto; }
+
+  .hero-band h1{
+    font-size: clamp(1.05rem, 3.6vw + .55rem, 1.45rem);
+    line-height: 1.22;
+    margin: .35rem 0 .3rem;
+    text-shadow: none;
+    text-wrap: balance;
+  }
+  .hero-copy .hero-eyebrow{
+    font-size: .84rem;
+    letter-spacing: .04em;
+    opacity: .9;
+  }
+
+  /* Pastille tarifs (sous H1) – si tu as ajouté .price-note--m */
+  .price-note--m{ margin: .25rem auto 0; max-width: 360px; }
+  .price-note--m .price-top{ font-size: 1.05rem; }
+  .price-note--m .price-reduced{ font-size: .9rem; }
+
+  /* “Pills” de spécialités : moins hautes, retours à la ligne */
+  .trust-strip{ gap: .35rem .45rem; justify-content: center; }
+  .trust-pill{
+    padding: .28rem .55rem;
+    font-size: .9rem;
+    white-space: normal;
+  }
+
+  /* Listes (ex. tarifs) : lisibilité + densité maîtrisée */
+  .content ul{ margin: .6rem 0 .9rem; }
+  .content li{ margin: .18rem 0; line-height: 1.55; }
+}
+
+/* Tablette compacte 421–820px : un cran au-dessus */
+@media (min-width:421px) and (max-width:820px){
+  .avatar{ width: clamp(180px, 32vw, 240px); margin-inline:auto; }
+  .hero-band h1{ font-size: clamp(1.2rem, 3.2vw + .6rem, 1.65rem); }
+}
+
+/* Anti-débordement mobile global */
+@media (max-width:768px){
+  html, body{ overflow-x:hidden; }
+  .content, .hero-band, .page-columns,
+  .content :where(h1,h2,h3,h4,p,li,blockquote,small,span,a){
+    overflow-wrap:anywhere; hyphens:auto; -webkit-hyphens:auto;
+  }
+}
+@media (max-width:768px){
+  .fab-menu{
+    background:#fff; border:1px solid rgba(0,0,0,.08);
+    border-radius:14px; box-shadow:0 20px 44px rgba(0,0,0,.28);
+    padding:.6rem;
+  }
+  .fab-menu .btn-primary{ background:#2a6b73; color:#fff; border-color:transparent; }
+  .fab-menu .btn-outline,.fab-menu .btn-ghost{
+    background:#fff; color:#0f1b21; border:1px solid rgba(0,0,0,.12);
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+  }
+}
 
