@@ -405,3 +405,122 @@ ul{ margin-bottom:.9rem; } li{ margin:.28rem 0; }
 @media (prefers-color-scheme:dark){
   .site-footer{ border-top-color:rgba(255,255,255,.12); }
 }
+
+/* ====== Mobile hero tuning (≤ 480px) ====== */
+@media (max-width: 480px){
+  /* avatar plus petit et centré */
+  .hero-inner{ gap: 16px; }
+  .avatar{ width: clamp(160px, 42vw, 200px); margin-inline:auto; }
+  .hero-band h1{ font-size: clamp(1.2rem, 3.8vw + .6rem, 1.55rem); line-height:1.25; margin:.35rem 0 .4rem; text-shadow:none; }
+  .hero-copy .hero-eyebrow{ font-size:.86rem; opacity:.85; }
+
+  /* spécialités (trust pills) mieux tassées */
+  .trust-strip{ justify-content:center; gap:.35rem .45rem; }
+  .trust-pill{ padding:.32rem .6rem; font-size:.9rem; border-radius:999px; }
+
+  /* pastille tarifs : déplacer sous le H1 */
+  .price-note--m{ display:block; margin:.3rem auto 0; }
+  .hero-media .price-note{ display:none; }  /* on cache la version d’origine en mobile */
+
+  /* aération des boutons sous texte */
+  .hero-copy .btn{ padding:.58rem .95rem; }
+  .hero-copy .btn + .btn{ margin-left:.35rem; }
+}
+
+/* ====== Tablette compacte (481–820px) ====== */
+@media (min-width:481px) and (max-width:820px){
+  .avatar{ width: clamp(200px, 34vw, 260px); margin-inline:auto; }
+  .hero-media .price-note{ display:none; }
+  .price-note--m{ display:block; margin:.4rem auto 0; max-width:420px; }
+}
+
+/* Bureau : on garde l'existant et on cache la copie mobile */
+@media (min-width:821px){
+  .price-note--m{ display:none; }
+}
+<div class="mobile-cta-bar" aria-label="Actions rapides">
+  <a href="tel:+33627101468" class="btn btn-primary">Appeler</a>
+  <a href="sms:+33627101468" class="btn btn-outline">SMS</a>
+</div>
+@media (max-width:640px){
+  .mobile-cta-bar{
+    position:fixed; left:0; right:0; bottom:10px;
+    display:flex; gap:.6rem; justify-content:center;
+    padding:0 .8rem; z-index:1000;
+    pointer-events:none; /* pour laisser passer les clics autour */
+  }
+  .mobile-cta-bar .btn{
+    pointer-events:auto; flex:1 1 auto; padding:.6rem .8rem;
+    border-radius:999px;
+  }
+  /* évite que ça masque le contenu collé au bas */
+  body{ padding-bottom:72px; }
+}
+
+/* ===== Floating Contact (mobile) ===== */
+@media (max-width: 768px){
+  .fab-contact{
+    position: fixed; right: 14px; bottom: 14px; z-index: 1100;
+  }
+  .fab-btn{
+    border: 0;
+    background: #2a6b73; color: #fff; font-weight: 800;
+    padding: .7rem .95rem; border-radius: 999px;
+    box-shadow: 0 12px 28px rgba(0,0,0,.25);
+  }
+  .fab-contact[data-open="true"] .fab-btn{ box-shadow: 0 16px 34px rgba(0,0,0,.32); }
+
+  .fab-backdrop{
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.25); backdrop-filter: blur(2px);
+  }
+
+  .fab-menu{
+    position: absolute; right: 0; bottom: 58px;
+    display: grid; gap: .5rem; width: min(88vw, 360px);
+    transform-origin: bottom right;
+    transform: translateY(6px) scale(.98);
+    opacity: 0; pointer-events: none;
+  }
+  .fab-contact[data-open="true"] .fab-menu{
+    opacity: 1; transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .fab-menu .btn{ width: 100%; text-align: center; }
+  body{ padding-bottom: 70px; } /* évite masquage du contenu par le bouton */
+}
+
+/* Respecte les préférences d’animation */
+@media (prefers-reduced-motion: reduce){
+  .fab-menu{ transition: none !important; }
+  .fab-btn{ transition: none !important; }
+}
+
+/* FAB Contact : caché par défaut (évite l'affichage moche en desktop) */
+.fab-contact{ display:none; }
+
+/* Mobile only */
+@media (max-width:768px){
+  .fab-contact{ 
+    display:block; 
+    position:fixed; right:14px; bottom:14px; z-index:1100;
+  }
+  .fab-btn{
+    border:0; background:#2a6b73; color:#fff; font-weight:800;
+    padding:.7rem .95rem; border-radius:999px;
+    box-shadow:0 12px 28px rgba(0,0,0,.25);
+  }
+  .fab-contact[data-open="true"] .fab-btn{ box-shadow:0 16px 34px rgba(0,0,0,.32); }
+  .fab-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.25); backdrop-filter:blur(2px); }
+  .fab-menu{
+    position:absolute; right:0; bottom:58px; width:min(88vw,360px);
+    display:grid; gap:.5rem; transform-origin:bottom right;
+    transform:translateY(6px) scale(.98); opacity:0; pointer-events:none;
+  }
+  .fab-contact[data-open="true"] .fab-menu{
+    opacity:1; transform:translateY(0) scale(1); pointer-events:auto;
+  }
+  .fab-menu .btn{ width:100%; text-align:center; }
+  body{ padding-bottom:70px; } /* évite que le bouton masque le bas de page */
+}
+

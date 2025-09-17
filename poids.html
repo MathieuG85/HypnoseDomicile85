@@ -425,6 +425,80 @@ Attentes réalistes
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </footer>
+
+<!-- CONTACT FLOATING BUTTON (mobile) -->
+<div class="fab-contact" data-open="false" aria-live="polite">
+  <!-- Bouton principal -->
+  <button class="fab-btn" aria-label="Ouvrir le menu contact" aria-expanded="false" aria-controls="fab-menu">
+    Contactez-moi
+  </button>
+
+  <!-- Voile cliquable -->
+  <div class="fab-backdrop" hidden=""></div>
+
+  <!-- Menu -->
+  <nav id="fab-menu" class="fab-menu" aria-label="Choisir un moyen de contact">
+    <a class="btn btn-primary" href="tel:+33627101468">Appeler</a>
+    <a class="btn btn-outline" href="sms:+33627101468">SMS</a>
+    <a class="btn btn-outline" href="mailto:mghypnose@icloud.com?subject=Prise%20de%20contact">E-mail</a>
+    <a class="btn btn-outline" href="https://www.resalib.fr/praticien/99575-mathieu-guilment-praticien-en-hypnose-les-sables-d-olonne" target="_blank" rel="noopener">Prendre RDV</a>
+    <a class="btn btn-ghost" href="https://www.instagram.com/mg85hypnose/" target="_blank" rel="noopener">Instagram</a>
+    <a class="btn btn-ghost" href="https://www.facebook.com/MGHypnoseVendee85" target="_blank" rel="noopener">Facebook</a>
+  </nav>
+</div>
+
+<script>
+(function(){
+  const root = document.querySelector('.fab-contact');
+  if(!root) return;
+  const btn  = root.querySelector('.fab-btn');
+  const menu = root.querySelector('#fab-menu');
+  const veil = root.querySelector('.fab-backdrop');
+
+  function isOpen(){ return root.dataset.open === "true"; }
+  function openMenu(state){
+    root.dataset.open = state ? "true" : "false";
+    btn.setAttribute('aria-expanded', state ? 'true' : 'false');
+    if (veil) veil.hidden = !state;
+    if (state) { menu.querySelector('a')?.focus(); }
+  }
+
+  // Toggle
+  btn.addEventListener('click', ()=> openMenu(!isOpen()));
+
+  // Fermer en cliquant hors du menu
+  veil?.addEventListener('click', ()=> openMenu(false));
+  document.addEventListener('click', (e)=>{
+    if (!root.contains(e.target)) openMenu(false);
+  });
+
+  // Fermer quand on scroll (UX mobile)
+  let scrollTimer;
+  window.addEventListener('scroll', ()=>{
+    if (!isOpen()) return;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(()=> openMenu(false), 50);
+  }, {passive:true});
+
+  // Fermer quand on clique un lien du menu
+  menu.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=> openMenu(false));
+  });
+
+  // Fermer sur Escape
+  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') openMenu(false); });
+
+  // Si on repasse en desktop (>768px), s'assurer qu'il est fermé
+  window.addEventListener('resize', ()=>{
+    if (window.innerWidth > 768 && isOpen()) openMenu(false);
+  });
+
+  // Fermer lors d’un changement d’URL (navigation interne)
+  window.addEventListener('hashchange', ()=> openMenu(false));
+  window.addEventListener('popstate',   ()=> openMenu(false));
+})();
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
