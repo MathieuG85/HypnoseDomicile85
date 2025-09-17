@@ -502,6 +502,43 @@ Attentes réalistes
 })();
 </script>
 
+<script>
+(function(){
+  const toggler = document.querySelector('.navbar-toggler');
+  const collapse = document.querySelector('.navbar-collapse');
+  if(!toggler || !collapse) return;
+
+  // Fermer si on clique un lien du menu
+  collapse.querySelectorAll('.nav-link, a').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      if (getComputedStyle(toggler).display !== 'none' && collapse.classList.contains('show')){
+        toggler.click();
+      }
+    });
+  });
+
+  // Fermer si on clique en dehors
+  document.addEventListener('click', (e)=>{
+    if (collapse.classList.contains('show') &&
+        !collapse.contains(e.target) &&
+        !toggler.contains(e.target)) {
+      toggler.click();
+    }
+  });
+
+  // Fermer au scroll (UX mobile)
+  let st; window.addEventListener('scroll', ()=>{
+    if (!collapse.classList.contains('show')) return;
+    clearTimeout(st); st = setTimeout(()=> toggler.click(), 50);
+  }, {passive:true});
+
+  // Fermer si on élargit l'écran (passe desktop)
+  window.addEventListener('resize', ()=>{
+    if (window.innerWidth > 992 && collapse.classList.contains('show')) toggler.click();
+  });
+})();
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

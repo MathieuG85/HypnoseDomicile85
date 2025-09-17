@@ -524,3 +524,43 @@ ul{ margin-bottom:.9rem; } li{ margin:.28rem 0; }
   body{ padding-bottom:70px; } /* évite que le bouton masque le bas de page */
 }
 
+/* Cache totalement le FAB en desktop */
+.fab-contact{ display:none; }
+
+@media (max-width:768px){
+  .fab-contact{
+    display:block; position:fixed; right:14px; bottom:14px; z-index:1100;
+  }
+  .fab-btn{
+    border:0; background:#2a6b73; color:#fff; font-weight:800;
+    padding:.7rem .95rem; border-radius:999px;
+    box-shadow:0 12px 28px rgba(0,0,0,.25);
+  }
+  .fab-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); }
+
+  /* --- Carte du menu : fond blanc + ombre + bord --- */
+  .fab-menu{
+    position:absolute; right:0; bottom:58px; width:min(88vw,360px);
+    display:grid; gap:.5rem; padding:.6rem;
+    background:#fff; border:1px solid rgba(0,0,0,.08);
+    border-radius:14px; box-shadow:0 20px 44px rgba(0,0,0,.28);
+    transform-origin:bottom right; transform:translateY(6px) scale(.98);
+    opacity:0; pointer-events:none;
+  }
+  .fab-contact[data-open="true"] .fab-menu{
+    opacity:1; transform:translateY(0) scale(1); pointer-events:auto;
+  }
+
+  /* Boutons bien lisibles */
+  .fab-menu .btn{ width:100%; text-align:center; border-radius:999px; }
+  .fab-menu .btn-primary{ background:#2a6b73; color:#fff; border-color:transparent; }
+  .fab-menu .btn-outline,
+  .fab-menu .btn-ghost{
+    background:#fff; color:#0f1b21; border:1px solid rgba(0,0,0,.12);
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+  }
+
+  /* Pour que le FAB ne masque pas le bas des pages */
+  body{ padding-bottom:72px; }
+}
+
