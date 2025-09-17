@@ -563,4 +563,88 @@ ul{ margin-bottom:.9rem; } li{ margin:.28rem 0; }
   /* Pour que le FAB ne masque pas le bas des pages */
   body{ padding-bottom:72px; }
 }
+/* Allégement MOBILE : on garde le bouton flottant, on masque le reste */
+@media (max-width: 768px){
+  /* Blocs contact redondants */
+  .contact-card,
+  .cta-banner,
+  .cta-dropdown,            /* bouton/menus contact en bannière */
+  .contact-menu { display: none !important; }
+
+  /* Badge / liens Resalib intégrés à la page */
+  .rlb-badge,
+  .cta-actions a[href*="resalib"],
+  a[href*="resalib"][class*="btn"] { display: none !important; }
+}
+
+/* ==== 1) Anti-débordement global mobile ==== */
+@media (max-width: 768px){
+  html, body { overflow-x:hidden; }
+  /* Permet aux très longs mots/URLs de se couper proprement */
+  body, .content, .hero-band, .page-columns,
+  .content :where(h1,h2,h3,h4,p,li,blockquote,small,span,a){
+    overflow-wrap:anywhere;
+    word-break:normal;
+    hyphens:auto;
+    -webkit-hyphens:auto;
+  }
+  /* Les liens très longs ne cassent plus la mise en page */
+  a { word-break:break-word; }
+}
+
+/* ==== 2) Marque (titre) dans la NAVBAR : autoriser le retour à la ligne ==== */
+@media (max-width: 768px){
+  .navbar .navbar-brand{
+    white-space:normal;            /* au lieu d'une seule ligne */
+    line-height:1.2;
+    max-width:72vw;                /* évite de pousser le burger */
+    overflow-wrap:anywhere;
+  }
+  .navbar .nav-link{
+    padding:8px 10px;              /* liens un peu plus compacts */
+  }
+}
+
+/* ==== 3) H1/Hero : tailles & retours adaptés ==== */
+@media (max-width: 480px){
+  .hero-band h1{
+    font-size:clamp(1.1rem, 3.6vw + .6rem, 1.5rem);
+    line-height:1.25;
+    text-wrap:balance;             /* meilleures césures visuelles (navigateurs récents) */
+  }
+  .hero-copy .hero-eyebrow{ font-size:.86rem; }
+}
+
+/* ==== 4) Pastilles/pills/chips : empêcher l'étirement horizontal ==== */
+@media (max-width: 768px){
+  .trust-strip, .chips-grid, .pill-grid, .tile-grid{
+    gap:.45rem .5rem;
+  }
+  .trust-pill, .chip{
+    max-width:100%;
+    white-space:normal;            /* autorise les retours à la ligne */
+  }
+}
+
+/* ==== 5) Badge Resalib : compact & non cassant ==== */
+@media (max-width: 768px){
+  .rlb-badge{
+    text-align:center;
+    margin:.5rem auto 1rem;
+  }
+  .rlb-badge a{
+    display:inline-block;
+    max-width:100%;
+    font-size:.95rem;
+    line-height:1.35;
+    text-decoration:none;
+    overflow-wrap:anywhere;
+  }
+}
+
+/* ==== 6) Téléphone : rester lisible sans couper au milieu ==== */
+.footer-nap a[href^="tel:"],
+a[href^="tel:"]{
+  white-space:nowrap;              /* 06 27 10 14 68 reste sur une ligne */
+}
 
