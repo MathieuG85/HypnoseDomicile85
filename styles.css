@@ -386,14 +386,7 @@ ul{ margin-bottom:.9rem; } li{ margin:.28rem 0; }
 .zone-intervention h2{ margin-bottom:.4rem; letter-spacing:-.01em; }
 .zone-cta{ margin-top:.8rem; display:flex; gap:.6rem; flex-wrap:wrap; }
 
-@media (max-width:640px){
-  .mobile-sticky-cta{
-    position:fixed; left:0; right:0; bottom:12px;
-    display:flex; gap:.6rem; justify-content:center;
-    padding:0 .8rem; z-index:1000;
-  }
-  .mobile-sticky-cta .btn{ flex:1 1 auto; }
-}
+
 
 .site-footer{
   margin-top:2rem; padding:1rem 0; border-top:1px solid rgba(0,0,0,.08);
@@ -438,127 +431,7 @@ ul{ margin-bottom:.9rem; } li{ margin:.28rem 0; }
 @media (min-width:821px){
   .price-note--m{ display:none; }
 }
-<div class="mobile-cta-bar" aria-label="Actions rapides">
-  <a href="tel:+33627101468" class="btn btn-primary">Appeler</a>
-  <a href="sms:+33627101468" class="btn btn-outline">SMS</a>
-</div>
-@media (max-width:640px){
-  .mobile-cta-bar{
-    position:fixed; left:0; right:0; bottom:10px;
-    display:flex; gap:.6rem; justify-content:center;
-    padding:0 .8rem; z-index:1000;
-    pointer-events:none; /* pour laisser passer les clics autour */
-  }
-  .mobile-cta-bar .btn{
-    pointer-events:auto; flex:1 1 auto; padding:.6rem .8rem;
-    border-radius:999px;
-  }
-  /* évite que ça masque le contenu collé au bas */
-  body{ padding-bottom:72px; }
-}
 
-/* ===== Floating Contact (mobile) ===== */
-@media (max-width: 768px){
-  .fab-contact{
-    position: fixed; right: 14px; bottom: 14px; z-index: 1100;
-  }
-  .fab-btn{
-    border: 0;
-    background: #2a6b73; color: #fff; font-weight: 800;
-    padding: .7rem .95rem; border-radius: 999px;
-    box-shadow: 0 12px 28px rgba(0,0,0,.25);
-  }
-  .fab-contact[data-open="true"] .fab-btn{ box-shadow: 0 16px 34px rgba(0,0,0,.32); }
-
-  .fab-backdrop{
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,.25); backdrop-filter: blur(2px);
-  }
-
-  .fab-menu{
-    position: absolute; right: 0; bottom: 58px;
-    display: grid; gap: .5rem; width: min(88vw, 360px);
-    transform-origin: bottom right;
-    transform: translateY(6px) scale(.98);
-    opacity: 0; pointer-events: none;
-  }
-  .fab-contact[data-open="true"] .fab-menu{
-    opacity: 1; transform: translateY(0) scale(1);
-    pointer-events: auto;
-  }
-  .fab-menu .btn{ width: 100%; text-align: center; }
-  body{ padding-bottom: 70px; } /* évite masquage du contenu par le bouton */
-}
-
-/* Respecte les préférences d’animation */
-@media (prefers-reduced-motion: reduce){
-  .fab-menu{ transition: none !important; }
-  .fab-btn{ transition: none !important; }
-}
-
-/* FAB Contact : caché par défaut (évite l'affichage moche en desktop) */
-.fab-contact{ display:none; }
-
-/* Mobile only */
-@media (max-width:768px){
-  .fab-contact{ 
-    display:block; 
-    position:fixed; right:14px; bottom:14px; z-index:1100;
-  }
-  .fab-btn{
-    border:0; background:#2a6b73; color:#fff; font-weight:800;
-    padding:.7rem .95rem; border-radius:999px;
-    box-shadow:0 12px 28px rgba(0,0,0,.25);
-  }
-  .fab-contact[data-open="true"] .fab-btn{ box-shadow:0 16px 34px rgba(0,0,0,.32); }
-  .fab-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.25); backdrop-filter:blur(2px); }
-  .fab-menu{
-    position:absolute; right:0; bottom:58px; width:min(88vw,360px);
-    display:grid; gap:.5rem; transform-origin:bottom right;
-    transform:translateY(6px) scale(.98); opacity:0; pointer-events:none;
-  }
-  .fab-contact[data-open="true"] .fab-menu{
-    opacity:1; transform:translateY(0) scale(1); pointer-events:auto;
-  }
-  .fab-menu .btn{ width:100%; text-align:center; }
-  body{ padding-bottom:70px; } /* évite que le bouton masque le bas de page */
-}
-
-/* Cache totalement le FAB en desktop */
-.fab-contact{ display:none; }
-
-@media (max-width:768px){
-  .fab-contact{
-    display:block; position:fixed; right:14px; bottom:14px; z-index:1100;
-  }
-  .fab-btn{
-    border:0; background:#2a6b73; color:#fff; font-weight:800;
-    padding:.7rem .95rem; border-radius:999px;
-    box-shadow:0 12px 28px rgba(0,0,0,.25);
-  }
-  .fab-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); }
-
-  /* --- Carte du menu : fond blanc + ombre + bord --- */
-  .fab-menu{
-    position:absolute; right:0; bottom:58px; width:min(88vw,360px);
-    display:grid; gap:.5rem; padding:.6rem;
-    background:#fff; border:1px solid rgba(0,0,0,.08);
-    border-radius:14px; box-shadow:0 20px 44px rgba(0,0,0,.28);
-    transform-origin:bottom right; transform:translateY(6px) scale(.98);
-    opacity:0; pointer-events:none;
-  }
-  .fab-contact[data-open="true"] .fab-menu{
-    opacity:1; transform:translateY(0) scale(1); pointer-events:auto;
-  }
-
-  /* Boutons bien lisibles */
-  .fab-menu .btn{ width:100%; text-align:center; border-radius:999px; }
-  .fab-menu .btn-primary{ background:#2a6b73; color:#fff; border-color:transparent; }
-  .fab-menu .btn-outline,
-  .fab-menu .btn-ghost{
-    background:#fff; color:#0f1b21; border:1px solid rgba(0,0,0,.12);
-    box-shadow:0 8px 18px rgba(0,0,0,.08);
-  }
 
   /* Pour que le FAB ne masque pas le bas des pages */
   body{ padding-bottom:72px; }
@@ -719,5 +592,121 @@ a[href^="tel:"]{
     background:#fff; color:#0f1b21; border:1px solid rgba(0,0,0,.12);
     box-shadow:0 8px 18px rgba(0,0,0,.08);
   }
+}
+/* === 1) FAB "Contactez-moi" en VERT (mobile) === */
+@media (max-width:768px){
+  .fab-btn{
+    background:#16a34a;           /* vert accessible */
+    color:#fff;
+    box-shadow:0 12px 28px rgba(0,0,0,.25);
+  }
+  .fab-btn:focus-visible{
+    outline:3px solid rgba(34,197,94,.55); /* focus ring vert */
+    outline-offset:2px;
+  }
+  /* Dans le menu, on laisse "Appeler" en teal, les autres en clair */
+  .fab-menu .btn-primary{ background:#2a6b73; color:#fff; }
+  .fab-menu .btn-outline,.fab-menu .btn-ghost{
+    background:#fff; color:#0f1b21; border:1px solid rgba(0,0,0,.12);
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+  }
+}
+
+/* === 2) Tarifs : mobile full-width + pas de "trou" === */
+/* a) Empile les colonnes en mobile */
+@media (max-width:768px){
+  .columns{ display:block !important; }                 /* casse la grille */
+  .columns > .column{ width:100% !important; margin:0 0 1rem !important; }
+}
+
+/* b) Si une colonne ne contient que la carte contact, on la masque (évite l'espace vide) */
+@media (max-width:768px){
+  .columns > .column:has(.contact-card){ display:none !important; }
+  .columns > .column:empty{ display:none !important; }
+}
+
+/* c) Petit confort de lecture dans la colonne restante */
+@media (max-width:768px){
+  .content .pill-grid{ grid-template-columns:1fr !important; } /* tuiles tarifs sur 1 colonne */
+  .content h3, .content h4{ margin-top:.6rem; }
+}
+
+/* ========== CTA FLOTTANT "CONTACTEZ-MOI" — MOBILE UNIQUEMENT ========== */
+/* caché par défaut (desktop) */
+.fab-contact{ display:none; }
+
+@media (max-width:768px){
+  .fab-contact{
+    display:block; position:fixed; right:14px; bottom:14px; z-index:1100;
+  }
+  .fab-btn{
+    border:0; background:#16a34a; color:#fff; font-weight:800;
+    padding:.7rem .95rem; border-radius:999px;
+    box-shadow:0 12px 28px rgba(0,0,0,.25);
+  }
+  .fab-btn:focus-visible{
+    outline:3px solid rgba(34,197,94,.55); outline-offset:2px;
+  }
+  .fab-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); }
+
+  .fab-menu{
+    position:absolute; right:0; bottom:58px; width:min(88vw,360px);
+    display:grid; gap:.5rem; padding:.6rem;
+    background:#fff; border:1px solid rgba(0,0,0,.08);
+    border-radius:14px; box-shadow:0 20px 44px rgba(0,0,0,.28);
+    transform-origin:bottom right; transform:translateY(6px) scale(.98);
+    opacity:0; pointer-events:none;
+  }
+  .fab-contact[data-open="true"] .fab-menu{
+    opacity:1; transform:translateY(0) scale(1); pointer-events:auto;
+  }
+  .fab-menu .btn{ width:100%; text-align:center; border-radius:999px; }
+  .fab-menu .btn-primary{ background:#2a6b73; color:#fff; border-color:transparent; }
+  .fab-menu .btn-outline, .fab-menu .btn-ghost{
+    background:#fff; color:#0f1b21; border:1px solid rgba(0,0,0,.12);
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+  }
+
+  /* éviter que le bouton masque le bas des pages */
+  body{ padding-bottom:72px; }
+}
+
+/* Respect des préférences d’animation */
+@media (prefers-reduced-motion:reduce){
+  .fab-menu, .fab-btn{ transition:none!important; }
+}
+
+/* ========== BARRE CTA SIMPLE (optionnelle) ========== */
+/* (garde-la dans le HTML, mais style ici) */
+@media (max-width:640px){
+  .mobile-cta-bar{
+    position:fixed; left:0; right:0; bottom:10px;
+    display:flex; gap:.6rem; justify-content:center;
+    padding:0 .8rem; z-index:1000; pointer-events:none;
+  }
+  .mobile-cta-bar .btn{
+    pointer-events:auto; flex:1 1 auto; padding:.6rem .8rem; border-radius:999px;
+  }
+}
+
+/* ========== ALLÉGEMENT MOBILE (on garde le FAB, on masque les doublons) ========== */
+@media (max-width:768px){
+  .contact-card,
+  .cta-banner,
+  .cta-dropdown,
+  .contact-menu{ display:none!important; }
+
+  .rlb-badge,
+  .cta-actions a[href*="resalib"],
+  a[href*="resalib"][class*="btn"]{ display:none!important; }
+}
+
+/* ========== TARIFS : PLEINE LARGEUR MOBILE ========== */
+@media (max-width:768px){
+  .columns{ display:block!important; }
+  .columns > .column{ width:100%!important; margin:0 0 1rem!important; }
+  /* Si la colonne ne contient que la carte contact, on la masque (support iOS/Android récents) */
+  .columns > .column:has(.contact-card){ display:none!important; }
+  .content .pill-grid{ grid-template-columns:1fr!important; }
 }
 
