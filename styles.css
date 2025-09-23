@@ -1745,4 +1745,73 @@ main.content, .page-columns, :target{ scroll-margin-top: calc(var(--nav-h) + 12p
   .avatar>img{ object-position:50% 42%; transform:scale(.86); }
 }
 
+/* ===== Lisibilité cartes Thèmes — MOBILE ===== */
+@media (max-width: 768px){
+
+  /* Grille : une seule colonne bien respirante */
+  .tile-grid{ display:block !important; }
+  .tile{ 
+    display:block;
+    background: #ffffff !important;                 /* fond clair franc */
+    color: #0f1b21 !important;                      /* texte foncé */
+    border: 1px solid rgba(0,0,0,.08) !important;
+    border-radius: 16px !important;
+    padding: 14px 16px !important;                  /* +padding */
+    margin: 10px 0 !important;                      /* +espacement entre cartes */
+    box-shadow: 0 8px 18px rgba(0,0,0,.10) !important; /* ombre plus propre */
+    backdrop-filter: none !important;               /* éviter le “voile” gris */
+  }
+
+  /* Titre de carte */
+  .tile-title{
+    font-size: 1.08rem !important;
+    line-height: 1.25 !important;
+    font-weight: 800 !important;
+    color: #0c1a20 !important;
+    margin: 2px 0 6px !important;
+  }
+
+  /* Texte de carte */
+  .tile-lead,
+  .tile p{
+    font-size: 0.98rem !important;                  /* +1 clic de taille */
+    line-height: 1.55 !important;                   /* +hauteur de ligne */
+    color: #23343d !important;                      /* plus foncé que #999 */
+  }
+
+  /* Les phrases en italique (CTA bas de carte) : lisibles mais discrètes */
+  .tile em,
+  .pill-cta{
+    font-style: italic;
+    color: #33505b !important;                      /* plus contrasté */
+    opacity: .95 !important;                        /* pas de gris très pâle */
+  }
+
+  /* Pas de coupures de mots agressives */
+  .tile, .tile *{
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+  }
+
+  /* Séparateur fin entre sections pour aider l’œil */
+  .section-divider, .quarto-hr, hr{
+    opacity: .25; border: 0; height: 1px; background: #cfd6da;
+    margin: 16px 0;
+  }
+}
+
+/* Optionnel : si dark mode actif, on garde du contraste */
+@media (prefers-color-scheme: dark) and (max-width:768px){
+  .tile{
+    background: #152126 !important;
+    color: #e9f1f4 !important;
+    border-color: rgba(255,255,255,.08) !important;
+    box-shadow: 0 10px 22px rgba(0,0,0,.25) !important;
+  }
+  .tile-title{ color:#ffffff !important; }
+  .tile-lead, .tile p{ color:#d2e2e8 !important; }
+  .tile em, .pill-cta{ color:#b9d1da !important; }
+}
 
