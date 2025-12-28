@@ -2456,3 +2456,71 @@ a.btn, .btn{
   .callout, .callout-tip, .callout-note{ box-shadow:none; }
 }
 
+.hero-visual {
+  margin-bottom: 2rem;
+}
+
+.hero-visual-inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+.hero-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-visual-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem;
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.75));
+  color: #fff;
+}
+
+.hero-visual-overlay h1 {
+  margin: 0 0 .5rem;
+  font-size: clamp(1.5rem, 2.4vw + 1rem, 2.6rem);
+}
+
+.hero-visual-kicker {
+  margin: 0 0 .3rem;
+  font-size: .95rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .9;
+}
+
+.hero-visual-sub {
+  margin: 0 0 1rem;
+  max-width: 36rem;
+}
+
+.hero-visual-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+
+/* Mobile : texte un peu plus bas et boutons en colonne */
+@media (max-width: 768px){
+  .hero-visual-overlay {
+    justify-content: flex-end;
+    padding: 1.25rem;
+  }
+  .hero-visual-cta {
+    flex-direction: column;
+  }
+  .hero-visual-cta .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
