@@ -1305,3 +1305,25 @@ textarea{ min-height: 110px; resize: vertical; }
   }
 }
 
+/* =========================================================
+   MOBILE — stop aux mots coupés (titres / hero)
+   ========================================================= */
+@media (max-width:768px){
+
+  /* Titres + zones importantes : pas de césure */
+  :where(h1,h2,h3,.navbar-brand,.hero-band,.hero,.pillbar,.pill-title,.tile-title){
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+  /* Paragraphes : on garde la sécurité anti-débordement, mais moins agressive */
+  :where(p,li){
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: manual; /* coupe uniquement si tu mets &shy; */
+    -webkit-hyphens: manual;
+  }
+}
+
