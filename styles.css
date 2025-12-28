@@ -1,2526 +1,1307 @@
-/* =========================================================
-   SITE MG — feuille de style (Quarto + Bootstrap 5)
-   Palette teal, hero full-bleed lisible, FAQ accessible
-   ========================================================= */
+/* ==========================================================================
+   styles.css — version clean (mobile-first) — Hypnose & Magnétisme
+   Objectifs : lisible, rapide, sans doublons, CTA cohérents (mobile = FAB)
+   ========================================================================== */
 
-/* ========== 1) Variables & base ========== */
+/* -----------------------------
+   1) Variables & Base
+------------------------------ */
 :root{
-  --nav-h: 72px;
-  --radius: 16px;
-  --shadow-1: 0 10px 24px rgba(0,0,0,.08);
-  --shadow-2: 0 20px 44px rgba(0,0,0,.14);
-  --border: 1px solid rgba(0,0,0,.08);
+  --brand: #0b6a70;         /* teal principal */
+  --brand-2: #095a5f;
+  --accent: #16a34a;        /* vert bouton flottant */
+  --ink: #0f1b21;
+  --muted: rgba(15,27,33,.72);
+  --bg: #ffffff;
+  --card: rgba(0,0,0,.03);
+  --border: rgba(0,0,0,.10);
+  --shadow-1: 0 10px 26px rgba(0,0,0,.12);
+  --shadow-2: 0 18px 42px rgba(0,0,0,.18);
 
-  --brand:   #2a6b73;
-  --brand-2: #3a8090;
-  --text:    #0f1b21;
+  --r-lg: 18px;             /* desktop: moins arrondi */
+  --r-md: 16px;
+  --r-sm: 14px;
 
-  color-scheme: light dark;
+  --container: 1100px;
 }
-@media (max-width:640px){ :root{ --nav-h:96px; } }
 
-*,*::before,*::after{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; overflow-x:hidden; }
+*{ box-sizing:border-box; }
+html, body{ overflow-x:hidden; }
 body{
-  padding-top:var(--nav-h);
-  color:var(--text);
-  background:
-    radial-gradient(1200px 600px at 20% 0%, rgba(42,107,115,.15), transparent 60%),
-    linear-gradient(180deg, #0f1f25 0%, #0e1a21 100%);
-}
-img{ max-width:100%; height:auto; display:block; }
-a{ text-underline-offset:2px; }
-a:focus-visible{ outline:3px solid rgba(14,165,233,.65); outline-offset:2px; }
-
-.page-columns, .content, main.content{ background:transparent; }
-
-/* ========== 2) Navbar fixe ========== */
-header.navbar, .navbar{
-  position:fixed; inset:0 0 auto 0; z-index:1000;
-  background:var(--brand)!important;
-  box-shadow:0 2px 6px rgba(0,0,0,.10);
-}
-.navbar .navbar-brand,
-.navbar .nav-link{ color:#fff!important; font-weight:700; border-radius:10px; padding:10px 15px; transition:background .25s, transform .15s; }
-.navbar .nav-link:hover{ background:var(--brand-2); transform:translateY(-1px); }
-.navbar .nav-link.active{ background:rgba(255,255,255,.22)!important; }
-main.content{ margin-top:0; }
-nav#TOC{ position:sticky; top:calc(var(--nav-h) + 12px); }
-
-/* ========== 3) Hero full-bleed lisible ========== */
-.hero-band{
-  width:auto;
-  margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
-  background:linear-gradient(135deg, #0f2230 0%, #112836 40%, #123240 100%);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  box-shadow:0 10px 24px rgba(0,0,0,.12) inset;
-  padding:clamp(18px,3vw,36px) 0;
-  position:relative; overflow:visible;
-}
-.hero-band::before{
-  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
-  background:linear-gradient(180deg, rgba(8,20,28,.62) 0%, rgba(8,20,28,.42) 40%, rgba(8,20,28,.24) 100%);
-}
-.hero-inner{
-  position:relative; z-index:1;
-  max-width:1200px; margin:0 auto; padding:0 16px;
-  display:grid; grid-template-columns:minmax(280px,360px) minmax(0,1fr); gap:clamp(22px,4vw,56px); align-items:center;
-}
-@media (max-width:820px){ .hero-inner{ grid-template-columns:1fr; text-align:center; gap:18px; } }
-
-.hero-copy .hero-eyebrow{
-  display:inline-block; margin:0 0 .35rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; font-size:.92rem; opacity:.75;
-}
-.hero-band .hero-copy, .hero-band .hero-copy *{ color:#eef7fb!important; }
-.hero-band h1{ color:#fff!important; text-shadow:0 2px 8px rgba(0,0,0,.35); }
-.hero-copy p:first-of-type{ font-size:clamp(1.02rem, .5vw + 1rem, 1.18rem); opacity:.95; margin:.2rem 0 .6rem; }
-.hero-copy li{ margin:.28rem 0; }
-
-.trust-strip{ display:flex; flex-wrap:wrap; gap:.5rem .6rem; }
-.trust-pill{
-  white-space:nowrap;
-  background:rgba(255,255,255,.16);
-  border:1px solid rgba(255,255,255,.34);
-  color:#fff; border-radius:999px; padding:.4rem .7rem; font-weight:700; font-size:.95rem;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
 }
 
-/* Avatar anneau dégradé */
-.avatar{ position:relative; width:clamp(240px,26vw,320px); aspect-ratio:1/1; border-radius:999px; overflow:hidden; }
-.avatar::before{
-  content:""; position:absolute; inset:0; padding:6px; border-radius:inherit;
-  background:linear-gradient(135deg,#6fb6c0,#f3a8c4);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor; mask-composite: exclude; pointer-events:none;
-}
-.avatar>img{ position:relative; width:100%; height:100%; object-fit:cover; border-radius:inherit; }
+/* Typo */
+h1,h2,h3{ letter-spacing:-.02em; }
+h1{ line-height:1.15; }
+h2{ line-height:1.22; }
+p{ color: var(--muted); }
+strong{ color: var(--ink); }
 
-/* Badge tarif (lisible sur sombre) */
-.price-note{
-  width:100%; max-width:360px; margin-top:.4rem; text-align:center;
-  padding:.8rem 1rem; border-radius:14px;
-  background:rgba(7,18,26,.94);
-  border:1px solid rgba(255,255,255,.30);
-  box-shadow:0 12px 28px rgba(0,0,0,.32);
-  color:#fff!important;
-}
-.price-top{ display:block; font-weight:900; font-size:clamp(1.12rem, .7rem + .62vw, 1.30rem); letter-spacing:-.01em; }
-.price-sub{ display:block; opacity:.96; margin-top:.1rem; }
-.price-reduced{ display:block; margin-top:.45rem; font-size:.95rem; font-weight:700; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.28); border-radius:10px; padding:.35rem .55rem; }
+/* Liens */
+a{ color: var(--brand); text-decoration: none; }
+a:hover{ text-decoration: underline; }
 
-/* ========== 4) Boutons (pastilles avec relief) ========== */
-.btn{
-  border-radius:9999px; padding:.62rem 1.05rem; font-weight:800;
-  transition:transform .08s, box-shadow .15s, filter .15s;
-}
-.btn:active{ transform:translateY(1px); }
-.btn-primary{ background:#2fa1c4; border-color:transparent; color:#fff; box-shadow:0 10px 22px rgba(47,161,196,.35); }
-.btn-primary:hover{ box-shadow:0 14px 30px rgba(47,161,196,.45); filter:saturate(1.05); }
-.btn-outline{ background:rgba(255,255,255,.14); color:#fff; border-color:rgba(255,255,255,.45); box-shadow:0 8px 18px rgba(0,0,0,.18); }
-.btn-outline:hover{ box-shadow:0 12px 26px rgba(0,0,0,.22); }
-.btn-ghost{ border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.10); color:#fff; }
+/* Utilitaires */
+.only-desktop{ display:block; }
+.only-mobile{ display:none; }
 
-/* ========== 5) Cartes / tuiles / pills (thèmes & tarifs) ========== */
-.block-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; list-style:none; padding:0; margin:.2rem 0 1rem; }
-@media (max-width:980px){ .block-grid{ grid-template-columns:repeat(2,1fr); } }
-@media (max-width:640px){ .block-grid{ grid-template-columns:1fr; } }
-.block{
-  display:block; text-decoration:none; color:var(--text);
-  background:#fff; border:var(--border); border-radius:var(--radius);
-  padding:1rem 1.1rem; box-shadow:var(--shadow-1);
-  transition:transform .14s, box-shadow .14s, border-color .14s, filter .14s;
-}
-.block:hover{ transform:translateY(-2px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); filter:saturate(1.03); }
-.block-title{ font-weight:800; font-size:1.25rem; letter-spacing:-.01em; margin-bottom:.2rem; }
-.block-sub{ opacity:.92; }
-
-/* variations douces */
-.block--addictions{ background:linear-gradient(180deg,#fef3f2,#fff); border-color:#fca5a5; }
-.block--stress    { background:linear-gradient(180deg,#eff6ff,#fff); border-color:#93c5fd; }
-.block--sommeil   { background:linear-gradient(180deg,#f5f3ff,#fff); border-color:#c4b5fd; }
-.block--deuil     { background:linear-gradient(180deg,#f1f5f9,#fff); border-color:#94a3b8; }
-.block--poids     { background:linear-gradient(180deg,#ecfeff,#fff); border-color:#67e8f9; }
-.block--feminin   { background:linear-gradient(180deg,#fdf2f8,#fff); border-color:#f9a8d4; }
-
-.tile-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.1rem; margin:1rem 0 2rem; list-style:none; padding:0; }
-@media (max-width:980px){ .tile-grid{ grid-template-columns:repeat(2,1fr); } }
-@media (max-width:640px){ .tile-grid{ grid-template-columns:1fr; } }
-.tile>a{
-  display:block; height:100%; text-decoration:none; color:inherit;
-  background:#fff; border:var(--border); border-radius:14px; padding:1rem 1.1rem; box-shadow:var(--shadow-1);
-  transition:transform .15s, box-shadow .15s, border-color .15s;
-}
-.tile>a:hover{ transform:translateY(-2px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); }
-.tile-title{ margin:0 0 .35rem; font-size:1.35rem; line-height:1.25; letter-spacing:-.01em; }
-.tile-lead{ margin:.1rem 0 .6rem; font-size:1.05rem; opacity:.92; max-width:60ch; }
-
-.pill-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; list-style:none; margin:0 0 1rem; padding:0; }
-@media (max-width:980px){ .pill-grid{ grid-template-columns:repeat(2,1fr); } }
-@media (max-width:640px){ .pill-grid{ grid-template-columns:1fr; } }
-.pill{
-  display:flex; flex-direction:column; gap:.25rem; text-decoration:none; color:var(--text);
-  background:#fff; border:var(--border); border-radius:18px; padding:1.05rem 1.15rem; box-shadow:var(--shadow-1);
-  transition:transform .14s, box-shadow .14s, border-color .14s, filter .14s;
-}
-.pill:hover{ transform:translateY(-2px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); filter:saturate(1.03); }
-.pill-title{ display:block; margin-bottom:.28rem; font-size:clamp(1.1rem,.9vw + 1rem,1.35rem); font-weight:800; letter-spacing:-.01em; }
-.pill-tags{ display:block; line-height:1.5; opacity:.95; }
-.pill--addictions{ background:linear-gradient(180deg,#fef3f2,#fff); border-color:#fca5a5; }
-.pill--stress    { background:linear-gradient(180deg,#eff6ff,#fff); border-color:#93c5fd; }
-.pill--sommeil   { background:linear-gradient(180deg,#f5f3ff,#fff); border-color:#c4b5fd; }
-.pill--deuil     { background:linear-gradient(180deg,#f1f5f9,#fff); border-color:#94a3b8; }
-.pill--poids     { background:linear-gradient(180deg,#ecfeff,#fff); border-color:#67e8f9; }
-.pill--feminin   { background:linear-gradient(180deg,#fdf2f8,#fff); border-color:#f9a8d4; }
-
-/* chips */
-.chips-grid{ display:flex; flex-wrap:wrap; gap:.6rem; list-style:none; padding:0; margin:.4rem 0 0; }
-.chip{ text-decoration:none; font-weight:700; padding:.5rem .8rem; border-radius:999px; background:#eef2ff; border:1px solid #c7d2fe; color:#1e293b; transition:transform .12s, box-shadow .12s, background-color .12s; }
-.chip:hover{ transform:translateY(-1px); box-shadow:0 6px 14px rgba(0,0,0,.08); background:#e0e7ff; }
-
-/* ========== 6) CTA bannière + menu contact ========== */
-.cta-banner{
-  margin:1rem 0 1.6rem; padding:clamp(14px,1.8vw,20px);
-  border-radius:16px; background:linear-gradient(135deg,#e0f2fe,#fdf2f8);
-  border:1px solid rgba(0,0,0,.06); box-shadow:var(--shadow-1);
-  display:grid; grid-template-columns:1fr auto; gap:.8rem; align-items:center; color:#0f1b21;
-}
-.cta-banner .cta-text{ margin:0; line-height:1.5; max-width:70ch; }
-.cta-actions{ display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }
-@media (max-width:720px){ .cta-banner{ grid-template-columns:1fr; } .cta-actions{ justify-content:flex-start; } }
-
-.cta-dropdown{ position:relative; display:inline-block; }
-.cta-dropdown>summary{ list-style:none; display:inline-block; cursor:pointer; }
-.cta-dropdown>summary::-webkit-details-marker{ display:none; }
-
-.contact-menu{
-  position:absolute; left:0; top:calc(100% + 8px);
-  background:#fff; border:1px solid rgba(0,0,0,.08);
-  border-radius:14px; box-shadow:var(--shadow-2);
-  padding:.7rem; min-width:320px;
-  display:flex; gap:.6rem; flex-wrap:wrap;
-  opacity:0; transform:translateY(-4px); transition:opacity .15s, transform .15s;
-  pointer-events:none; z-index:20;
-}
-.cta-dropdown[open] .contact-menu{ opacity:1; transform:translateY(0); pointer-events:auto; }
-.contact-menu::before{ content:""; position:absolute; left:16px; top:-8px; border:8px solid transparent; border-bottom-color:#fff; filter:drop-shadow(0 -1px 1px rgba(0,0,0,.08)); }
-
-.contact-pill{
-  flex:1 1 calc(50% - .6rem);
-  display:flex; align-items:center; gap:.5rem; justify-content:center;
-  text-decoration:none; font-weight:800; color:#0b1220;
-  padding:.7rem .9rem; border-radius:14px; border:1px solid rgba(0,0,0,.06);
-  box-shadow:0 8px 18px rgba(0,0,0,.08); transition:transform .12s, box-shadow .12s, filter .12s;
-}
-.contact-pill:hover{ transform:translateY(-1px); box-shadow:0 12px 28px rgba(0,0,0,.12); filter:saturate(1.02); }
-.contact-pill .ico{ width:20px; height:20px; flex:0 0 20px; }
-.contact--mail{ background:#fde2ea; } .contact--tel{ background:#e9d7ff; } .contact--sms{ background:#e7f5ff; } .contact--ig{ background:#fde6dd; } .contact--fb{ background:#dee7ff; }
-@media (max-width:640px){
-  .contact-menu{ position:static; border:0; box-shadow:none; padding:.55rem 0 0; opacity:1; transform:none; pointer-events:auto; min-width:0; }
-  .contact-menu::before{ display:none; }
-  .contact-pill{ flex:1 1 100%; }
+@media (max-width:768px){
+  .only-desktop{ display:none !important; }
+  .only-mobile{ display:block; }
+  body{ padding-bottom: 78px; } /* évite que le FAB masque le bas */
 }
 
-/* ========== 7) Accueil : colonne contact ========== */
-.home-layout{ display:grid; grid-template-columns:340px 1fr; gap:1.25rem; align-items:start; margin-top:.5rem; }
-@media (max-width:1024px){ .home-layout{ grid-template-columns:1fr; } }
-.contact-card{
-  position:sticky; top:calc(var(--nav-h) + 16px);
-  background:#fff; border:var(--border); border-radius:var(--radius);
-  padding:1.1rem 1.2rem; box-shadow:var(--shadow-1); color:var(--text);
-}
-
-/* ========== 8) FAQ (accordéons propres & lisibles) ========== */
-.faq-page :where(h1,h2,h3,p,li){ color:var(--text); }
-
-.faq-accordeon details{
-  border:1px solid rgba(0,0,0,.08); border-radius:12px; background:#fff;
-  box-shadow:0 8px 18px rgba(0,0,0,.05); margin:.6rem 0; overflow:hidden;
-}
-.faq-accordeon summary{
-  cursor:pointer; list-style:none; padding:.85rem 1rem;
-  font-weight:800; letter-spacing:-.01em; display:flex; align-items:center; justify-content:space-between;
-  color:var(--text); background:linear-gradient(180deg,#f8fafc,#fff);
-}
-.faq-accordeon summary::-webkit-details-marker{ display:none; }
-.faq-accordeon summary:after{ content:"▸"; transform:rotate(0deg); transition:transform .15s; opacity:.65; margin-left:.8rem; }
-.faq-accordeon details[open] summary:after{ transform:rotate(90deg); }
-.faq-accordeon .answer{ padding:.85rem 1rem 1rem; color:var(--text); background:#fff; }
-
-/* ========== 9) Témoignages (relief, lisible) ========== */
-.t-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
-@media (max-width:900px){ .t-grid{ grid-template-columns:1fr; } }
-.testimonial{
-  position:relative; background:#fff; color:#0b1220; border:1px solid rgba(0,0,0,.08);
-  border-radius:16px; padding:1.05rem 1.15rem 1.1rem; box-shadow:0 14px 32px rgba(0,0,0,.12);
-}
-.testimonial::after{ content:""; position:absolute; left:0; right:0; top:0; height:3px; border-radius:16px 16px 0 0; background:linear-gradient(90deg,#2a6b73,#6fb6c0 60%,#f3a8c4); }
-.testimonial blockquote{ margin:0; white-space:pre-wrap; }
-
-/* ========== 10) Surfaces claires pour le contenu ========== */
-main.content, .page-columns{ background:#fff; }
-.content, .content :where(p,li,h1,h2,h3,h4){ color:#0f1b21; }
-.content :where(p,li){ line-height:1.65; max-width:72ch; }
-.content a{ color:#2a6b73; text-decoration-thickness:.08em; }
-.content a:hover{ color:#3a8090; }
-
-/* ========== 11) Accessibilité ========== */
-ul{ margin-bottom:.9rem; } li{ margin:.28rem 0; }
-@media (prefers-reduced-motion:reduce){ *{ transition:none!important; animation:none!important; } }
-
-/* ========== 12) Mode sombre ========== */
-@media (prefers-color-scheme:dark){
-  :root{ --text:#eaf2f4; }
-  body{
-    color:var(--text);
-    background:
-      radial-gradient(1200px 600px at 20% 0%, rgba(42,107,115,.20), transparent 60%),
-      linear-gradient(180deg, #0c1820 0%, #0b151b 100%);
-  }
-  main.content, .page-columns{ background:#0c141b; }
-  .content, .content :where(p,li,h1,h2,h3,h4){ color:#eaf2f4; }
-  .block, .tile>a, .pill, .contact-card{ background:#0f2230; border-color:rgba(255,255,255,.10); box-shadow:none; }
-  .chip, .topic-nav a{ background:#113245; border-color:#0f2230; color:#eaf2f4; }
-  .cta-banner{ background:linear-gradient(135deg, rgba(42,107,115,.25), rgba(255,255,255,.06)); border-color:rgba(255,255,255,.10); color:#eaf2f4; }
-  .faq-accordeon details{ background:#0f2230; border-color:rgba(255,255,255,.12); box-shadow:none; }
-  .faq-accordeon summary{ background:linear-gradient(180deg,#0f2230,#0e1b25); color:#eaf2f4; }
-  .faq-accordeon .answer{ background:#0f2230; color:#eaf2f4; }
-  .testimonial{ background:#0f2230; color:#eaf2f4; border-color:rgba(255,255,255,.10); box-shadow:none; }
-  .t-grid .testimonial:nth-child(2n){ background:#0d1b26; }
-}
-
-/* === HERO — Rendre le panneau tarif lisible (fond clair + texte foncé) === */
-.hero-band :is(.price-card, .price-note, .contact-card, [class*="tarif"], [class*="price"], [class*="prix"]) {
-  background: #ffffff !important;
-  color: #0f1b21 !important;
-  border: 1px solid rgba(0,0,0,.10) !important;
-  box-shadow: 0 14px 28px rgba(0,0,0,.18) !important;
-  backdrop-filter: none !important;            /* enlève tout effet de verre dépoli */
-}
-
-/* Supprime les effets de texte hérités (blanc + ombre) */
-.hero-band :is(.price-card, .price-note, .contact-card, [class*="tarif"], [class*="price"], [class*="prix"])
-  :is(h1,h2,h3,h4,h5,p,span,strong,em,li,small) {
-  color: #0f1b21 !important;
-  text-shadow: none !important;
-  -webkit-text-stroke: 0 !important;
-}
-
-/* Pastilles/Badges du bloc tarif : contraste correct */
-.hero-band :is(.price-card, .price-note, [class*="tarif"], [class*="price"], [class*="prix"])
-  :is(.price-reduced, .trust-pill, .badge) {
-  background: #eef6f8 !important;
-  color: #0f1b21 !important;
-  border: 1px solid rgba(0,0,0,.08) !important;
-}
-
-/* Boutons du bloc tarif sur fond clair */
-.hero-band :is(.price-card, .price-note, .contact-card, [class*="tarif"], [class*="price"], [class*="prix"]) .btn-outline{
-  background:#2a6b73 !important; 
-  color:#fff !important; 
-  border-color:transparent !important;
-}
-.hero-band :is(.price-card, .price-note, .contact-card, [class*="tarif"], [class*="price"], [class*="prix"]) .btn-primary{
-  background:#2fa1c4 !important; 
-  color:#fff !important; 
-  border-color:transparent !important;
-}
-
-/* === HERO — carte claire lisible sur fond sombre ===
-   Utilisation : ajouter .card--light sur .price-note (ou ta carte) quand elle est dans .hero-band
-   Exemple HTML : <div class="price-note card--light">...</div>
----------------------------------------------------------------- */
-
-.hero-band .card--light{
-  background:#fff;
-  color:#0f1b21;
-  border:1px solid rgba(0,0,0,.10);
-  box-shadow:0 14px 28px rgba(0,0,0,.18);
-  backdrop-filter:none;
-}
-
-/* Typo interne : pas d’ombre, héritage de la couleur */
-.hero-band .card--light :where(h1,h2,h3,h4,h5,p,span,strong,em,li,small){
-  color:inherit;
-  text-shadow:none;
-  -webkit-text-stroke:0;
-}
-
-/* Badges/pastilles à contraste suffisant sur fond clair */
-.hero-band .card--light :where(.price-reduced,.trust-pill,.badge){
-  background:#eef6f8;
-  color:#0f1b21;
-  border:1px solid rgba(0,0,0,.08);
-}
-
-/* Boutons sur carte claire */
-.hero-band .card--light .btn-outline{
-  background:var(--brand);
-  color:#fff;
-  border-color:transparent;
-  box-shadow:0 8px 18px rgba(0,0,0,.18);
-}
-.hero-band .card--light .btn-outline:hover{
-  box-shadow:0 12px 26px rgba(0,0,0,.22);
-}
-
-.hero-band .card--light .btn-primary{
-  background:#2fa1c4;
-  color:#fff;
-  border-color:transparent;
-  box-shadow:0 10px 22px rgba(47,161,196,.35);
-}
-.hero-band .card--light .btn-primary:hover{
-  box-shadow:0 14px 30px rgba(47,161,196,.45);
-  filter:saturate(1.05);
-}
-
-/* Variante dark mode : garde la carte claire pour la lisibilité */
-@media (prefers-color-scheme:dark){
-  .hero-band .card--light{
-    background:#ffffff;
-    color:#0f1b21;
-    border:1px solid rgba(255,255,255,.12);
-    box-shadow:0 16px 32px rgba(0,0,0,.35);
-  }
-}
-.zone-intervention{ margin:2rem 0 1.5rem; }
-.zone-intervention h2{ margin-bottom:.4rem; letter-spacing:-.01em; }
-.zone-cta{ margin-top:.8rem; display:flex; gap:.6rem; flex-wrap:wrap; }
-
-
-
-.site-footer{
-  margin-top:2rem; padding:1rem 0; border-top:1px solid rgba(0,0,0,.08);
-  background:transparent;
-}
-.site-footer .footer-inner{ max-width:1200px; margin:0 auto; padding:0 16px; }
-.site-footer p{ margin:.25rem 0; opacity:.95; }
-.site-footer a{ text-decoration:underline; text-underline-offset:2px; }
-@media (prefers-color-scheme:dark){
-  .site-footer{ border-top-color:rgba(255,255,255,.12); }
-}
-
-/* ====== Mobile hero tuning (≤ 480px) ====== */
-@media (max-width: 480px){
-  /* avatar plus petit et centré */
-  .hero-inner{ gap: 16px; }
-  .avatar{ width: clamp(160px, 42vw, 200px); margin-inline:auto; }
-  .hero-band h1{ font-size: clamp(1.2rem, 3.8vw + .6rem, 1.55rem); line-height:1.25; margin:.35rem 0 .4rem; text-shadow:none; }
-  .hero-copy .hero-eyebrow{ font-size:.86rem; opacity:.85; }
-
-  /* spécialités (trust pills) mieux tassées */
-  .trust-strip{ justify-content:center; gap:.35rem .45rem; }
-  .trust-pill{ padding:.32rem .6rem; font-size:.9rem; border-radius:999px; }
-
-  /* pastille tarifs : déplacer sous le H1 */
-  .price-note--m{ display:block; margin:.3rem auto 0; }
-  .hero-media .price-note{ display:none; }  /* on cache la version d’origine en mobile */
-
-  /* aération des boutons sous texte */
-  .hero-copy .btn{ padding:.58rem .95rem; }
-  .hero-copy .btn + .btn{ margin-left:.35rem; }
-}
-
-/* ====== Tablette compacte (481–820px) ====== */
-@media (min-width:481px) and (max-width:820px){
-  .avatar{ width: clamp(200px, 34vw, 260px); margin-inline:auto; }
-  .hero-media .price-note{ display:none; }
-  .price-note--m{ display:block; margin:.4rem auto 0; max-width:420px; }
-}
-
-/* Bureau : on garde l'existant et on cache la copie mobile */
-@media (min-width:821px){
-  .price-note--m{ display:none; }
-}
-
-
-  /* Pour que le FAB ne masque pas le bas des pages */
-  body{ padding-bottom:72px; }
-}
-/* Allégement MOBILE : on garde le bouton flottant, on masque le reste */
-@media (max-width: 768px){
-  /* Blocs contact redondants */
-  .contact-card,
-  .cta-banner,
-  .cta-dropdown,            /* bouton/menus contact en bannière */
-  .contact-menu { display: none !important; }
-
-  /* Badge / liens Resalib intégrés à la page */
-  .rlb-badge,
-  .cta-actions a[href*="resalib"],
-  a[href*="resalib"][class*="btn"] { display: none !important; }
-}
-
-/* ==== 1) Anti-débordement global mobile ==== */
-@media (max-width: 768px){
-  html, body { overflow-x:hidden; }
-  /* Permet aux très longs mots/URLs de se couper proprement */
-  body, .content, .hero-band, .page-columns,
-  .content :where(h1,h2,h3,h4,p,li,blockquote,small,span,a){
+/* Anti débordement (mobile) */
+@media (max-width:768px){
+  body, .content, .page-columns,
+  :where(h1,h2,h3,h4,p,li,blockquote,small,span,a){
     overflow-wrap:anywhere;
     word-break:normal;
     hyphens:auto;
     -webkit-hyphens:auto;
   }
-  /* Les liens très longs ne cassent plus la mise en page */
-  a { word-break:break-word; }
+  a{ word-break:break-word; }
 }
 
-/* ==== 2) Marque (titre) dans la NAVBAR : autoriser le retour à la ligne ==== */
-@media (max-width: 768px){
+/* -----------------------------
+   2) Navbar (Quarto / Bootstrap)
+------------------------------ */
+.navbar{
+  background: var(--brand);
+}
+.navbar .navbar-brand,
+.navbar .nav-link{
+  color:#fff !important;
+}
+.navbar .nav-link{ opacity:.95; }
+.navbar .nav-link:hover{ opacity:1; }
+
+@media (max-width:768px){
   .navbar .navbar-brand{
-    white-space:normal;            /* au lieu d'une seule ligne */
-    line-height:1.2;
-    max-width:72vw;                /* évite de pousser le burger */
+    white-space:normal;
+    line-height:1.15;
+    max-width: 72vw;
     overflow-wrap:anywhere;
   }
-  .navbar .nav-link{
-    padding:8px 10px;              /* liens un peu plus compacts */
-  }
 }
 
-/* ==== 3) H1/Hero : tailles & retours adaptés ==== */
-@media (max-width: 480px){
-  .hero-band h1{
-    font-size:clamp(1.1rem, 3.6vw + .6rem, 1.5rem);
-    line-height:1.25;
-    text-wrap:balance;             /* meilleures césures visuelles (navigateurs récents) */
-  }
-  .hero-copy .hero-eyebrow{ font-size:.86rem; }
+/* -----------------------------
+   3) Boutons (Bootstrap friendly)
+------------------------------ */
+.btn{
+  border-radius: var(--r-sm);
+  padding: .78rem 1rem;
+  font-weight: 750;
+  text-decoration:none !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,.08);
+}
+.btn:focus-visible{
+  outline: 3px solid rgba(11,106,112,.35);
+  outline-offset: 2px;
 }
 
-/* ==== 4) Pastilles/pills/chips : empêcher l'étirement horizontal ==== */
-@media (max-width: 768px){
-  .trust-strip, .chips-grid, .pill-grid, .tile-grid{
-    gap:.45rem .5rem;
-  }
-  .trust-pill, .chip{
-    max-width:100%;
-    white-space:normal;            /* autorise les retours à la ligne */
-  }
+.btn-primary{
+  background: var(--brand);
+  border-color: transparent;
+}
+.btn-primary:hover{ background: var(--brand-2); }
+
+.btn-outline{
+  background:#fff;
+  border:1px solid var(--border);
+  color: var(--ink);
+}
+.btn-outline:hover{
+  border-color: rgba(0,0,0,.18);
+  background: rgba(0,0,0,.02);
 }
 
-/* ==== 5) Badge Resalib : compact & non cassant ==== */
-@media (max-width: 768px){
+.btn-ghost{
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--brand);
+  box-shadow: none;
+}
+.btn-lg{
+  padding: .95rem 1.1rem;
+  font-size: 1.05rem;
+}
+
+/* -----------------------------
+   4) HERO (page accueil / pages)
+------------------------------ */
+.hero-band{
+  background: radial-gradient(1000px 400px at 70% 30%, rgba(255,255,255,.10), transparent 60%),
+              linear-gradient(180deg, #072c31, #0a1f25);
+  color:#fff;
+  padding: 1.2rem 0 1.1rem;
+}
+.hero-band p{ color: rgba(255,255,255,.82); }
+
+.hero-inner{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.hero-media{
+  display:flex;
+  justify-content:center;
+}
+
+.avatar{
+  width: clamp(180px, 40vw, 250px);
+  border-radius: 999px;
+  overflow:hidden;
+  box-shadow: 0 18px 46px rgba(0,0,0,.32);
+  border: 4px solid rgba(255,255,255,.12);
+}
+.avatar img{ width:100%; height:auto; display:block; }
+
+.hero-copy h1{
+  margin: 0 0 .35rem;
+  font-size: clamp(1.65rem, 2.8vw + 1rem, 2.6rem);
+}
+.hero-copy h2{
+  margin: 0 0 .75rem;
+  font-size: clamp(1.05rem, 1.2vw + .8rem, 1.55rem);
+  opacity:.95;
+}
+
+.hero-copy > p{ margin:.45rem 0; }
+
+.hero-cta{
+  display:flex;
+  gap:.6rem;
+  flex-wrap:wrap;
+  margin-top:.85rem;
+}
+
+/* Desktop layout */
+@media (min-width:981px){
+  .hero-inner{
+    grid-template-columns: 320px 1fr;
+    gap: 28px;
+  }
+  .hero-media{ justify-content:flex-start; }
+}
+
+/* Petit texte sous CTA */
+.cta-sub{
+  font-size: .95rem;
+  opacity: .85;
+  margin-top: .45rem;
+}
+
+/* -----------------------------
+   5) Blocs “Proof / Encadrés”
+------------------------------ */
+.proof,
+.cta-box,
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 1rem;
+}
+
+.cta-box p{ margin:.25rem 0; }
+
+/* -----------------------------
+   6) PILL GRID (sujets, accueil)
+------------------------------ */
+.pill-grid{
+  list-style:none;
+  margin: 1rem 0 1.4rem;
+  padding:0;
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: .75rem;
+}
+.pill-grid > li{ margin:0; }
+
+@media (min-width:768px){
+  .pill-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (min-width:1100px){
+  .pill-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+
+.pill{
+  display:block;
+  padding: .95rem 1rem;
+  border-radius: var(--r-lg);             /* moins arrondi sur desktop */
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  box-shadow: 0 16px 40px rgba(0,0,0,.22);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.pill:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 22px 52px rgba(0,0,0,.26);
+  text-decoration:none;
+}
+
+.pill-title{
+  display:block;
+  font-weight: 850;
+  font-size: 1.05rem;
+  color:#fff;
+  margin-bottom: .15rem;
+}
+.pill-tags{
+  display:block;
+  font-size: .95rem;
+  opacity: .88;
+  color: rgba(255,255,255,.90);
+}
+.pill-cta{
+  display:block;
+  margin-top: .45rem;
+  font-weight: 800;
+  opacity: .92;
+  color:#fff;
+}
+
+/* Mobile: lisibilité ++ (ton problème actuel) */
+@media (max-width:480px){
+  .pill{
+    padding: .9rem .95rem;
+    border-radius: 16px;                 /* mobile un peu moins “bulle” */
+  }
+  .pill-title{ font-size: 1.02rem; }
+  .pill-tags{ font-size: .93rem; }
+  .pill-cta{ font-size: .95rem; }
+}
+
+/* -----------------------------
+   7) TILE GRID (addictions/poids etc.)
+------------------------------ */
+.tile-grid{
+  list-style:none;
+  margin: 1rem 0 1.4rem;
+  padding:0;
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: .8rem;
+}
+@media (min-width:768px){
+  .tile-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (min-width:1100px){
+  .tile-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+
+.tile{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 1rem;
+  box-shadow: 0 14px 30px rgba(0,0,0,.08);
+}
+.tile-title{
+  margin:0 0 .35rem;
+  font-weight: 850;
+  font-size: 1.08rem;
+}
+.tile-lead{ margin:0; }
+.tile .pill-cta{
+  margin-top: .55rem;
+  display:inline-block;
+  color: var(--brand);
+  font-weight: 850;
+}
+
+/* -----------------------------
+   8) Chips (zone intervention)
+------------------------------ */
+.chips-grid{
+  list-style:none;
+  padding:0;
+  margin:.75rem 0 0;
+  display:flex;
+  flex-wrap:wrap;
+  gap: .5rem;
+}
+.chip{
+  display:inline-block;
+  padding:.35rem .65rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,.02);
+  font-weight: 650;
+  color: rgba(15,27,33,.80);
+}
+
+/* -----------------------------
+   9) CTA dropdown (desktop)
+------------------------------ */
+.cta-dropdown summary{
+  list-style:none;
+  cursor:pointer;
+}
+.cta-dropdown summary::-webkit-details-marker{ display:none; }
+
+.contact-menu{
+  margin-top:.6rem;
+  display:grid;
+  gap:.55rem;
+}
+.contact-pill{
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  padding:.75rem .9rem;
+  border-radius: 999px;
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow: 0 10px 20px rgba(0,0,0,.08);
+  color: var(--ink);
+  font-weight: 800;
+}
+.contact-pill:hover{
+  text-decoration:none;
+  background: rgba(0,0,0,.02);
+  border-color: rgba(0,0,0,.16);
+}
+.contact-pill .ico{
+  width: 20px;
+  height: 20px;
+  opacity:.9;
+}
+
+/* -----------------------------
+   10) Badge Resalib
+------------------------------ */
+.rlb-badge{
+  margin: .9rem 0 0;
+  padding: .75rem 1rem;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,.03);
+}
+.rlb-badge a{
+  display:inline-block;
+  color: var(--ink);
+  font-weight: 650;
+  line-height:1.35;
+}
+.rlb-badge a:hover{ text-decoration:underline; }
+
+/* -----------------------------
+   11) Allégement mobile (on garde le FAB)
+   IMPORTANT : évite les CTA doublons sur mobile
+------------------------------ */
+@media (max-width:768px){
+  .cta-banner,
+  .cta-dropdown,
+  .contact-menu,
+  .cta-actions,
+  .cta-desktop,
   .rlb-badge{
-    text-align:center;
-    margin:.5rem auto 1rem;
-  }
-  .rlb-badge a{
-    display:inline-block;
-    max-width:100%;
-    font-size:.95rem;
-    line-height:1.35;
-    text-decoration:none;
-    overflow-wrap:anywhere;
+    display:none !important;
   }
 }
 
-/* ==== 6) Téléphone : rester lisible sans couper au milieu ==== */
-.footer-nap a[href^="tel:"],
-a[href^="tel:"]{
-  white-space:nowrap;              /* 06 27 10 14 68 reste sur une ligne */
-}
-/* ===== MOBILE TUNING (≤ 420px) ===== */
-@media (max-width: 420px){
-
-  /* NAVBAR : titre lisible, pas trop haut */
-  .navbar .navbar-brand{
-    font-size: .98rem;
-    line-height: 1.15;
-    max-width: 72vw;               /* évite de pousser burger/loupe */
-    white-space: normal;            /* retour à la ligne ok */
-    overflow-wrap: anywhere;
-  }
-
-  /* HERO : avatar + titres + sous-texte plus compacts */
-  .hero-inner{ gap: 14px; }
-  .avatar{ width: clamp(150px, 40vw, 190px); margin-inline:auto; }
-
-  .hero-band h1{
-    font-size: clamp(1.05rem, 3.6vw + .55rem, 1.45rem);
-    line-height: 1.22;
-    margin: .35rem 0 .3rem;
-    text-shadow: none;
-    text-wrap: balance;
-  }
-  .hero-copy .hero-eyebrow{
-    font-size: .84rem;
-    letter-spacing: .04em;
-    opacity: .9;
-  }
-
-  /* Pastille tarifs (sous H1) – si tu as ajouté .price-note--m */
-  .price-note--m{ margin: .25rem auto 0; max-width: 360px; }
-  .price-note--m .price-top{ font-size: 1.05rem; }
-  .price-note--m .price-reduced{ font-size: .9rem; }
-
-  /* “Pills” de spécialités : moins hautes, retours à la ligne */
-  .trust-strip{ gap: .35rem .45rem; justify-content: center; }
-  .trust-pill{
-    padding: .28rem .55rem;
-    font-size: .9rem;
-    white-space: normal;
-  }
-
-  /* Listes (ex. tarifs) : lisibilité + densité maîtrisée */
-  .content ul{ margin: .6rem 0 .9rem; }
-  .content li{ margin: .18rem 0; line-height: 1.55; }
-}
-
-/* Tablette compacte 421–820px : un cran au-dessus */
-@media (min-width:421px) and (max-width:820px){
-  .avatar{ width: clamp(180px, 32vw, 240px); margin-inline:auto; }
-  .hero-band h1{ font-size: clamp(1.2rem, 3.2vw + .6rem, 1.65rem); }
-}
-
-/* Anti-débordement mobile global */
-@media (max-width:768px){
-  html, body{ overflow-x:hidden; }
-  .content, .hero-band, .page-columns,
-  .content :where(h1,h2,h3,h4,p,li,blockquote,small,span,a){
-    overflow-wrap:anywhere; hyphens:auto; -webkit-hyphens:auto;
-  }
-}
-@media (max-width:768px){
-  .fab-menu{
-    background:#fff; border:1px solid rgba(0,0,0,.08);
-    border-radius:14px; box-shadow:0 20px 44px rgba(0,0,0,.28);
-    padding:.6rem;
-  }
-  .fab-menu .btn-primary{ background:#2a6b73; color:#fff; border-color:transparent; }
-  .fab-menu .btn-outline,.fab-menu .btn-ghost{
-    background:#fff; color:#0f1b21; border:1px solid rgba(0,0,0,.12);
-    box-shadow:0 8px 18px rgba(0,0,0,.08);
-  }
-}
-/* === 1) FAB "Contactez-moi" en VERT (mobile) === */
-@media (max-width:768px){
-  .fab-btn{
-    background:#16a34a;           /* vert accessible */
-    color:#fff;
-    box-shadow:0 12px 28px rgba(0,0,0,.25);
-  }
-  .fab-btn:focus-visible{
-    outline:3px solid rgba(34,197,94,.55); /* focus ring vert */
-    outline-offset:2px;
-  }
-  /* Dans le menu, on laisse "Appeler" en teal, les autres en clair */
-  .fab-menu .btn-primary{ background:#2a6b73; color:#fff; }
-  .fab-menu .btn-outline,.fab-menu .btn-ghost{
-    background:#fff; color:#0f1b21; border:1px solid rgba(0,0,0,.12);
-    box-shadow:0 8px 18px rgba(0,0,0,.08);
-  }
-}
-
-/* === 2) Tarifs : mobile full-width + pas de "trou" === */
-/* a) Empile les colonnes en mobile */
-@media (max-width:768px){
-  .columns{ display:block !important; }                 /* casse la grille */
-  .columns > .column{ width:100% !important; margin:0 0 1rem !important; }
-}
-
-/* b) Si une colonne ne contient que la carte contact, on la masque (évite l'espace vide) */
-@media (max-width:768px){
-  .columns > .column:has(.contact-card){ display:none !important; }
-  .columns > .column:empty{ display:none !important; }
-}
-
-/* c) Petit confort de lecture dans la colonne restante */
-@media (max-width:768px){
-  .content .pill-grid{ grid-template-columns:1fr !important; } /* tuiles tarifs sur 1 colonne */
-  .content h3, .content h4{ margin-top:.6rem; }
-}
-
-/* ========== CTA FLOTTANT "CONTACTEZ-MOI" — MOBILE UNIQUEMENT ========== */
-/* caché par défaut (desktop) */
+/* -----------------------------
+   12) FAB “Contactez-moi” (mobile only)
+   HTML attendu : .fab-contact (wrapper) + .fab-btn + .fab-menu + .fab-backdrop
+------------------------------ */
 .fab-contact{ display:none; }
 
 @media (max-width:768px){
   .fab-contact{
-    display:block; position:fixed; right:14px; bottom:14px; z-index:1100;
+    display:block;
+    position:fixed;
+    right: 14px;
+    bottom: 14px;
+    z-index:1100;
   }
   .fab-btn{
-    border:0; background:#16a34a; color:#fff; font-weight:800;
-    padding:.7rem .95rem; border-radius:999px;
-    box-shadow:0 12px 28px rgba(0,0,0,.25);
+    border:0;
+    background: var(--accent);
+    color:#fff;
+    font-weight: 900;
+    padding: .75rem 1rem;
+    border-radius: 999px;
+    box-shadow: 0 14px 34px rgba(0,0,0,.26);
   }
   .fab-btn:focus-visible{
-    outline:3px solid rgba(34,197,94,.55); outline-offset:2px;
+    outline: 3px solid rgba(34,197,94,.55);
+    outline-offset: 2px;
   }
-  .fab-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); }
+
+  .fab-backdrop{
+    position:fixed;
+    inset:0;
+    background: rgba(0,0,0,.28);
+    backdrop-filter: blur(2px);
+  }
 
   .fab-menu{
-    position:absolute; right:0; bottom:58px; width:min(88vw,360px);
-    display:grid; gap:.5rem; padding:.6rem;
-    background:#fff; border:1px solid rgba(0,0,0,.08);
-    border-radius:14px; box-shadow:0 20px 44px rgba(0,0,0,.28);
-    transform-origin:bottom right; transform:translateY(6px) scale(.98);
-    opacity:0; pointer-events:none;
-  }
-  .fab-contact[data-open="true"] .fab-menu{
-    opacity:1; transform:translateY(0) scale(1); pointer-events:auto;
-  }
-  .fab-menu .btn{ width:100%; text-align:center; border-radius:999px; }
-  .fab-menu .btn-primary{ background:#2a6b73; color:#fff; border-color:transparent; }
-  .fab-menu .btn-outline, .fab-menu .btn-ghost{
-    background:#fff; color:#0f1b21; border:1px solid rgba(0,0,0,.12);
-    box-shadow:0 8px 18px rgba(0,0,0,.08);
-  }
-
-  /* éviter que le bouton masque le bas des pages */
-  body{ padding-bottom:72px; }
-}
-
-/* Respect des préférences d’animation */
-@media (prefers-reduced-motion:reduce){
-  .fab-menu, .fab-btn{ transition:none!important; }
-}
-
-/* ========== BARRE CTA SIMPLE (optionnelle) ========== */
-/* (garde-la dans le HTML, mais style ici) */
-@media (max-width:640px){
-  .mobile-cta-bar{
-    position:fixed; left:0; right:0; bottom:10px;
-    display:flex; gap:.6rem; justify-content:center;
-    padding:0 .8rem; z-index:1000; pointer-events:none;
-  }
-  .mobile-cta-bar .btn{
-    pointer-events:auto; flex:1 1 auto; padding:.6rem .8rem; border-radius:999px;
-  }
-}
-
-/* ========== ALLÉGEMENT MOBILE (on garde le FAB, on masque les doublons) ========== */
-@media (max-width:768px){
-  .contact-card,
-  .cta-banner,
-  .cta-dropdown,
-  .contact-menu{ display:none!important; }
-
-  .rlb-badge,
-  .cta-actions a[href*="resalib"],
-  a[href*="resalib"][class*="btn"]{ display:none!important; }
-}
-
-/* ========== TARIFS : PLEINE LARGEUR MOBILE ========== */
-@media (max-width:768px){
-  .columns{ display:block!important; }
-  .columns > .column{ width:100%!important; margin:0 0 1rem!important; }
-  /* Si la colonne ne contient que la carte contact, on la masque (support iOS/Android récents) */
-  .columns > .column:has(.contact-card){ display:none!important; }
-  .content .pill-grid{ grid-template-columns:1fr!important; }
-}
-/* Pills : supprime toute puce résiduelle et densifie sur desktop */
-.pill-grid{ list-style:none; margin:1rem 0 2rem; padding:0; }
-.pill-grid > li{ margin:0; }
-@media (min-width:981px){
-  .pill-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.1rem; }
-}
-.pill .pill-cta{ display:block; margin-top:.35rem; font-weight:700; opacity:.9; }
-
-/* Hover bureau un peu plus “card” */
-@media (hover:hover){
-  .pill:hover{ transform:translateY(-2px); box-shadow:var(--shadow-2); }
-}
-/* Décor visuel sur desktop uniquement (mobile = sobre/rapide) */
-@media (min-width:981px){
-  .pill{
-    position:relative; overflow:hidden;
-    background:#fff; /* fallback */
-  }
-  .pill::before{
-    content:""; position:absolute; inset:0; z-index:0;
-    background-size:cover; background-position:center;
-    filter:saturate(0.9); transform:scale(1.02);
-    transition:transform .3s ease;
-  }
-  .pill::after{
-    content:""; position:absolute; inset:0; z-index:1;
-    background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.28));
-  }
-  .pill > *{ position:relative; z-index:2; color:#0f1b21; }
-  .pill .pill-title, .pill .pill-tags, .pill .pill-cta{ color:#0f1b21; }
-
-  .pill:hover::before{ transform:scale(1.06); }
-
-  /* Images par thème */
-  .pill--addictions::before{ background-image:url("img/pills/addictions.jpg"); }
-  .pill--stress::before    { background-image:url("img/pills/stress.jpg"); }
-  .pill--sommeil::before   { background-image:url("img/pills/sommeil.jpg"); }
-  .pill--poids::before     { background-image:url("img/pills/poids.jpg"); }
-  .pill--feminin::before   { background-image:url("img/pills/feminin.jpg"); }
-  .pill--deuil::before     { background-image:url("img/pills/deuil.jpg"); }
-}
-
-/* =================== FIX MOBILE (≤ 768px) =================== */
-@media (max-width:768px){
-
-  /* 1) Anti-césure global : jamais de mot coupé */
-  html, body, .content, .hero-band, .page-columns,
-  .content :where(h1,h2,h3,h4,p,li,blockquote,small,span,a,button){
-    hyphens: none !important;
-    -webkit-hyphens: none !important;
-    word-break: keep-all !important;
-    overflow-wrap: normal !important;
-    text-align: left;                  /* évite la justification forcée */
-  }
-  /* Les URLs longues peuvent se casser sans casser les mots courants */
-  a { word-break: break-word !important; }
-
-  /* 2) Barre (brand) : 1–2 lignes, pas de césure, centrée */
-  .navbar .container-fluid{
-    display: grid;
-    grid-template-columns: 48px 1fr 48px;   /* burger | titre | loupe */
-    align-items: center;
-    min-height: 56px;
-  }
-  .navbar .navbar-toggler{ grid-column:1; justify-self:start; }
-  #quarto-search, .quarto-search, .navbar .nav-item:last-child{
-    grid-column:3; justify-self:end;
-  }
-  .navbar .navbar-brand, .navbar .site-title{
-    grid-column:2;
-    margin:0 !important; padding:0 !important;
-    text-align:center; font-weight:800;
-    font-size: clamp(.94rem, 3.1vw + .1rem, 1.06rem);
-    line-height: 1.15;
-    white-space: normal !important;        /* autorise 2 lignes max */
-    max-height: calc(2 * 1.15em);
-    overflow: hidden;
-    hyphens: none !important;
-    -webkit-hyphens: none !important;
-    word-break: keep-all !important;
-    overflow-wrap: normal !important;
-  }
-  @supports (text-wrap: balance){
-    .navbar .navbar-brand, .navbar .site-title{ text-wrap: balance; }
-  }
-
-  /* 3) Menu déroulant : items sur une ligne, jamais en colonnes verticales */
-  .navbar .navbar-collapse{
-    position:absolute; left:0; right:0; top:100%;
-    background:#2a6b73; padding:.75rem 1rem;
-    border-radius:0 0 14px 14px; box-shadow:0 10px 24px rgba(0,0,0,.25);
-    max-height:70vh; overflow-y:auto;
-  }
-  .navbar .navbar-nav{ display:grid; gap:.4rem; }
-  .navbar .navbar-nav .nav-link,
-  .navbar .dropdown-item{
-    white-space: nowrap !important;
-    word-break: keep-all !important;
-    overflow-wrap: normal !important;
-    hyphens: none !important;
-    padding:.6rem .85rem;
-    border-radius:12px;
-  }
-
-  /* 4) H1 : retour de ligne harmonieux, jamais de césure */
-  .hero-band h1{
-    font-size: clamp(1.1rem, 3.6vw + .6rem, 1.5rem);
-    line-height: 1.25;
-    hyphens: none !important;
-    -webkit-hyphens: none !important;
-    word-break: keep-all !important;
-  }
-  @supports (text-wrap: balance){ .hero-band h1{ text-wrap: balance; } }
-
-  /* 5) Avatar : visage entier (léger “dé-zoom” + centrage) */
-  .hero-media, .avatar{ display:flex; justify-content:center; align-items:center; }
-  .avatar{
-    width: clamp(126px, 32vw, 160px);
-    height: clamp(126px, 32vw, 160px);
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto .8rem;
-    box-shadow: 0 0 12px rgba(0,0,0,.15);
-    background: #0f1b21;
-  }
-  .avatar > img{
-    width: 100%; height: 100%; display:block;
-    object-fit: cover;
-    object-position: 50% 46%;  /* remonte un poil le cadrage si besoin 44–50% */
-    transform: scale(.90);      /* dé-zoom léger pour ne rien couper */
-    transform-origin: center;
-  }
-
-  /* 6) Pastilles/pills/chips : pas d’étirement horizontal */
-  .trust-strip, .chips-grid, .pill-grid, .tile-grid{ gap:.45rem .5rem; }
-  .trust-pill, .chip{ max-width:100%; white-space:normal; }
-
-  /* 7) Boutons contact redondants : cachés en mobile (tu as le FAB) */
-  .contact-card,
-  .cta-banner,
-  .cta-actions,
-  .cta-dropdown,
-  .contact-menu,
-  .footer-nap,
-  .rlb-badge,
-  .cta-actions a[href*="resalib"],
-  a[href*="resalib"][class*="btn"]{
-    display: none !important;
-  }
-}
-/* NAVBAR mobile : burger | titre | loupe */
-@media (max-width: 768px){
-  .navbar .container-fluid{
-    display:grid;
-    grid-template-columns:48px 1fr 48px;
-    align-items:center;
-    min-height:56px;
-    padding-left:max(.5rem, env(safe-area-inset-left));
-    padding-right:max(.5rem, env(safe-area-inset-right));
-  }
-  .navbar .navbar-toggler{ grid-column:1; justify-self:start; }
-  #quarto-search, .quarto-search, .navbar .nav-item:last-child{
-    grid-column:3; justify-self:end;
-  }
-
-  /* Titre au centre, sur 1–2 lignes, sans césure */
-  .navbar .navbar-brand, .navbar .site-title{
-    grid-column:2;
-    margin:0 !important; padding:0 !important;
-    text-align:center;
-    font-weight:800;
-    font-size:clamp(.95rem, 3.2vw + .1rem, 1.08rem);
-    line-height:1.15;
-    white-space:normal !important;
-    word-break:keep-all !important;
-    overflow-wrap:normal !important;
-    max-width:70vw;                 /* évite de pousser les icônes */
-    max-height:calc(2 * 1.15em);    /* 2 lignes max */
-    overflow:hidden;
-  }
-  @supports (text-wrap: balance){
-    .navbar .navbar-brand, .navbar .site-title{ text-wrap:balance; }
-  }
-
-  /* Liens du menu déroulé : une ligne, jamais coupés */
-  .navbar .navbar-nav .nav-link,
-  .navbar .dropdown-item{
-    white-space:nowrap !important;
-    word-break:keep-all !important;
-    overflow-wrap:normal !important;
-  }
-}
-/* Avatar : cercle centré + léger "dé-zoom" en mobile */
-@media (max-width: 768px){
-  .hero-media, .avatar{ display:flex; justify-content:center; align-items:center; }
-  .avatar{
-    width:clamp(130px, 34vw, 170px);
-    height:clamp(130px, 34vw, 170px);
-    border-radius:50%;
-    overflow:hidden;
-    margin:0 auto .75rem;
-    box-shadow:0 0 12px rgba(0,0,0,.15);
-    background:#0f1b21;
-  }
-  .avatar > img{
-    width:100%; height:100%; display:block;
-    object-fit:cover;
-    object-position:40% 34%;   /* 42–48% si tu veux ajuster */
-    transform:scale(.80);      /* recule un peu pour ne rien couper */
-    transform-origin:center;
-  }
-}
-/* ===== FOOTER — forcer l’affichage en mobile + lisibilité ===== */
-@media (max-width:768px){
-  .site-footer .footer-nap{ display:block !important; }
-}
-
-.site-footer .footer-nap{
-  font-size:.95rem;
-  line-height:1.5;
-  hyphens:none; -webkit-hyphens:none;
-}
-.site-footer .footer-nap strong{ font-weight:800; }
-
-/* SIRET sur une seule ligne */
-.site-footer .footer-nap strong:last-child{
-  white-space:nowrap;
-}
-
-/* Petit style pour la ligne hébergeur */
-.site-footer .footer-host{ font-size:.9rem; opacity:.85; }
-
-/* Le bouton flottant ne masque pas le pied de page */
-@media (max-width:768px){
-  body{ padding-bottom:72px; }
-}
-
-/* ================= NAVBAR MOBILE — brand lisible + relief ================ */
-@media (max-width: 768px){
-
-  /* Grille [burger] [titre] [loupe] (garde ton layout) */
-  .navbar .container-fluid{
-    display:grid;
-    grid-template-columns:48px 1fr 48px;
-    align-items:center;
-    min-height:56px;
-    padding-left:max(.5rem, env(safe-area-inset-left));
-    padding-right:max(.5rem, env(safe-area-inset-right));
-  }
-  .navbar .navbar-toggler{ grid-column:1; justify-self:start; }
-  #quarto-search, .quarto-search, .navbar .nav-item:last-child{
-    grid-column:3; justify-self:end;
-  }
-
-  /* ----- Titre : 2 lignes max, centré, “relief” sans boîte ----- */
-  .navbar .navbar-brand,
-  .navbar .site-title{
-    grid-column:2;
-    position:relative;
-    display:block;
-    margin:0 auto;
-    padding:2px 4px;                 /* petit coussin */
-    max-width:78vw;                  /* occupe la barre sans pousser les icônes */
-    text-align:center;
-    white-space:normal !important;   /* OK 2 lignes */
-    overflow:hidden;
-
-    font-size: clamp(1.06rem, 3.6vw + .1rem, 1.28rem);
-    line-height:1.15;
-    font-weight:800;
-    letter-spacing:.01em;
-    color:#fff !important;
-
-    /* Relief lisible sur fond teal (pas de boîte) */
-    text-shadow:
-      0 1px 0 rgba(0,0,0,.25),
-      0 3px 10px rgba(0,0,0,.35);
-  }
-
-  /* Soulignement “glow” doux sous le titre (effet app) */
-  .navbar .navbar-brand::after,
-  .navbar .site-title::after{
-    content:"";
     position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    bottom:-6px;
-    width:68%;
-    height:6px;
-    border-radius:999px;
-    background:linear-gradient(90deg, rgba(255,255,255,.24), rgba(255,255,255,.10));
-    box-shadow:
-      0 8px 16px rgba(0,0,0,.35),
-      inset 0 1px 0 rgba(255,255,255,.25);
+    right:0;
+    bottom: 58px;
+    width: min(88vw, 360px);
+    display:grid;
+    gap:.55rem;
+    padding:.65rem;
+    background:#fff;
+    border:1px solid rgba(0,0,0,.08);
+    border-radius: 16px;
+    box-shadow: 0 22px 52px rgba(0,0,0,.30);
+    transform-origin: bottom right;
+    transform: translateY(6px) scale(.98);
+    opacity:0;
     pointer-events:none;
   }
 
-  /* Menu ouvert : liens en “pastilles” avec relief */
-  .navbar-collapse{
-    padding:.8rem 1rem;
-    display:grid;
-    gap:.6rem .8rem;
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
-  }
-  .navbar-collapse .nav-link{
-    text-align:center;
-    font-weight:800;
-    font-size:1.06rem;
-    color:#fff !important;
-
-    background: rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:18px;
-    padding:.7rem 1rem;
-
-    box-shadow:
-      0 10px 24px rgba(0,0,0,.28),
-      inset 0 1px 0 rgba(255,255,255,.15);
-    backdrop-filter: blur(4px);
-    transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
-  }
-  .navbar-collapse .nav-link:hover,
-  .navbar-collapse .nav-link:focus{
-    background: rgba(255,255,255,.20);
-    transform: translateY(-2px);
-    box-shadow: 0 14px 30px rgba(0,0,0,.34);
-    outline:none;
-  }
-
-  /* Jamais de mots coupés dans la barre/menu */
-  .navbar, .navbar *{
-    hyphens:none !important;
-    -webkit-hyphens:none !important;
-    word-break:keep-all !important;
-    overflow-wrap:normal !important;
-  }
-}
-/* ================= NAVBAR MOBILE — brand clair (sans boîte) ================ */
-@media (max-width:768px){
-
-  /* grille: burger | titre | loupe */
-  .navbar .container-fluid{
-    display:grid;
-    grid-template-columns:48px 1fr 48px;
-    align-items:center;
-    min-height:56px;
-    padding-left:max(.5rem, env(safe-area-inset-left));
-    padding-right:max(.5rem, env(safe-area-inset-right));
-  }
-  .navbar .navbar-toggler{ grid-column:1; justify-self:start; }
-  #quarto-search, .quarto-search, .navbar .nav-item:last-child{ grid-column:3; justify-self:end; }
-
-  /* Titre lisible sur 1–2 lignes, centré, SANS fond */
-  .navbar .navbar-brand,
-  .navbar .site-title{
-    grid-column:2;
-    display:block;
-    margin:0 auto;
-    padding:0;
-    max-width:78vw;                  /* n’empiète pas sur burger/loupe */
-    text-align:center;
-    white-space:normal !important;
-    overflow:hidden;
-
-    font-size:clamp(1.06rem, 3.6vw + .1rem, 1.28rem);
-    line-height:1.15;
-    font-weight:800;
-    letter-spacing:.01em;
-    color:#fff !important;
-
-    /* pas de boîte */
-    background:transparent !important;
-    border:0 !important;
-    border-radius:0 !important;
-    box-shadow:none !important;
-
-    /* relief uniquement par l’ombre du texte */
-    text-shadow:
-      0 1px 0 rgba(0,0,0,.25),
-      0 3px 10px rgba(0,0,0,.35);
-    hyphens:none !important;
-    -webkit-hyphens:none !important;
-    word-break:keep-all !important;
-    overflow-wrap:normal !important;
-  }
-  @supports (text-wrap: balance){
-    .navbar .navbar-brand, .navbar .site-title{ text-wrap:balance; }
-  }
-
-  /* Menu ouvert : pastilles avec relief (tu peux garder ce style) */
-  .navbar-collapse{
-    position:absolute; left:0; right:0; top:100%;
-    background:#2a6b73; padding:.8rem 1rem;
-    border-radius:0 0 14px 14px; box-shadow:0 10px 24px rgba(0,0,0,.25);
-    display:grid; gap:.6rem .8rem; grid-template-columns:repeat(2, minmax(120px,1fr));
-    max-height:70vh; overflow-y:auto;
-  }
-  .navbar-collapse .nav-link{
-    text-align:center; font-weight:800; font-size:1.06rem; color:#fff !important;
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:18px; padding:.7rem 1rem;
-    box-shadow:0 10px 24px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.15);
-    backdrop-filter:blur(4px);
-    white-space:nowrap !important; word-break:keep-all !important; overflow-wrap:normal !important;
-    transition:transform .15s, box-shadow .15s, background .2s;
-  }
-  .navbar-collapse .nav-link:hover,
-  .navbar-collapse .nav-link:focus{ background:rgba(255,255,255,.20); transform:translateY(-2px); box-shadow:0 14px 30px rgba(0,0,0,.34); }
-}
-/* ===== Masquer l'affichage de la description Quarto en MOBILE (SEO conservé) ===== */
-@media (max-width: 768px){
-  /* Sélecteurs Quarto possibles selon thème */
-  .page-description,
-  .quarto-title > .description,
-  .quarto-title > .subtitle.lead,
-  .quarto-title-meta,
-  .quarto-title-meta-description {
-    display: none !important;
-  }
-}
-
-/* Bonus : éviter que la navbar fixe masque le haut au scroll/ancrages */
-:root{ --nav-h:72px; }
-@media (max-width: 768px){ :root{ --nav-h:90px; } } /* ajuste si besoin */
-body{ padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)); }
-main.content, .page-columns, :target { scroll-margin-top: calc(var(--nav-h) + 12px); }
-
-/* ===== Masquer la description visible sur MOBILE (mais garder le meta pour le SEO) ===== */
-@media (max-width:768px){
-
-  /* Conteneurs Quarto qui affichent parfois la description de la page */
-  .page-description,
-  .quarto-title > .description,
-  .quarto-title-meta,
-  .quarto-title-meta-description,
-  .quarto-title .subtitle.lead {
-    display:none !important;
-  }
-
-  /* Règle de secours : si le premier paragraphe est immédiatement suivi d’un H1,
-     on suppose que c’est la description injectée et on la masque (mobile uniquement). */
-  @supports(selector(:has(+ *))) {
-    main.content > p:first-of-type:has(+ h1),
-    .page-columns .content > p:first-of-type:has(+ h1) {
-      display:none !important;
-    }
-  }
-}
-
-/* ===== Décalage du contenu pour éviter que la navbar fixe ne masque le haut ===== */
-:root{ --nav-h:72px; } /* Hauteur de la barre sur bureau */
-@media (max-width:768px){ :root{ --nav-h:90px; } } /* Hauteur plus grande sur mobile */
-body{ padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)); }
-
-/* Quand on clique sur un lien d’ancre (#id), on garde une marge sous la barre */
-main.content, .page-columns, :target{ scroll-margin-top: calc(var(--nav-h) + 12px); }
-
-/* ===== Séparateur sous la barre (MOBILE uniquement) ===== */
-@media (max-width:768px){
-  /* petit filet + ombre douce pour bien détacher le contenu */
-  .navbar{
-    position: fixed;                 /* (déjà le cas chez toi, on confirme) */
-    inset: 0 0 auto 0;
-    z-index: 1000;
-    background: var(--brand) !important;
-    box-shadow:
-      0 1px 0 rgba(255,255,255,.18) inset,   /* fin liseré clair */
-      0 8px 18px rgba(0,0,0,.25);            /* ombre portée douce */
-  }
-
-  /* si Quarto insère une bande sous la barre au moment de l’ouverture du menu,
-     on lui donne la même “coupure” visuelle */
-  .navbar .navbar-collapse.show{
-    box-shadow:
-      0 -1px 0 rgba(255,255,255,.14) inset,
-      0 12px 28px rgba(0,0,0,.28);
-  }
-}
-
-/* (optionnel) cohérence en mode sombre : liseré un peu plus discret */
-@media (prefers-color-scheme:dark) and (max-width:768px){
-  .navbar{
-    box-shadow:
-      0 1px 0 rgba(255,255,255,.12) inset,
-      0 8px 18px rgba(0,0,0,.35);
-  }
-}
-/* =================== SUJETS — PILL CARDS (MOBILE ≤ 768px) =================== */
-@media (max-width:768px){
-
-  /* grille un peu plus aérée */
-  .pill-grid{ gap: .9rem; }
-
-  /* la carte elle-même (sur Sujets tu utilises <a class="pill"> … ) */
-  .pill{
-    position: relative;
-    display: block;
-    border-radius: 20px;
-    padding: 16px 18px 14px;
-    border: 1px solid rgba(255,255,255,.12);
-    background:
-      linear-gradient(180deg, rgba(18,46,56,.94), rgba(12,32,40,.96)); /* + contraste */
-    box-shadow:
-      0 14px 28px rgba(0,0,0,.35),
-      inset 0 1px 0 rgba(255,255,255,.08);
-    backdrop-filter: blur(2px);
-    transform: translateZ(0); /* évite le “jitter” au scroll iOS */
-  }
-
-  /* barre d'accent à gauche (couleur par thème via variables ci-dessous) */
-  .pill::before{
-    content:"";
-    position:absolute; left:10px; top:10px; bottom:10px; width:6px;
-    border-radius:999px;
-    background: var(--accent, rgba(255,255,255,.25));
-    box-shadow: 0 0 0 1px rgba(0,0,0,.20) inset, 0 8px 16px rgba(0,0,0,.25);
-  }
-  .pill{ padding-left: 28px; } /* laisse la place à la barre */
-
-  /* titrage + textes plus lisibles sur fond sombre */
-  .pill-title{
-    color:#eaf7fb; font-weight:900; letter-spacing:-.01em;
-    text-shadow: 0 1px 0 rgba(0,0,0,.35);
-    margin: 0 0 .25rem;
-    font-size: clamp(1.08rem, 1.3vw + 1rem, 1.25rem);
-  }
-  .pill-tags{
-    color:#bfe0e8; opacity:.95;
-  }
-  .pill-cta{
-    display:block; margin-top:.5rem;
-    font-style: normal; font-weight: 800;
-    color:#e8fbff;
-    text-shadow: 0 1px 0 rgba(0,0,0,.35);
-  }
-
-  /* retour haptique léger au tap */
-  .pill:active{
-    transform: translateY(1px);
-    box-shadow: 0 10px 20px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
-  }
-
-  /* accents par thème (réutilise tes classes existantes) */
-  .pill--addictions { --accent:#f2a6a6; }
-  .pill--stress     { --accent:#8ec4ff; }
-  .pill--sommeil    { --accent:#c5b5ff; }
-  .pill--deuil      { --accent:#9fb3c7; }
-  .pill--poids      { --accent:#67e8f9; }
-  .pill--feminin    { --accent:#f9a8d4; }
-
-  /* le lien “Voir aussi les tarifs →” : un peu plus visible en mobile */
-  .content a[href*="tarifs"]{
-    font-weight:800;
-    text-decoration-thickness: .12em;
-    text-underline-offset: 3px;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
-  }
-}
-/* ============== TOPIC PAGES (hero, KPI, steps) ============== */
-
-/* Accent par thème (tu peux varier selon la page) */
-.theme--addictions{ --accent:#f2a6a6; }
-
-/* Hero interne (pas le hero-band d'accueil) */
-.topic-hero{
-  margin: .6rem 0 1rem;
-  padding: clamp(14px, 2.2vw, 20px);
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(42,107,115,.18), rgba(255,255,255,.06));
-  border: 1px solid rgba(0,0,0,.08);
-  box-shadow: var(--shadow-1);
-}
-.topic-hero h1{ margin:0 0 .3rem; letter-spacing:-.01em; }
-.topic-hero .lead{ margin:.2rem 0 .6rem; max-width:70ch; }
-.topic-hero__cta{ display:flex; flex-wrap:wrap; gap:.5rem; }
-
-.topic-hero::after{
-  content:""; display:block; height:6px; margin-top:.8rem;
-  border-radius:999px;
-  background: linear-gradient(90deg, var(--accent), rgba(255,255,255,.25));
-  box-shadow: 0 8px 18px rgba(0,0,0,.18) inset;
-}
-
-/* KPIs (bénéfices) */
-.kpis{ display:flex; flex-wrap:wrap; gap:.45rem .6rem; list-style:none; padding:0; margin:.4rem 0 .6rem; }
-.kpis li{
-  background: rgba(255,255,255,.16);
-  border: 1px solid rgba(255,255,255,.28);
-  color:#fff;
-  border-radius: 999px;
-  padding: .38rem .7rem;
-  font-weight: 800;
-  box-shadow: 0 6px 14px rgba(0,0,0,.18);
-}
-
-/* Étapes */
-.steps{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.8rem; margin:.6rem 0 1rem; }
-.step{
-  display:flex; gap:.6rem; align-items:flex-start;
-  background:#fff; border:var(--border); border-radius:14px;
-  padding:.8rem .9rem; box-shadow:var(--shadow-1);
-}
-.step-n{
-  flex:0 0 34px; height:34px; border-radius:999px;
-  display:grid; place-items:center; font-weight:900;
-  background:var(--accent); color:#0b1220;
-  box-shadow:0 8px 18px rgba(0,0,0,.15);
-}
-
-/* Mobile-friendly */
-@media (max-width:900px){ .steps{ grid-template-columns:1fr; } }
-@media (prefers-color-scheme:dark){
-  .topic-hero{ background: linear-gradient(135deg, rgba(42,107,115,.22), rgba(255,255,255,.06)); border-color:rgba(255,255,255,.12); box-shadow:none; }
-  .step{ background:#0f2230; border-color:rgba(255,255,255,.10); box-shadow:none; }
-}
-
-/* Cartes "tile" plus cliquables (reprise de ton style) */
-.tile-grid .tile{
-  position:relative;
-  border-radius:16px;
-  background:#fff;
-  border:var(--border);
-  box-shadow:var(--shadow-1);
-}
-@media (hover:hover){
-  .tile-grid .tile:hover{ transform:translateY(-2px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); }
-}
-
-/* Mobile : confort de lecture */
-@media (max-width:768px){
-  .topic-hero{ padding:14px; }
-  .kpis{ gap:.35rem .45rem; }
-  .steps .step{ padding:.75rem .85rem; }
-}
-/* =========== DÉSATURER LES CARTES DES PAGES THÈME =========== */
-
-/* Cartes (tiles) – ton clair mais pas blanc en mode clair */
-.tile-grid .tile{
-  background: #f8fafc;            /* au lieu de #fff */
-  border-color: rgba(0,0,0,.06);
-  color: #0f1b21;
-}
-.tile-grid .tile .tile-title{ color:#0f1b21; }
-.tile-grid .tile .tile-lead{ color: #334155; opacity:.95; }
-
-/* Hero “topic” un peu moins lumineux en clair */
-.topic-hero{
-  background: linear-gradient(135deg, rgba(42,107,115,.10), rgba(0,0,0,.02));
-  border-color: rgba(0,0,0,.06);
-}
-
-/* ---------- Mode sombre : cartes foncées, contraste doux ---------- */
-@media (prefers-color-scheme:dark){
-  /* Hero interne : plus sombre */
-  .topic-hero{
-    background: linear-gradient(135deg, rgba(17,40,54,.70), rgba(8,20,28,.50));
-    border-color: rgba(255,255,255,.10);
-    box-shadow: none;
-  }
-
-  /* Cartes : fond bleu pétrole + texte lisible, plus de “blanc” */
-  .tile-grid .tile{
-    background: #0f2230;
-    border-color: rgba(255,255,255,.10);
-    box-shadow: none;
-    color: #eaf2f4;
-  }
-  .tile-grid .tile .tile-title{ color:#eaf2f4; }
-  .tile-grid .tile .tile-lead{ color:#c7d7dc; opacity:.98; }
-
-  /* Étapes (“steps”) également foncées */
-  .step{
-    background:#0f2230;
-    border-color: rgba(255,255,255,.10);
-    box-shadow:none;
-    color:#eaf2f4;
-  }
-
-  /* Pastilles KPI sur fond sombre : un poil plus opaques */
-  .kpis li{
-    background: rgba(255,255,255,.14);
-    border-color: rgba(255,255,255,.22);
-    color:#eef7fb;
-    box-shadow: 0 6px 14px rgba(0,0,0,.20);
-  }
-}
-
-/* Hover (bureau) : on garde l’effet sans éclairer trop */
-@media (hover:hover){
-  .tile-grid .tile:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 16px 34px rgba(0,0,0,.18);
-    border-color: rgba(14,165,233,.28);
-    filter: saturate(1.02);
-  }
-}
-/* ===== HERO SUJET / BADGES ===== */
-.topic-hero{
-  margin: .6rem 0 1rem;
-  padding: .85rem 1rem;
-  border-radius: 14px;
-  border: 1px solid rgba(0,0,0,.06);
-  background: linear-gradient(135deg,#e0f2fe,#fdf2f8);
-  box-shadow: 0 10px 24px rgba(0,0,0,.10);
-  display: grid; gap:.45rem;
-}
-.topic-hero li{ list-style: "•  "; margin-left:.6rem; }
-
-@media (prefers-color-scheme:dark){
-  .topic-hero{
-    background: linear-gradient(135deg, rgba(42,107,115,.25), rgba(255,255,255,.06));
-    border-color: rgba(255,255,255,.12);
-    box-shadow: 0 12px 28px rgba(0,0,0,.28);
-  }
-}
-
-/* ===== CTA accent (bouton + fond) ===== */
-.cta-banner--accent{
-  background: linear-gradient(135deg,#22c55e1a,#60a5fa1a);
-  border: 1px solid rgba(0,0,0,.06);
-  box-shadow: 0 16px 36px rgba(0,0,0,.18);
-}
-@media (prefers-color-scheme:dark){
-  .cta-banner--accent{
-    background: linear-gradient(135deg, rgba(34,197,94,.15), rgba(96,165,250,.12));
-    border-color: rgba(255,255,255,.10);
-    box-shadow: 0 20px 44px rgba(0,0,0,.35);
-  }
-}
-/* ===================== FAQ — relief + contraste (mobile first) ===================== */
-.faq-accordeon details{
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  border-radius: 14px;
-  margin: .6rem 0;
-  box-shadow: 0 10px 24px rgba(0,0,0,.22);
-  overflow: hidden;
-  transition: box-shadow .18s ease, transform .12s ease, background .18s ease, border-color .18s ease;
-}
-
-.faq-accordeon summary{
-  list-style: none;
-  cursor: pointer;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: .8rem;
-  padding: .95rem 1.05rem;
-  font-weight: 800;
-  letter-spacing: -.005em;
-  color: var(--text);
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-  user-select: none;
-}
-.faq-accordeon summary::-webkit-details-marker{ display:none; }
-
-/* chevron animé */
-.faq-accordeon summary::after{
-  content: "▸";
-  font-size: 1.05rem;
-  opacity: .75;
-  transition: transform .18s ease, opacity .18s ease;
-}
-.faq-accordeon details[open] summary::after{ transform: rotate(90deg); opacity: .95; }
-
-/* état ouvert : un peu plus de relief + léger “glow” */
-.faq-accordeon details[open]{
-  background: rgba(255,255,255,.08);
-  border-color: rgba(255,255,255,.18);
-  box-shadow:
-    0 16px 36px rgba(0,0,0,.28),
-    inset 0 1px 0 rgba(255,255,255,.08);
-  transform: translateY(-1px);
-}
-
-/* contenu */
-.faq-accordeon .answer{
-  padding: .85rem 1.05rem 1.05rem;
-  line-height: 1.6;
-  color: var(--text);
-}
-
-/* focus clavier accessible */
-.faq-accordeon summary:focus-visible{
-  outline: 3px solid rgba(14,165,233,.55);
-  outline-offset: 3px;
-  border-radius: 12px;
-}
-
-/* hover (bureau seulement) */
-@media (hover:hover){
-  .faq-accordeon details:hover{
-    box-shadow: 0 18px 42px rgba(0,0,0,.30);
-  }
-}
-
-/* variantes clair/sombre */
-@media (prefers-color-scheme: light){
-  .faq-accordeon details{
-    border-color: rgba(0,0,0,.08);
-    background: #ffffff;
-    box-shadow: 0 10px 24px rgba(0,0,0,.10);
-  }
-  .faq-accordeon details[open]{
-    background: #ffffff;
-    border-color: rgba(0,0,0,.14);
-    box-shadow: 0 16px 36px rgba(0,0,0,.14);
-  }
-  .faq-accordeon summary{
-    background: linear-gradient(180deg, #f7fafc, #fff);
-  }
-}
-
-/* tap target généreux en mobile */
-@media (max-width:768px){
-  .faq-accordeon summary{
-    padding: 1.05rem 1.1rem;
-    font-size: 1.05rem;
-  }
-  .faq-accordeon .answer{ font-size: 1rem; }
-}
-
-/* ===================== CTA bannière “accent” (matching thèmes) ===================== */
-.cta-banner--accent{
-  background: linear-gradient(135deg, rgba(42,107,115,.25), rgba(255,255,255,.06));
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 16px;
-  box-shadow: 0 16px 36px rgba(0,0,0,.28);
-  padding: clamp(14px, 2.2vw, 20px);
-  display: grid; grid-template-columns: 1fr auto; gap: .9rem; align-items: center;
-}
-.cta-banner--accent .cta-text{ margin:0; font-size: 1.02rem; line-height:1.55; }
-.cta-banner--accent .cta-actions{ display:flex; gap:.55rem; flex-wrap:wrap; justify-content:flex-end; }
-@media (max-width:720px){
-  .cta-banner--accent{ grid-template-columns: 1fr; }
-  .cta-banner--accent .cta-actions{ justify-content:flex-start; }
-}
-@media (prefers-color-scheme: light){
-  .cta-banner--accent{
-    background: linear-gradient(135deg, #e8f4f7, #ffffff);
-    border-color: rgba(0,0,0,.08);
-    box-shadow: 0 14px 28px rgba(0,0,0,.12);
-  }
-}
-
-/* boutons dans la bannière */
-.cta-banner--accent .btn-primary{
-  background: #2a6b73; color:#fff; border-color:transparent;
-  box-shadow: 0 10px 24px rgba(42,107,115,.35);
-}
-.cta-banner--accent .btn-outline{
-  background:#fff; color:#0f1b21; border:1px solid rgba(0,0,0,.12);
-  box-shadow:0 8px 18px rgba(0,0,0,.10);
-}
-.cta-banner--accent .btn-ghost{
-  background:rgba(255,255,255,.14); color:#fff; border:1px solid rgba(255,255,255,.25);
-  box-shadow:0 8px 18px rgba(0,0,0,.18);
-}
-/* ===== Thèmes/tuiles : contraste & relief (mobile + desktop) ===== */
-.content .tile > a{
-  background: linear-gradient(180deg, #123445, #0e2a38);
-  border: 1px solid rgba(255,255,255,.16);
-  box-shadow:
-    0 16px 36px rgba(0,0,0,.35),
-    inset 0 1px 0 rgba(255,255,255,.10);
-}
-.content .tile .tile-title{ color:#fff; }
-.content .tile .tile-lead{ color:rgba(255,255,255,.92); }
-
-@media (prefers-color-scheme: light){
-  .content .tile > a{
-    background:#fff;
-    border: 1px solid rgba(0,0,0,.08);
-    box-shadow: var(--shadow-1);
-  }
-  .content .tile .tile-title,
-  .content .tile .tile-lead{ color:#0f1b21; }
-}
-
-/* ===== FAQ accordéon : surfaces plus claires & lisibles ===== */
-.faq-accordeon details{
-  background: linear-gradient(180deg, #103244, #0e2836);
-  border: 1px solid rgba(255,255,255,.16);
-  box-shadow: 0 12px 28px rgba(0,0,0,.28);
-}
-.faq-accordeon summary{ color:#eaf2f4; }
-.faq-accordeon .answer{ color:#eaf2f4; }
-
-@media (prefers-color-scheme: light){
-  .faq-accordeon details{
-    background:#fff;
-    border: 1px solid rgba(0,0,0,.08);
-    box-shadow: var(--shadow-1);
-  }
-  .faq-accordeon summary, .faq-accordeon .answer{ color:#0f1b21; }
-}
-
-/* Boutons : un peu plus “punchy” sur fond sombre */
-.btn-primary{ filter:saturate(1.05) contrast(1.05); }
-
-/* ===== FAQ — cartes claires lisibles (desktop & mobile) ===== */
-
-/* Pastilles du bandeau "résumé" — look carte claire */
-.faq-highlights .trust-pill{
-  background:#ffffff !important;
-  color:#0f1b21 !important;
-  border:1px solid rgba(0,0,0,.10) !important;
-  box-shadow:0 8px 18px rgba(0,0,0,.12) !important;
-}
-
-/* Carte globale des items FAQ */
-.faq-accordeon details{
-  background:#ffffff;
-  border:1px solid rgba(0,0,0,.10);
-  border-radius:14px;
-  box-shadow:0 14px 28px rgba(0,0,0,.16);
-  margin:.7rem 0;
-  overflow:hidden;
-}
-
-/* En-tête cliquable : clair, lisible, relief doux */
-.faq-accordeon summary{
-  cursor:pointer;
-  list-style:none;
-  padding:.95rem 1.1rem;
-  font-weight:800;
-  letter-spacing:-.005em;
-  color:#0f1b21;
-  background:linear-gradient(180deg,#f8fbff,#f1f7ff);
-  border-bottom:1px solid rgba(0,0,0,.06);
-}
-.faq-accordeon summary::-webkit-details-marker{ display:none; }
-.faq-accordeon summary:after{
-  content:"▸";
-  float:right; opacity:.55; transition:transform .15s ease;
-}
-.faq-accordeon details[open] summary:after{ transform:rotate(90deg); }
-
-/* Contenu : fond blanc, texte foncé, respiration */
-.faq-accordeon .answer{
-  background:#ffffff;
-  color:#0f1b21;
-  padding:1rem 1.1rem 1.1rem;
-  line-height:1.6;
-}
-
-/* Mode sombre : on garde des cartes claires pour la lisibilité */
-@media (prefers-color-scheme:dark){
-  .faq-highlights .trust-pill,
-  .faq-accordeon details,
-  .faq-accordeon .answer{
-    background:#ffffff !important;
-    color:#0f1b21 !important;
-    border-color:rgba(255,255,255,.18);
-    box-shadow:0 16px 32px rgba(0,0,0,.35) !important;
-  }
-  .faq-accordeon summary{
-    background:linear-gradient(180deg,#ffffff,#f7fbff) !important;
-    color:#0f1b21 !important;
-    border-bottom-color:rgba(0,0,0,.10);
-  }
-}
-
-/* Micro-tweaks d’accessibilité */
-.faq-accordeon summary:focus-visible{
-  outline:3px solid rgba(14,165,233,.55);
-  outline-offset:2px;
-}
-/* Cartes plus claires sur fond sombre (cohérent avec tes tiles/pills) */
-@media (prefers-color-scheme: dark){
-  .tile > a, .tile, .faq-accordeon details, .faq-accordeon .answer{
-    background: linear-gradient(180deg,#0f2230,#0e1b25);
-    border:1px solid rgba(255,255,255,.12);
-    box-shadow: 0 12px 28px rgba(0,0,0,.35);
-  }
-  .tile-title, .tile-lead, .faq-accordeon summary, .faq-accordeon .answer{ color:#eaf2f4; }
-}
-/* Pastilles/chips un peu plus visibles en mobile */
-@media (max-width:768px){
-  .chips-grid .chip{ background:#eef6f8; border-color:#d9e6ea; color:#0f1b21; }
-}
-
-<!-- ===== Styles locaux pour lisibilité & accessibilité ===== -->
-<style>
-/* Cartouche global */
-.faq-page{ max-width: 80ch; }
-
-/* Accordéons accessibles & contrastés */
-.qa{
-  border-radius: 12px;
-  margin: .55rem 0;
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-  border: 1px solid rgba(255,255,255,.14);
-}
-.qa > summary{
-  cursor: pointer;
-  list-style: none;
-  padding: .9rem 1rem;
-  font-weight: 800;
-  position: relative;
-  outline: none;
-}
-.qa > summary::-webkit-details-marker{ display:none; }
-.qa > summary::after{
-  content:"▸";
-  position:absolute; right:.9rem; top:50%; transform:translateY(-50%);
-  opacity:.8;
-}
-.qa[open] > summary::after{ content:"▾"; }
-.qa > div{ padding: .85rem 1rem 1rem; line-height: 1.6; }
-
-/* Boutons/CTAs */
-.faq-cta .btn{ white-space: nowrap; }
-
-/* Mode clair : fonds et bordures plus doux */
-@media (prefers-color-scheme: light){
-  .qa{ background:#fff; border-color: rgba(0,0,0,.08); }
-}
-@media (max-width:768px){
-  .fab-contact{ right: max(14px, env(safe-area-inset-right)); bottom:max(14px, env(safe-area-inset-bottom)); }
-  .fab-btn{ padding:.72rem 1rem; }
-  .fab-backdrop{ -webkit-tap-highlight-color: transparent; }
-}
-
-@media (max-width:768px){
-  .navbar .navbar-brand{
-    font-size: clamp(1.02rem, 3.6vw + .1rem, 1.28rem);
-    text-shadow: 0 1px 0 rgba(0,0,0,.22), 0 6px 16px rgba(0,0,0,.28);
-    letter-spacing:.01em;
-  }
-}
-@media (max-width:768px){
-  .avatar>img{ object-position:50% 42%; transform:scale(.86); }
-}
-
-/* ===== Lisibilité cartes Thèmes — MOBILE ===== */
-@media (max-width: 768px){
-
-  /* Grille : une seule colonne bien respirante */
-  .tile-grid{ display:block !important; }
-  .tile{ 
-    display:block;
-    background: #ffffff !important;                 /* fond clair franc */
-    color: #0f1b21 !important;                      /* texte foncé */
-    border: 1px solid rgba(0,0,0,.08) !important;
-    border-radius: 16px !important;
-    padding: 14px 16px !important;                  /* +padding */
-    margin: 10px 0 !important;                      /* +espacement entre cartes */
-    box-shadow: 0 8px 18px rgba(0,0,0,.10) !important; /* ombre plus propre */
-    backdrop-filter: none !important;               /* éviter le “voile” gris */
-  }
-
-  /* Titre de carte */
-  .tile-title{
-    font-size: 1.08rem !important;
-    line-height: 1.25 !important;
-    font-weight: 800 !important;
-    color: #0c1a20 !important;
-    margin: 2px 0 6px !important;
-  }
-
-  /* Texte de carte */
-  .tile-lead,
-  .tile p{
-    font-size: 0.98rem !important;                  /* +1 clic de taille */
-    line-height: 1.55 !important;                   /* +hauteur de ligne */
-    color: #23343d !important;                      /* plus foncé que #999 */
-  }
-
-  /* Les phrases en italique (CTA bas de carte) : lisibles mais discrètes */
-  .tile em,
-  .pill-cta{
-    font-style: italic;
-    color: #33505b !important;                      /* plus contrasté */
-    opacity: .95 !important;                        /* pas de gris très pâle */
-  }
-
-  /* Pas de coupures de mots agressives */
-  .tile, .tile *{
-    hyphens: none !important;
-    -webkit-hyphens: none !important;
-    word-break: keep-all !important;
-    overflow-wrap: normal !important;
-  }
-
-  /* Séparateur fin entre sections pour aider l’œil */
-  .section-divider, .quarto-hr, hr{
-    opacity: .25; border: 0; height: 1px; background: #cfd6da;
-    margin: 16px 0;
-  }
-}
-
-/* Optionnel : si dark mode actif, on garde du contraste */
-@media (prefers-color-scheme: dark) and (max-width:768px){
-  .tile{
-    background: #152126 !important;
-    color: #e9f1f4 !important;
-    border-color: rgba(255,255,255,.08) !important;
-    box-shadow: 0 10px 22px rgba(0,0,0,.25) !important;
-  }
-  .tile-title{ color:#ffffff !important; }
-  .tile-lead, .tile p{ color:#d2e2e8 !important; }
-  .tile em, .pill-cta{ color:#b9d1da !important; }
-}
-
-/* HERO — bureau : remonter légèrement l'avatar et cadrer le visage */
-@media (min-width: 821px){
-  .hero-inner{ align-items: center; }
-  .hero-media{ align-self: start; margin-top: -10px; }   /* remonte l'ensemble */
-  .avatar > img{
-    transform: scale(.94);          /* léger dé-zoom vs mobile */
-    object-position: 50% 42%;       /* remonte un poil le visage */
-  }
-}
-/* Boutons principaux : lisibles partout */
-.btn-primary,
-.hero-band .btn-primary{
-  background:#2a6b73 !important;      /* teal plein */
-  color:#fff !important;
-  border:0 !important;
-  box-shadow:0 12px 26px rgba(0,0,0,.22) !important;
-}
-
-/* Variante contour : assez contrastée aussi */
-.btn-outline,
-.hero-band .btn-outline{
-  background:#2a6b73 !important;
-  color:#fff !important;
-  border:0 !important;
-  box-shadow:0 10px 22px rgba(0,0,0,.20) !important;
-}
-
-/* Lien/bouton Resalib : plus “punchy” et reconnaissable */
-a[href*="resalib"],
-.btn-resalib{
-  display:inline-flex; align-items:center; gap:.5rem;
-  background:#e7f2ff !important;
-  color:#0b3a56 !important;
-  border:1px solid #b9d7ff !important;
-  padding:.58rem .95rem !important;
-  border-radius:999px !important;
-  box-shadow:0 10px 24px rgba(0,0,0,.12) !important;
-  font-weight:800 !important;
-}
-a[href*="resalib"]:hover,
-.btn-resalib:hover{ filter:saturate(1.06) contrast(1.04); }
-
-/* FAB mobile uniquement */
-.fab-contact{ display:none; }
-@media (max-width:768px){
-  .fab-contact{ display:block; }
-}
-
-
-  .contact-pill{
-    flex:0 0 auto;
-    display:inline-flex; align-items:center; gap:.45rem;
-    padding:.5rem .75rem;
-    border-radius:999px;
-    background:#0f2230;
-    border:1px solid rgba(255,255,255,.14);
-    color:#eaf2f4;
-    box-shadow:0 8px 18px rgba(0,0,0,.16);
-  }
-  .contact-pill .ico{ width:18px; height:18px; }
-  /* un peu plus clair en mode clair */
-  @media (prefers-color-scheme: light){
-    .contact-pill{ background:#ffffff; border-color:rgba(0,0,0,.10); color:#0f1b21; }
-  }
-}
-
-
-
-/* Cartes thèmes : plus lumineuses et lisibles */
-.tile-grid .tile > a{
-  background: #0f2230;                        /* fond “carte” sombre propre */
-  border: 1px solid rgba(255,255,255,.14);
-  box-shadow: 0 12px 28px rgba(0,0,0,.24);
-}
-.tile-grid .tile .tile-title{ color:#eaf2f4; font-weight:900; }
-.tile-grid .tile .tile-lead{ color:#cde0e6; opacity:.98; }
-
-@media (prefers-color-scheme: light){
-  .tile-grid .tile > a{
-    background:#ffffff;
-    border:1px solid rgba(0,0,0,.08);
-    box-shadow:0 12px 28px rgba(0,0,0,.10);
-  }
-  .tile-grid .tile .tile-title{ color:#0f1b21; }
-  .tile-grid .tile .tile-lead{ color:#334155; opacity:.95; }
-}
-
-/* Hover bureau : relief net mais propre */
-@media (hover:hover){
-  .tile-grid .tile:hover > a{
-    transform: translateY(-2px);
-    box-shadow: 0 18px 42px rgba(0,0,0,.22);
-    border-color: rgba(14,165,233,.30);
-    filter: saturate(1.03);
-  }
-}
-/* ===== BUREAU : bouton Contactez-moi + rangée d'icônes ===== */
-@media (min-width:821px){
-
-  /* Le trigger (summary) devient un vrai bouton pill teal */
-  .cta-dropdown > summary{
-    appearance:none;
-    list-style:none;
-    display:inline-flex;
-    align-items:center;
-    gap:.5rem;
-    padding:.55rem .95rem;
-    border-radius:999px;
-    background:#2a6b73;
-    color:#fff;
-    font-weight:800;
-    border:0;
-    cursor:pointer;
-    box-shadow:0 12px 26px rgba(0,0,0,.22);
-  }
-  .cta-dropdown > summary::-webkit-details-marker{ display:none; }
-
-  /* on supprime le petit triangle (pointeur) du menu */
-  .contact-menu::before{ display:none !important; }
-
-  /* Le menu est rendu en rangée compacte (au lieu des grosses cartes) */
-  .contact-menu{
-    position:static !important;
-    display:flex !important;
-    flex-wrap:wrap;
-    gap:.5rem;
-    padding:0;
-    background:transparent;
-    border:0;
-    box-shadow:none;
-    min-width:0;
+  .fab-contact[data-open="true"] .fab-menu{
     opacity:1;
-    transform:none;
+    transform: translateY(0) scale(1);
     pointer-events:auto;
   }
 
-  /* pastilles d'actions compactes */
-  .contact-pill{
-    flex:0 0 auto;
-    display:inline-flex;
-    align-items:center;
-    gap:.45rem;
-    padding:.48rem .8rem;
-    border-radius:999px;
-    background:#0f2230;
-    border:1px solid rgba(255,255,255,.14);
-    color:#eaf2f4;
-    box-shadow:0 8px 18px rgba(0,0,0,.16);
+  .fab-menu .btn{
+    width:100%;
+    text-align:center;
+    border-radius: 999px;
+    box-shadow: 0 10px 20px rgba(0,0,0,.10);
   }
-  .contact-pill .ico{ width:18px; height:18px; }
-
-  /* mode clair bureau */
-  @media (prefers-color-scheme:light){
-    .contact-pill{
-      background:#fff;
-      border-color:rgba(0,0,0,.10);
-      color:#0f1b21;
-      box-shadow:0 8px 18px rgba(0,0,0,.10);
-    }
+  .fab-menu .btn-primary{
+    background: var(--brand);
+    color:#fff;
+    border-color: transparent;
   }
-}
-/* ===== MOBILE : uniquement le FAB flottant ===== */
-@media (max-width:768px){
-  .cta-dropdown,
-  .contact-menu{ display:none !important; }   /* cache le bouton “Contactez-moi” et la rangée */
-  .fab-contact{ display:block !important; }  /* garde le bouton flottant */
-}
-/* Bouton principal lisible (inclut ceux dans .price-note) */
-.btn-primary,
-.hero-band .btn-primary,
-.price-note .btn{
-  background:#2a6b73 !important;
-  color:#fff !important;
-  border:0 !important;
-  box-shadow:0 12px 26px rgba(0,0,0,.22) !important;
-}
-
-/* Variante contour => aussi pleine (évite l’effet gris) */
-.btn-outline,
-.hero-band .btn-outline{
-  background:#2a6b73 !important;
-  color:#fff !important;
-  border:0 !important;
-  box-shadow:0 10px 22px rgba(0,0,0,.20) !important;
-}
-
-/* Lien/bouton Resalib plus visible */
-a[href*="resalib"], .btn-resalib{
-  display:inline-flex; align-items:center; gap:.5rem;
-  background:#e7f2ff !important;
-  color:#0b3a56 !important;
-  border:1px solid #b9d7ff !important;
-  padding:.58rem .95rem !important;
-  border-radius:999px !important;
-  box-shadow:0 10px 24px rgba(0,0,0,.12) !important;
-  font-weight:800 !important;
-}
-a[href*="resalib"]:hover, .btn-resalib:hover{ filter:saturate(1.06) contrast(1.04); }
-
-/* Cartes Thèmes — lisibilité + relief */
-.tile-grid .tile > a{
-  background:#0f2230;
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:0 12px 28px rgba(0,0,0,.24);
-}
-.tile-grid .tile .tile-title{ color:#eaf2f4; font-weight:900; }
-.tile-grid .tile .tile-lead{ color:#cde0e6; opacity:.98; }
-
-@media (prefers-color-scheme:light){
-  .tile-grid .tile > a{
+  .fab-menu .btn-outline,
+  .fab-menu .btn-ghost{
     background:#fff;
-    border:1px solid rgba(0,0,0,.08);
-    box-shadow:0 12px 28px rgba(0,0,0,.10);
-  }
-  .tile-grid .tile .tile-title{ color:#0f1b21; }
-  .tile-grid .tile .tile-lead{ color:#334155; opacity:.95; }
-}
-@media (hover:hover){
-  .tile-grid .tile:hover > a{
-    transform:translateY(-2px);
-    box-shadow:0 18px 42px rgba(0,0,0,.22);
-    border-color:rgba(14,165,233,.30);
-    filter:saturate(1.03);
+    color: var(--ink);
+    border: 1px solid rgba(0,0,0,.12);
   }
 }
-/* ===================== PATCH VISIBILITÉ (bureau vs mobile) ===================== */
 
-/* 0) Corriger l’avatar un peu bas (bureau) */
-@media (min-width: 821px){
-  .hero-media{ transform: translateY(-8px); }   /* remonte discrètement */
+/* Respect des préférences d’animation */
+@media (prefers-reduced-motion: reduce){
+  .pill, .fab-menu, .fab-btn{ transition:none !important; }
 }
 
-/* 1) CONTACT — rang de petits boutons CLAIRS sur BUREAU uniquement */
-.contact-row{
-  display:flex; flex-wrap:wrap; gap:.6rem; align-items:center;
-  margin:.4rem 0 1rem;
+/* -----------------------------
+   13) Sections / Zone intervention
+------------------------------ */
+.zone-intervention{
+  margin-top: 1.3rem;
+  padding-top: .5rem;
 }
-.contact-row .contact-pill{
-  display:inline-flex; align-items:center; gap:.5rem;
-  padding:.58rem .9rem; border-radius:999px;
-  background:#ffffff; color:#0f1b21;
-  border:1px solid rgba(0,0,0,.10);
-  box-shadow:0 10px 22px rgba(0,0,0,.10);
-  font-weight:800;
+.zone-intervention h2{
+  margin: 0 0 .35rem;
 }
-.contact-row .contact-pill .ico{ width:18px; height:18px; }
-.contact-row .contact-pill:hover{ transform:translateY(-1px); box-shadow:0 14px 30px rgba(0,0,0,.16); }
 
-/* Pastels par canal (comme “avant”) */
-.contact-row .contact--mail{    background:#fde2ea; border-color:#f8b9ca; }
-.contact-row .contact--tel{     background:#efe0ff; border-color:#d9c4ff; }
-.contact-row .contact--sms{     background:#e7f5ff; border-color:#cde8ff; }
-.contact-row .contact--ig{      background:#fde6dd; border-color:#f9c7b3; }
-.contact-row .contact--fb{      background:#e6efff; border-color:#c9dcff; }
+/* -----------------------------
+   14) Petits réglages Quarto
+------------------------------ */
+hr{ opacity:.16; margin: 1.1rem 0; }
+blockquote{
+  margin: .75rem 0;
+  padding: .85rem 1rem;
+  border-left: 4px solid rgba(11,106,112,.35);
+  background: rgba(0,0,0,.02);
+  border-radius: 12px;
+  color: rgba(15,27,33,.80);
+}
 
-/* 1b) Masquer cette rangée en MOBILE (on garde seulement le FAB) */
+/* Si certains boutons doivent être full width dans des blocs spécifiques */
+@media (max-width:576px){
+  .cta-box .btn{ width:100%; }
+}
+
+/* ===== NAVBAR FIXE (sticky) ===== */
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+  box-shadow: 0 10px 24px rgba(0,0,0,.18);
+}
+
+/* Empêche la navbar de recouvrir le contenu */
+body{
+  padding-top: 66px;
+}
 @media (max-width:768px){
-  .contact-row{ display:none !important; }
+  body{ padding-top: 62px; }
 }
 
-/* 2) FAB — mobile uniquement (si jamais il s’affichait ailleurs) */
-.fab-contact{ display:none; }
-@media (max-width:768px){
-  .fab-contact{ display:block; }
+/* Optionnel : menu plus lisible */
+.navbar .nav-link{
+  font-weight: 700;
 }
-
-/* 3) Boutons principaux : bien visibles sur fond sombre (hero) */
-.btn-primary,
-.hero-band .btn-primary{
-  background:#2a6b73 !important;
-  color:#fff !important;
-  border:0 !important;
-  box-shadow:0 12px 26px rgba(0,0,0,.22) !important;
-}
-.btn-outline,
-.hero-band .btn-outline{
-  background:#2a6b73 !important;     /* on remplit (plus lisible que contour) */
-  color:#fff !important;
-  border:0 !important;
-  box-shadow:0 10px 22px rgba(0,0,0,.20) !important;
-}
-
-/* 4) Lien/bouton Resalib plus “punchy” (bureau & mobile) */
-a[href*="resalib"], .btn-resalib{
-  display:inline-flex; align-items:center; gap:.5rem;
-  background:#e7f2ff !important;
-  color:#0b3a56 !important;
-  border:1px solid #b9d7ff !important;
-  padding:.58rem .95rem !important; border-radius:999px !important;
-  box-shadow:0 10px 24px rgba(0,0,0,.12) !important;
-  font-weight:800 !important;
-}
-a[href*="resalib"]:hover, .btn-resalib:hover{ filter:saturate(1.06) contrast(1.04); }
-
-/* 5) Tuiles “Thèmes” — contraste (clair & sombre) */
-@media (prefers-color-scheme: light){
-  .tile-grid .tile > a{
-    background:#ffffff !important;
-    border:1px solid rgba(0,0,0,.08) !important;
-    box-shadow:0 12px 28px rgba(0,0,0,.10) !important;
-  }
-  .tile-grid .tile .tile-title{ color:#0f1b21 !important; font-weight:900; }
-  .tile-grid .tile .tile-lead{ color:#334155 !important; opacity:.95; }
-}
-@media (prefers-color-scheme: dark){
-  .tile-grid .tile > a{
-    background:#0f2230 !important;
-    border:1px solid rgba(255,255,255,.14) !important;
-    box-shadow:0 12px 28px rgba(0,0,0,.24) !important;
-  }
-  .tile-grid .tile .tile-title{ color:#eaf2f4 !important; font-weight:900; }
-  .tile-grid .tile .tile-lead{ color:#cde0e6 !important; opacity:.98; }
-}
-@media (hover:hover){
-  .tile-grid .tile:hover > a{
-    transform: translateY(-2px);
-    box-shadow: 0 18px 42px rgba(0,0,0,.22);
-    border-color: rgba(14,165,233,.30);
-    filter: saturate(1.03);
-  }
-}
-
-/* 6) “Voir les tarifs” — encore plus lisible */
-a.btn, .btn{
-  text-decoration:none !important;
-}
-.btn.cta-tarifs{                              /* ajoute class="btn cta-tarifs" si tu veux cibler ce bouton */
-  background:#2a6b73 !important;
-  color:#fff !important;
-  box-shadow:0 12px 26px rgba(0,0,0,.22) !important;
-  padding:.68rem 1.15rem !important;
-  font-weight:900 !important;
-}
-
-/* 7) Empêcher le doublon des blocs tarifs (mobile vs bureau) */
-@media (max-width:820px){
-  .hero-media .price-note{ display:none !important; }   /* cache la carte “bureau” en mobile */
-}
-@media (min-width:821px){
-  .price-note--m{ display:none !important; }            /* cache la copie “mobile” en bureau */
-}
-
+/* ===== LISIBILITÉ GLOBALE ===== */
 :root{
-  --c-mail:#f9dbe5;   --b-mail:#bf274f;   /* rose */
-  --c-tel:#e8dbff;    --b-tel:#5a2ecc;    /* violet */
-  --c-sms:#dff2ff;    --b-sms:#0e74b8;    /* bleu */
-  --c-ig:#ffe3d6;     --b-ig:#c8501a;     /* pêche */
-  --c-fb:#dde6ff;     --b-fb:#2046b0;     /* indigo */
-
-  --ring:#22c55e;     /* anneau focus accessible (vert) */
-  --depth1:0 10px 24px rgba(0,0,0,.18);
-  --depth2:0 18px 42px rgba(0,0,0,.28);
-  --inner:inset 0 1px 0 rgba(255,255,255,.55), inset 0 -2px 8px rgba(0,0,0,.12);
+  --text: rgba(15,27,33,.92);
+  --muted: rgba(15,27,33,.74);
+  --card: rgba(0,0,0,.035);
+  --border: rgba(0,0,0,.12);
+  --shadow-1: 0 14px 34px rgba(0,0,0,.12);
+  --shadow-2: 0 22px 52px rgba(0,0,0,.16);
+  --r-lg: 20px;
+  --r-md: 18px;
+  --r-sm: 16px;
 }
 
-/* conteneur */
-.contact-row{
-  display:flex; flex-wrap:wrap; gap:.7rem; align-items:center;
-  margin:.6rem 0 1.1rem;
-}
-
-/* pill générique */
-.contact-row .contact-pill{
-  --bg:#fff; --br:rgba(0,0,0,.10); --accent:#2a6b73;
-  display:inline-flex; align-items:center; gap:.55rem;
-  padding:.64rem 1rem; border-radius:999px;
-  background:
-    radial-gradient(60% 120% at 20% 0%, rgba(255,255,255,.85), transparent 60%),
-    var(--bg);
-  border:1px solid var(--br);
-  color:#0f1b21; font-weight:900; letter-spacing:.01em;
-  box-shadow: var(--depth1), var(--inner);
-  transform: translateZ(0);
-  transition: transform .12s ease, box-shadow .18s ease, filter .18s ease;
-}
-.contact-row .contact-pill .ico{ width:20px; height:20px; opacity:.9; }
-
-@media (hover:hover){
-  .contact-row .contact-pill:hover{
-    transform: translateY(-2px);
-    box-shadow: var(--depth2), var(--inner);
-    filter: saturate(1.05) contrast(1.02);
-  }
-}
-.contact-row .contact-pill:active{ transform:translateY(0); box-shadow:var(--depth1), var(--inner); }
-.contact-row .contact-pill:focus-visible{
-  outline:3px solid color-mix(in oklab, var(--ring) 70%, white 30%);
-  outline-offset:2px;
-}
-
-/* variantes couleur (fond pastel + bord coloré + texte teinté) */
-.contact-row .contact--mail{ --bg:var(--c-mail);  --br:color-mix(in oklab, var(--b-mail) 38%, white);  color:color-mix(in oklab, var(--b-mail) 60%, #0f1b21); }
-.contact-row .contact--tel { --bg:var(--c-tel);   --br:color-mix(in oklab, var(--b-tel) 38%,  white); color:color-mix(in oklab, var(--b-tel) 60%,  #0f1b21); }
-.contact-row .contact--sms { --bg:var(--c-sms);   --br:color-mix(in oklab, var(--b-sms) 38%,  white); color:color-mix(in oklab, var(--b-sms) 64%,  #0f1b21); }
-.contact-row .contact--ig  { --bg:var(--c-ig);    --br:color-mix(in oklab, var(--b-ig)  38%,  white); color:color-mix(in oklab, var(--b-ig)  60%,  #0f1b21); }
-.contact-row .contact--fb  { --bg:var(--c-fb);    --br:color-mix(in oklab, var(--b-fb)  38%,  white); color:color-mix(in oklab, var(--b-fb)  60%,  #0f1b21); }
-
-/* mode sombre : garde le pastel mais plus “glassy” */
-@media (prefers-color-scheme:dark){
-  .contact-row .contact-pill{
-    color:#0b1520;
-    box-shadow: 0 12px 28px rgba(0,0,0,.40), inset 0 1px 0 rgba(255,255,255,.45);
-    backdrop-filter: saturate(1.1);
-  }
-}
-/* visible uniquement mobile */
-.fab-contact{ display:none; }
-@media (max-width:768px){ .fab-contact{ display:block; } }
-
-/* bouton rond flottant */
-.fab-btn{
-  position:fixed; right:16px; bottom:16px; z-index:1100;
-  border:0; border-radius:999px;
-  padding:.9rem 1.05rem;
-  background: linear-gradient(180deg, #16a34a, color-mix(in oklab,#16a34a 70%, #0a5726));
-  color:#fff; font-weight:900; letter-spacing:.01em;
-  box-shadow: 0 18px 44px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.35);
-}
-.fab-btn:focus-visible{ outline:3px solid rgba(34,197,94,.55); outline-offset:2px; }
-
-/* panneau */
-.fab-menu{
-  position:fixed; right:16px; bottom:76px; z-index:1100;
-  width:min(90vw, 360px);
-  background: rgba(255,255,255,.95);
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:18px;
-  box-shadow: 0 24px 64px rgba(0,0,0,.35);
-  padding:.8rem; display:grid; gap:.55rem;
-  transform-origin: bottom right; transform: translateY(8px) scale(.98);
-  opacity:0; pointer-events:none;
-}
-.fab-contact[data-open="true"] .fab-menu{
-  transform: translateY(0) scale(1); opacity:1; pointer-events:auto;
-}
-
-/* pills internes (mêmes couleurs que bureau) */
-.fab-menu .contact-pill{
-  display:flex; align-items:center; gap:.55rem;
-  padding:.7rem .9rem; border-radius:14px; font-weight:900;
-  border:1px solid rgba(0,0,0,.06); box-shadow:var(--depth1); background:#fff;
-}
-.fab-menu .contact--mail{ background:var(--c-mail);  border-color:color-mix(in oklab, var(--b-mail) 35%, white); }
-.fab-menu .contact--tel { background:var(--c-tel);   border-color:color-mix(in oklab, var(--b-tel)  35%, white); }
-.fab-menu .contact--sms { background:var(--c-sms);   border-color:color-mix(in oklab, var(--b-sms)  35%, white); }
-.fab-menu .contact--ig  { background:var(--c-ig);    border-color:color-mix(in oklab, var(--b-ig)   35%, white); }
-.fab-menu .contact--fb  { background:var(--c-fb);    border-color:color-mix(in oklab, var(--b-fb)   35%, white); }
-
-/* dark: panneau vitre fumée */
-@media (prefers-color-scheme:dark){
-  .fab-menu{
-    background: color-mix(in oklab, #0b151b 92%, white 8%);
-    border-color: rgba(255,255,255,.12);
-    box-shadow: 0 24px 64px rgba(0,0,0,.55);
-    backdrop-filter: blur(6px) saturate(1.05);
-  }
-}
-.btn.cta-tarifs{
-  background: linear-gradient(180deg, #2fa1c4, color-mix(in oklab,#2fa1c4 65%, #0e6178));
-  color:#fff !important; font-weight:900 !important;
-  border:0; border-radius:999px;
-  padding:.72rem 1.15rem !important;
-  box-shadow: 0 16px 38px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.35);
-}
-.btn.cta-tarifs:hover{ filter:saturate(1.06) contrast(1.03); transform:translateY(-1px); }
-.btn.cta-tarifs:active{ transform:translateY(0); }
-
-@media (prefers-color-scheme:light){
-  .tile-grid .tile > a{
-    background:
-      radial-gradient(120% 120% at 10% -20%, rgba(42,107,115,.08), transparent 55%),
-      #ffffff !important;
-    border:1px solid rgba(0,0,0,.08) !important;
-    box-shadow: 0 16px 34px rgba(0,0,0,.12) !important;
-  }
-}
-@media (prefers-color-scheme:dark){
-  .tile-grid .tile > a{
-    background:
-      radial-gradient(120% 120% at 10% -20%, rgba(111,182,192,.08), transparent 55%),
-      #0f2230 !important;
-    border:1px solid rgba(255,255,255,.14) !important;
-    box-shadow: 0 18px 42px rgba(0,0,0,.36) !important;
-  }
-}
-<!-- Bureau -->
-<div class="contact-row">
-  <a class="contact-pill contact--mail" href="mailto:..."><svg class="ico">…</svg> Email</a>
-  <a class="contact-pill contact--tel"  href="tel:06..."><svg class="ico">…</svg> Téléphone</a>
-  <a class="contact-pill contact--sms"  href="sms:06..."><svg class="ico">…</svg> SMS</a>
-  <a class="contact-pill contact--ig"   href="https://instagram.com/..."><svg class="ico">…</svg> Instagram</a>
-  <a class="contact-pill contact--fb"   href="https://facebook.com/..."><svg class="ico">…</svg> Facebook</a>
-</div>
-
-<!-- Mobile -->
-<div class="fab-contact" data-open="false">
-  <button class="fab-btn" onclick="this.parentElement.dataset.open =
-    this.parentElement.dataset.open==='true' ? 'false' : 'true'">Contactez-moi</button>
-  <div class="fab-menu">
-    <a class="contact-pill contact--mail" href="mailto:..."><svg class="ico">…</svg> Email</a>
-    <a class="contact-pill contact--tel"  href="tel:06..."><svg class="ico">…</svg> Téléphone</a>
-    <a class="contact-pill contact--sms"  href="sms:06..."><svg class="ico">…</svg> SMS</a>
-    <a class="contact-pill contact--ig"   href="https://instagram.com/..."><svg class="ico">…</svg> Instagram</a>
-    <a class="contact-pill contact--fb"   href="https://facebook.com/..."><svg class="ico">…</svg> Facebook</a>
-  </div>
-</div>
-
-/* ===================== CONTACT — CORRECTIONS ===================== */
-
-
-/* 1) Ne PAS styler .contact-pill globalement en sombre.
-      Restreindre le style sombre aux pills à l’intérieur du panneau du FAB. */
-.fab-menu .contact-pill{
-  display:flex; align-items:center; gap:.55rem;
-  padding:.7rem .9rem; border-radius:14px; font-weight:900;
-  background:#0f2230;
-  border:1px solid rgba(255,255,255,.14);
-  color:#eaf2f4;
-  box-shadow:0 12px 28px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.10);
-}
-@media (prefers-color-scheme:light){
-  .fab-menu .contact-pill{
-    background:#ffffff;
-    color:#0f1b21;
-    border:1px solid rgba(0,0,0,.10);
-    box-shadow:0 12px 28px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.55);
-  }
-}
-
-/* 2) RANGÉE BUREAU : pills pastels (VISIBLES) + relief */
-@media (min-width:821px){
-  .contact-row{
-    display:flex; flex-wrap:wrap; gap:.6rem; align-items:center;
-    margin:.5rem 0 1.1rem;
-  }
-  .contact-row .contact-pill{
-    display:inline-flex; align-items:center; gap:.5rem;
-    padding:.58rem .95rem; border-radius:999px;
-    font-weight:800; color:#0f1b21;
-    border:1px solid rgba(0,0,0,.10);
-    background:#fff;
-    box-shadow:0 12px 28px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.65);
-    transition:transform .12s, box-shadow .18s, filter .18s;
-  }
-  .contact-row .contact-pill .ico{ width:18px; height:18px; }
-  @media (hover:hover){
-    .contact-row .contact-pill:hover{
-      transform:translateY(-2px);
-      box-shadow:0 18px 42px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.65);
-      filter:saturate(1.04) contrast(1.02);
-    }
-  }
-
-  /* Pastels par canal (comme “avant”) */
-  .contact-row .contact--mail{ background:#fde2ea; border-color:#f8b9ca; }
-  .contact-row .contact--tel { background:#efe0ff; border-color:#d9c4ff; }
-  .contact-row .contact--sms { background:#e7f5ff; border-color:#cde8ff; }
-  .contact-row .contact--ig  { background:#fde6dd; border-color:#f9c7b3; }
-  .contact-row .contact--fb  { background:#e6efff; border-color:#c9dcff; }
-}
-
-/* 3) MOBILE : on garde uniquement le FAB flottant */
+body{ color: var(--text); }
+p{ color: var(--muted); font-size: 1.03rem; }
 @media (max-width:768px){
-  .contact-row,
+  p{ font-size: 1.05rem; line-height: 1.62; }
+}
+
+h1,h2,h3{ color: #0b1620; }
+
+/* ===== CARDS / BLOCS (relief + arrondis) ===== */
+.proof, .cta-box, .card, .tile{
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-1);
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.85));
+}
+
+/* Boutons plus visibles */
+.btn{
+  border-radius: 999px;
+  box-shadow: 0 14px 30px rgba(0,0,0,.14);
+}
+.btn-primary{
+  box-shadow: 0 16px 36px rgba(11,106,112,.22);
+}
+/* ===== PILL = LISIBLE & “CLICABLE” ===== */
+.pill{
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(255,255,255,.16);
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+  box-shadow: var(--shadow-2);
+}
+
+.pill-title{ font-size: 1.08rem; }
+.pill-tags{ opacity: .92; }
+.pill-cta{ opacity: .95; }
+
+/* Mobile : contraste + padding */
+@media (max-width:480px){
+  .pill{
+    padding: 1rem 1rem;
+    border-radius: 18px;
+  }
+  .pill-title{ font-size: 1.08rem; }
+  .pill-tags{ font-size: .98rem; }
+  .pill-cta{ font-size: 1rem; }
+}
+/* ===== RESALIB : visible sur mobile, compact ===== */
+@media (max-width:768px){
+  .rlb-badge{
+    display:block !important;
+    margin: .9rem 0 1.1rem;
+    padding: .9rem 1rem;
+    border-radius: 18px;
+    border: 1px solid rgba(0,0,0,.12);
+    background: rgba(255,255,255,.86);
+    box-shadow: 0 14px 34px rgba(0,0,0,.12);
+  }
+  .rlb-badge a{
+    font-weight: 800;
+    color: rgba(15,27,33,.92);
+  }
+}
+@media (max-width:768px){
+  .cta-banner,
   .cta-dropdown,
-  .contact-menu{ display:none !important; }  /* pas de doublons */
-  .fab-contact{ display:block !important; }
+  .contact-menu,
+  .cta-actions,
+  .cta-desktop{
+    display:none !important;
+  }
+  /* .rlb-badge n’est PLUS masqué */
+}
+/* =========================================================
+   PATCH URGENT — NAVBAR FIXE + LISIBILITÉ + RELIEF + RESALIB
+   À coller TOUT EN BAS de styles.css
+   ========================================================= */
+
+/* ---------- 1) NAVBAR TOUJOURS FIXE (mobile + desktop) ---------- */
+:root{ --nav-h:72px; }
+@media (max-width:768px){ :root{ --nav-h:90px; } }
+
+.navbar{
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  z-index: 1200;
+  background: var(--brand, #2a6b73) !important;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.16) inset,
+    0 10px 26px rgba(0,0,0,.22);
 }
 
-
-/* 4) CTA tarifs (plus lisible) */
-.btn.cta-tarifs{
-  background: linear-gradient(180deg, #2fa1c4, color-mix(in oklab,#2fa1c4 65%, #0e6178));
-  color:#fff !important; font-weight:900 !important;
-  border:0; border-radius:999px; padding:.72rem 1.15rem !important;
-  box-shadow: 0 16px 38px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.35);
+/* évite que le contenu passe sous la barre */
+body{
+  padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)) !important;
 }
 
-/* 5) PETIT FIX : remonte légèrement l’avatar en bureau */
-@media (min-width:821px){
-  .hero-media{ transform: translateY(-8px); }
+/* ancres (#section) : marge sous navbar */
+:where(main.content, .page-columns, .content) :target{
+  scroll-margin-top: calc(var(--nav-h) + 14px);
 }
 
-/* ===== Qui suis-je — styles utilitaires (100% Quarto) ===== */
-
-/* “Pills” KPI */
-.kpi-pills { display:flex; flex-wrap:wrap; gap:.5rem .6rem; margin:.2rem 0 .8rem; padding:0; list-style:none; }
-.kpi-pills > li{
-  background:#fff; color:#0f1b21; border:1px solid rgba(0,0,0,.08);
-  border-radius:999px; padding:.42rem .75rem; font-weight:800;
-  box-shadow:0 8px 18px rgba(0,0,0,.10);
-}
-@media (prefers-color-scheme:dark){
-  .kpi-pills > li{ background:#0f2230; color:#eaf2f4; border-color:rgba(255,255,255,.12); box-shadow:none; }
+/* menu déroulant sous la navbar */
+.navbar .navbar-collapse{
+  z-index: 1201;
 }
 
-/* Étapes */
-.steps { counter-reset:s; display:grid; gap:.6rem; }
-.steps > ol, .steps > ul { margin:0; padding-left:1.1rem; }
-.steps li { margin:.2rem 0; }
-
-/* Cartes thématiques (grille responsive) */
-.grid-cards{
-  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:1rem; margin:.6rem 0 1.2rem;
+/* ---------- 2) HERO : TEXTE LISIBLE SUR FOND SOMBRE ---------- */
+.hero-band{
+  color:#fff;
 }
-@media (max-width:980px){ .grid-cards{ grid-template-columns:repeat(2,1fr); } }
-@media (max-width:640px){ .grid-cards{ grid-template-columns:1fr; } }
-.grid-cards > *{
-  background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:14px;
-  padding:1rem 1.1rem; box-shadow:0 10px 24px rgba(0,0,0,.10);
+.hero-band :where(h1,h2,p,li,span,small,a){
+  color:#fff;
 }
-.grid-cards h3{ margin:.1rem 0 .3rem; letter-spacing:-.01em; }
-.grid-cards p{ margin:.15rem 0 0; opacity:.95; }
-@media (prefers-color-scheme:dark){
-  .grid-cards > *{ background:#0f2230; border-color:rgba(255,255,255,.12); box-shadow:none; }
+.hero-band .hero-copy{
+  color:#fff;
+}
+.hero-band .hero-copy :where(h1,h2,p){
+  color:#fff;
 }
 
-/* Boutons Quarto plus visibles */
-.btn.btn-primary{
-  background:#2a6b73; color:#fff; border:0;
-  border-radius:999px; padding:.62rem 1rem; font-weight:900;
-  box-shadow:0 12px 26px rgba(0,0,0,.22);
+/* petite ombre de texte pour la lisibilité (sans “baver”) */
+.hero-band :where(h1,h2){
+  text-shadow: 0 2px 10px rgba(0,0,0,.35);
 }
-.btn.btn-outline{
-  background:#ffffff; color:#0f1b21; border:1px solid rgba(0,0,0,.10);
-  border-radius:999px; padding:.6rem 1rem; font-weight:800;
-  box-shadow:0 8px 18px rgba(0,0,0,.10);
-}
-@media (prefers-color-scheme:dark){
-  .btn.btn-outline{ background:#0f2230; color:#eaf2f4; border-color:rgba(255,255,255,.12); box-shadow:none; }
+.hero-band p{
+  text-shadow: 0 1px 8px rgba(0,0,0,.25);
 }
 
-/* Cartes latérales (callouts) un peu plus “soft” */
-.callout, .callout-tip, .callout-note{
-  border-radius:14px; box-shadow:0 10px 24px rgba(0,0,0,.10);
-}
-@media (prefers-color-scheme:dark){
-  .callout, .callout-tip, .callout-note{ box-shadow:none; }
+/* CTA dans le hero : relief + arrondis cohérents */
+.hero-cta .btn{
+  border-radius: 999px !important;
+  box-shadow: 0 14px 34px rgba(0,0,0,.22);
 }
 
-.hero-visual {
-  margin-bottom: 2rem;
+/* ---------- 3) CARTES "THÈMES" : PLUS JAMAIS INVISIBLES ---------- */
+/* Cas “Commencer ici : choisissez votre thème” = tile-grid */
+.tile-grid,
+.pill-grid{
+  list-style: none !important;
+  padding-left: 0 !important;
 }
 
-.hero-visual-inner {
-  position: relative;
+.tile-grid .tile,
+.pill-grid > li{
+  margin: 0 !important;
+}
+
+/* lien carte */
+.tile-grid .tile > a,
+.pill{
+  display:block;
+  border-radius: 18px !important;
   overflow: hidden;
-  border-radius: 1.5rem;
+  transform: translateZ(0);
 }
 
-.hero-visual img {
-  display: block;
+/* Texte toujours visible (corrige les héritages foireux) */
+.tile-grid .tile > a :where(.tile-title,.tile-lead,em,span){
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Style “relief” + contraste (desktop + mobile) */
+.tile-grid .tile > a{
+  background: #ffffff !important;
+  border: 1px solid rgba(0,0,0,.08) !important;
+  box-shadow: 0 16px 34px rgba(0,0,0,.12) !important;
+  padding: 16px 18px !important;
+}
+.tile-grid .tile .tile-title{
+  color:#0f1b21 !important;
+  font-weight: 900 !important;
+}
+.tile-grid .tile .tile-lead{
+  color:#22323a !important;
+  opacity:.95 !important;
+}
+.tile-grid .tile em{
+  color:#2a4b56 !important;
+  opacity:.95 !important;
+}
+
+/* Hover desktop */
+@media (hover:hover){
+  .tile-grid .tile:hover > a{
+    transform: translateY(-2px);
+    box-shadow: 0 20px 46px rgba(0,0,0,.16) !important;
+    border-color: rgba(42,107,115,.35) !important;
+  }
+}
+
+/* ---------- 4) PILL CARDS (si tu les utilises) : corrige overlay + couleurs ---------- */
+/* IMPORTANT : corrige tes rgba(… , 18) invalides => 0.18 */
+@media (min-width:981px){
+  .pill{
+    background:#fff !important;
+    border: 1px solid rgba(0,0,0,.08);
+    box-shadow: 0 16px 34px rgba(0,0,0,.12);
+  }
+  .pill::after{
+    background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.12)) !important;
+  }
+  .pill > *{
+    color:#0f1b21 !important;
+  }
+  .pill .pill-title{ font-weight: 900; }
+  .pill .pill-tags{ color:#334155 !important; opacity:.95; }
+  .pill .pill-cta{ color:#0f1b21 !important; opacity:.9; }
+}
+
+/* ---------- 5) RESALIB : VISIBLE SUR MOBILE + STYLE "ETOILES" ---------- */
+/* Tu avais des règles qui masquaient .rlb-badge en mobile. On force l’affichage. */
+.rlb-badge{
+  display:block !important;
+  margin: .9rem auto 1.2rem !important;
+  text-align:center;
+}
+.rlb-badge a,
+.rlb-badge iframe,
+.rlb-badge > *{
+  max-width: 100%;
+}
+
+/* “carte” autour du badge (utile si le script injecte un lien simple) */
+.rlb-badge{
+  padding: .75rem .85rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: #ffffff;
+  box-shadow: 0 14px 30px rgba(0,0,0,.10);
+}
+
+/* si le widget Resalib injecte du texte/lien : lisible + pas de cassure moche */
+.rlb-badge a{
+  display:inline-block;
+  font-weight: 800;
+  text-decoration: none;
+  color: #0b3a56;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- 6) SÉCURITÉ : ne plus cacher Resalib/CTA par “masquages mobiles” ---------- */
+/* Si dans ton CSS tu as un bloc du style:
+   @media (max-width:768px){ .rlb-badge{display:none!important;} }
+   => ce patch le neutralise déjà via display:block!important.
+*/
+
+/* ---------- 7) BONUS : lisibilité globale sections (si une zone devient trop pâle) ---------- */
+.content :where(p,li){
+  color: #132027;
+}
+
+/* =========================================================
+   PATCH FINAL — Lisibilité hero + formulaires + cohérence
+   À coller TOUT EN BAS de styles.css
+   ========================================================= */
+
+/* ---------- 0) Stop aux surprises : variables stables ---------- */
+:root{
+  --nav-h: 72px;
+  --text: rgba(15,27,33,.92);
+  --muted: rgba(15,27,33,.74);
+  --border: rgba(0,0,0,.12);
+}
+@media (max-width:768px){
+  :root{ --nav-h: 86px; }
+}
+
+/* ---------- 1) NAVBAR : une seule stratégie (FIXED) ---------- */
+.navbar{
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  z-index: 1200;
+  box-shadow: 0 10px 26px rgba(0,0,0,.22);
+}
+
+/* contenu toujours visible sous la navbar */
+body{
+  padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)) !important;
+}
+
+/* ancres (#section) : évite “caché sous navbar” */
+:where(main.content, .page-columns, .content) :target{
+  scroll-margin-top: calc(var(--nav-h) + 14px);
+}
+
+/* ---------- 2) HERO : contraste garanti (corrige ta capture 2) ---------- */
+.hero-band{
+  color: #fff !important;
+}
+.hero-band :where(h1,h2,h3,p,li,small,span,strong,em,a){
+  color:#fff !important;
+  opacity: 1 !important;          /* stop aux opacités héritées */
+}
+
+/* liens dans hero */
+.hero-band a{
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255,255,255,.55);
+}
+.hero-band a:hover{
+  text-decoration-color: rgba(255,255,255,.85);
+}
+
+/* lisibilité sans “bavure” */
+.hero-band :where(h1,h2){
+  text-shadow: 0 2px 12px rgba(0,0,0,.38);
+}
+.hero-band p{
+  text-shadow: 0 1px 10px rgba(0,0,0,.28);
+}
+
+/* CTA hero = bien lisible + cohérent */
+.hero-cta .btn{
+  border-radius: 999px !important;
+  box-shadow: 0 14px 34px rgba(0,0,0,.22);
+}
+.hero-cta .btn-primary{
+  background: var(--brand) !important;
+  border-color: transparent !important;
+  color:#fff !important;
+}
+.hero-cta .btn-outline{
+  background: rgba(255,255,255,.10) !important;
+  border-color: rgba(255,255,255,.28) !important;
+  color:#fff !important;
+}
+
+/* ---------- 3) TEXTE GLOBAL : évite les paragraphes trop “gris” ---------- */
+.content :where(p,li){
+  color: var(--text);
+}
+.content :where(p strong, li strong){
+  color: #0f1b21;
+}
+
+/* ---------- 4) FORMULAIRES (corrige ta capture 1 : gros blocs blancs) ---------- */
+/* Quarto/Bootstrap utilisent souvent .form-control */
+:where(input, textarea, select, .form-control){
   width: 100%;
+  max-width: 100%;
+  font: inherit;
+  color: #0f1b21;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: .78rem .9rem;
+  line-height: 1.25;
+  box-shadow: 0 8px 18px rgba(0,0,0,.06);
+}
+
+/* Empêche les textarea d’être énormes “par défaut” */
+textarea, .form-control[type="textarea"]{
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Focus net, pro */
+:where(input, textarea, select, .form-control):focus{
+  outline: none;
+  border-color: rgba(11,106,112,.55);
+  box-shadow: 0 0 0 4px rgba(11,106,112,.16), 0 10px 22px rgba(0,0,0,.08);
+}
+
+/* placeholders lisibles (souvent trop pâles) */
+::placeholder{
+  color: rgba(15,27,33,.55);
+}
+
+/* Espacement vertical des champs (si Quarto colle tout) */
+:where(.quarto-form, form) :where(input, textarea, select, .form-control){
+  margin: .55rem 0;
+}
+
+/* ---------- 5) Mobile : évite que le FAB masque le bas ---------- */
+@media (max-width:768px){
+  body{ padding-bottom: 86px; }
+}
+
+/* ---------- 6) Sécurité : évite les débordements chelous ---------- */
+:where(img, iframe, video){
+  max-width: 100%;
   height: auto;
 }
+/* ===== AVATAR : rendu propre (carré, cover, centré) ===== */
+.avatar{
+  aspect-ratio: 1 / 1;          /* force un vrai cercle parfait */
+  width: clamp(190px, 36vw, 280px);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  transform: translateZ(0);      /* améliore le rendu */
+}
 
-.hero-visual-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1.5rem;
-  background: linear-gradient(to bottom,
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.75));
+/* IMPORTANT : cover + position = recadrage propre */
+.avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;      /* ajuste le cadrage (visage plus haut) */
+  display: block;
+  -webkit-transform: translateZ(0);
+}
+
+/* Option : anneau plus clean */
+.avatar{
+  border: 4px solid rgba(255,255,255,.16);
+  box-shadow: 0 18px 46px rgba(0,0,0,.32);
+}
+/* =========================================================
+   TABAC.QMD — HERO + PILLBAR lisibles (spécifique .hero)
+   ========================================================= */
+
+/* Le bloc "hero" de tabac.qmd */
+.hero{
+  margin-top: .75rem;
+  padding: 1.2rem 1rem 1.1rem;
+  border-radius: 22px;
   color: #fff;
+  background:
+    radial-gradient(1000px 400px at 70% 30%, rgba(255,255,255,.10), transparent 60%),
+    linear-gradient(180deg, #072c31, #0a1f25);
+  box-shadow: 0 18px 46px rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.10);
 }
 
-.hero-visual-overlay h1 {
-  margin: 0 0 .5rem;
-  font-size: clamp(1.5rem, 2.4vw + 1rem, 2.6rem);
+/* Tout le texte dans le hero en blanc (contraste garanti) */
+.hero :where(h1,h2,h3,p,li,small,span,strong,em,a){
+  color:#fff !important;
+  opacity:1 !important;
 }
 
-.hero-visual-kicker {
-  margin: 0 0 .3rem;
+/* Ton titre */
+.hero-title{
+  margin: 0 0 .55rem;
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  font-size: clamp(1.7rem, 2.8vw + 1rem, 2.6rem);
+  text-shadow: 0 2px 12px rgba(0,0,0,.38);
+}
+
+/* Le bénéfice (paragraphe du dessus) */
+.hero-benefit{
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,.86) !important;
+  text-shadow: 0 1px 10px rgba(0,0,0,.28);
+  margin: .15rem 0 1rem;
+  max-width: 60ch;
+}
+
+/* CTA */
+.hero .hero-cta{
+  display:flex;
+  gap:.6rem;
+  flex-wrap:wrap;
+  margin-top: .9rem;
+}
+.hero .btn{
+  border-radius: 999px !important;
+  box-shadow: 0 14px 34px rgba(0,0,0,.22);
+}
+.hero .btn-primary{
+  background: var(--brand);
+  border-color: transparent;
+  color:#fff !important;
+}
+
+/* Petite ligne sous CTA */
+.hero .cta-sub{
+  margin-top: .55rem;
+  color: rgba(255,255,255,.82) !important;
+  opacity: 1 !important;
+}
+
+/* Mobile: padding + arrondi un peu plus soft */
+@media (max-width:768px){
+  .hero{
+    border-radius: 18px;
+    padding: 1.05rem .95rem 1rem;
+  }
+}
+/* PILLBAR = badges (pas des cartes) */
+.pillbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap: .5rem;
+  margin: .25rem 0 1rem;
+}
+
+/* Ces pills-là sont des "chips" */
+.hero .pillbar .pill{
+  display:inline-flex;
+  align-items:center;
+  gap:.35rem;
+  padding: .35rem .7rem;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.10) !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  box-shadow: none !important;
+  color: rgba(255,255,255,.92) !important;
+  font-weight: 800;
+  font-size: .92rem;
+}
+:root{
+  --r-hero: 24px;
+  --r-card: 20px;
+  --r-soft: 16px;
+}
+
+.hero{ border-radius: var(--r-hero) !important; }
+.card, .proof, .cta-box, .tile{ border-radius: var(--r-card) !important; }
+.quote{ border-radius: var(--r-soft) !important; }
+
+.hero .cta-sub{
+  margin: .55rem 0 0;
+  color: rgba(255,255,255,.82) !important;
   font-size: .95rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  opacity: .9;
 }
 
-.hero-visual-sub {
-  margin: 0 0 1rem;
-  max-width: 36rem;
+.steps{
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(0,0,0,.02);
+}
+.steps ol{ margin: .5rem 0 0; }
+.quote{
+  padding: .9rem 1rem;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 10px 22px rgba(0,0,0,.06);
+  margin: .7rem 0;
 }
 
-.hero-visual-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .6rem;
+/* =========================================================
+   CONSOLIDATION PATCH — Mobile “stylé” + cohérence
+   À coller TOUT EN BAS de styles.css
+   ========================================================= */
+
+/* 1) Une seule vérité pour les variables (évite le patchwork) */
+:root{
+  --brand: #0b6a70;
+  --brand-2: #095a5f;
+  --accent: #16a34a;
+
+  --ink: #0f1b21;
+  --text: rgba(15,27,33,.92);
+  --muted: rgba(15,27,33,.74);
+
+  --bg: #ffffff;
+  --card: rgba(0,0,0,.035);
+  --border: rgba(0,0,0,.12);
+
+  --shadow-1: 0 14px 34px rgba(0,0,0,.12);
+  --shadow-2: 0 22px 52px rgba(0,0,0,.16);
+
+  --r-hero: 24px;
+  --r-card: 20px;
+  --r-soft: 16px;
+
+  --nav-h: 72px;
+}
+@media (max-width:768px){
+  :root{ --nav-h: 78px; }
 }
 
-/* Mobile : texte un peu plus bas et boutons en colonne */
-@media (max-width: 768px){
-  .hero-visual-overlay {
-    justify-content: flex-end;
-    padding: 1.25rem;
+/* 2) NAVBAR : une seule stratégie (FIXED) + spacing fiable */
+.navbar{
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  z-index: 1200;
+  background: var(--brand) !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,.22);
+}
+body{
+  padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)) !important;
+  color: var(--text);
+  background: var(--bg);
+}
+:where(main.content, .page-columns, .content) :target{
+  scroll-margin-top: calc(var(--nav-h) + 14px);
+}
+
+/* 3) Typo mobile : un peu plus “premium” */
+h1,h2,h3{ color:#0b1620; letter-spacing:-.02em; }
+p{ color: var(--muted); }
+@media (max-width:768px){
+  p{ font-size: 1.04rem; line-height: 1.65; }
+}
+
+/* 4) HERO accueil (.hero-band) : garde le style “waouh” sur mobile */
+.hero-band{
+  border-radius: 0 0 var(--r-hero) var(--r-hero);
+  overflow: hidden;
+}
+.hero-band :where(h1,h2,h3,p,li,small,span,strong,em,a){
+  color:#fff !important;
+  opacity: 1 !important;
+}
+.hero-band :where(h1,h2){
+  text-shadow: 0 2px 12px rgba(0,0,0,.38);
+}
+.hero-band p{
+  text-shadow: 0 1px 10px rgba(0,0,0,.28);
+}
+
+/* Avatar nickel (cadrage propre) */
+.avatar{
+  aspect-ratio: 1 / 1;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  display:block;
+}
+
+/* 5) CARDS / blocs : cohérents */
+.proof, .cta-box, .card, .tile{
+  border-radius: var(--r-card) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-1) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.86)) !important;
+}
+
+/* 6) Thèmes (tile-grid + pill-grid) : visibles et “tap-friendly” sur mobile */
+@media (max-width:768px){
+  .tile-grid, .pill-grid{ gap: 1rem; }
+  .tile, .pill{
+    border-radius: var(--r-card) !important;
+    border: 1px solid rgba(0,0,0,.12) !important;
+    box-shadow: 0 14px 28px rgba(0,0,0,.10) !important;
+    background: #fff !important;
   }
-  .hero-visual-cta {
+  .tile-title, .pill-title{
+    color:#0f1b21 !important;
+    font-weight: 900 !important;
+  }
+  .tile-lead, .pill-tags{
+    color:#22323a !important;
+    opacity: 1 !important;
+  }
+  .pill-cta{
+    color: var(--brand) !important;
+    opacity: 1 !important;
+    font-weight: 850;
+  }
+
+  /* feedback tactile */
+  .tile:active, .pill:active{ transform: scale(.985); }
+}
+
+/* 7) Page TABAC (.hero) : arrondis + cohérence */
+.hero{
+  border-radius: var(--r-hero) !important;
+}
+
+/* 8) CTA mobile : 1 CTA principal + 1 CTA final + FAB (pas de spam) */
+@media (max-width:768px){
+
+  /* évite les doublons desktop */
+  .cta-banner, .cta-dropdown, .contact-menu, .cta-actions, .cta-desktop{
+    display:none !important;
+  }
+
+  /* CTA du hero : full width et clean */
+  .hero-cta{
+    display:flex;
     flex-direction: column;
+    gap: .65rem;
+    margin-top: .9rem;
   }
-  .hero-visual-cta .btn {
+  .hero-cta .btn, .hero-cta a.btn{
     width: 100%;
-    text-align: center;
+    text-align:center;
+    padding: 1rem 1rem;
+    font-size: 1.06rem;
+    border-radius: 999px !important;
+    box-shadow: 0 16px 36px rgba(0,0,0,.16);
+  }
+
+  /* CTA final : conservé, mais plus compact */
+  .final-cta{
+    margin-top: 1.2rem;
+    padding: 1rem;
+    border-radius: var(--r-card);
+    border: 1px solid rgba(0,0,0,.10);
+    background: rgba(0,0,0,.02);
+  }
+  .final-cta .btn{
+    width:100%;
+    border-radius:999px;
+    padding: 1rem 1rem;
+  }
+
+  /* FAB : position + safe area */
+  body{ padding-bottom: 104px; }
+  .fab-contact{
+    right: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    z-index: 1400;
+  }
+  .fab-btn{ padding:.82rem 1.05rem; border-radius:999px; }
+  .fab-menu{ width:min(92vw, 380px); border-radius: 18px; }
+}
+
+/* 9) Formulaires : propres (si présents) */
+:where(input, textarea, select, .form-control){
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: .78rem .9rem;
+  box-shadow: 0 8px 18px rgba(0,0,0,.06);
+}
+textarea{ min-height: 110px; resize: vertical; }
+:where(input, textarea, select, .form-control):focus{
+  outline:none;
+  border-color: rgba(11,106,112,.55);
+  box-shadow: 0 0 0 4px rgba(11,106,112,.16), 0 10px 22px rgba(0,0,0,.08);
+}
+
+@media (max-width:480px){
+  .hero-band .pill-grid,
+  .hero-band .hero-copy{
+    max-width: 42ch;
+  }
+  .hero-band :where(p,li){
+    letter-spacing: .01em;
+  }
+  /* si c'est un simple paragraphe de thèmes */
+  .hero-band .hero-copy p:nth-of-type(1){
+    line-height: 1.55;
+    opacity: .92;
+  }
+}
+@media (max-width:480px){
+  .hero-band .hero-copy p strong{ color:#fff; }
+  .hero-band .hero-copy p{ margin:.55rem 0; }
+  .hero-band .hero-copy p small,
+  .hero-band .hero-copy p em{
+    opacity:.85;
   }
 }
 
