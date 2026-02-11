@@ -412,7 +412,7 @@ a:hover{ text-decoration: underline; }
 }
 
 /* -----------------------------
-   12) FAB “Contactez-moi” (mobile only)
+   12) FAB “En parler” (mobile only)
    HTML attendu : .fab-contact (wrapper) + .fab-btn + .fab-menu + .fab-backdrop
 ------------------------------ */
 .fab-contact{ display:none; }
@@ -1327,3 +1327,68 @@ textarea{ min-height: 110px; resize: vertical; }
   }
 }
 
+.pillbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem;
+  margin:1rem 0 1.5rem 0;
+  padding:0;
+  list-style:none;
+}
+
+.pillbar p{
+  margin:0;
+}
+
+.pillbar li,
+.pillbar p{
+  background:#f1f5f4;
+  padding:.5rem .9rem;
+  border-radius:999px;
+  font-size:.9rem;
+  font-weight:500;
+}
+
+/* HERO mobile: on réduit la hauteur de l'image pour remonter le texte */
+.hero-img{
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Mobile */
+@media (max-width: 576px){
+  .hero-img{
+    max-height: 280px;   /* clé */
+    border-radius: 14px;
+  }
+  .hero{
+    padding-top: .6rem;
+    padding-bottom: .4rem;
+  }
+}
+.hero-img{
+  width:100%;
+  max-height:520px;
+  object-fit:cover;
+  object-position: 50% 25%; /* remonte le cadrage */
+  border-radius:16px;
+}
+
+/* Mobile */
+@media (max-width:576px){
+  .hero-img{
+    max-height:280px;
+    object-position: 50% 30%;
+    border-radius:14px;
+  }
+}
+
+/* Desktop large : on remonte encore un peu si besoin */
+@media (min-width:992px){
+  .hero-img{
+    max-height:460px;       /* optionnel : un peu moins haut = moins de crop */
+    object-position: 50% 18%;
+  }
+}
