@@ -1392,3 +1392,37 @@ textarea{ min-height: 110px; resize: vertical; }
     object-position: 50% 18%;
   }
 }
+
+.portrait-img{
+  max-width: 260px;
+  border-radius:16px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.08);
+  margin-top: 0.5rem;
+}
+
+/* Présentation : colonnes propres sur mobile */
+@media (max-width: 576px){
+  .portrait-columns{
+    display: block !important;   /* casse la mise en colonnes */
+  }
+
+  .portrait-columns .column{
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+
+  .portrait-img{
+    display: block;
+    max-width: 220px;            /* plus petit sur mobile */
+    width: 100%;
+    margin: .5rem auto 1rem;     /* centrée + espace */
+    border-radius: 16px;
+  }
+
+  /* évite l'effet "texte collé" */
+  .portrait-columns h2,
+  .portrait-columns h1{
+    margin-top: .25rem;
+  }
+}
