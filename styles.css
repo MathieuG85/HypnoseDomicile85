@@ -1426,3 +1426,103 @@ textarea{ min-height: 110px; resize: vertical; }
     margin-top: .25rem;
   }
 }
+.trust-card{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  padding:16px;
+  margin:18px 0 26px;
+  background:#f7f9f8;
+  border:1px solid #e6e6e6;
+  border-radius:18px;
+}
+
+.trust-photo{
+  width:56px;
+  height:56px;
+  border-radius:999px;
+  object-fit:cover;
+  flex:0 0 auto;
+}
+
+.trust-content{
+  flex:1;
+}
+
+.trust-title{
+  font-size:0.98rem;
+  font-weight:700;
+  margin-bottom:6px;
+  line-height:1.3;
+}
+
+.trust-highlight{
+  font-size:0.95rem;
+  line-height:1.35;
+  margin-bottom:6px;
+}
+
+.trust-sub{
+  font-size:0.88rem;
+  line-height:1.4;
+  margin-bottom:12px;
+  opacity:0.95;
+}
+
+.trust-cta{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.btn-call, .btn-sms{
+  text-decoration:none;
+  font-weight:600;
+  font-size:0.9rem;
+  padding:10px 14px;
+  border-radius:12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:110px;
+  transition:0.2s ease;
+}
+
+.btn-call{
+  background:#2f7a64;
+  color:#fff;
+}
+
+.btn-call:hover{
+  background:#256b56;
+}
+
+.btn-sms{
+  background:#ffffff;
+  color:#2f7a64;
+  border:1px solid #2f7a64;
+}
+
+.btn-sms:hover{
+  background:#eef4f2;
+}
+
+@media (max-width:768px){
+  .trust-card{
+    flex-direction:column;
+    text-align:left;
+  }
+
+  .trust-photo{
+    width:52px;
+    height:52px;
+  }
+
+  .trust-cta{
+    flex-direction:column;
+  }
+
+  .btn-call, .btn-sms{
+    width:100%;
+  }
+}
